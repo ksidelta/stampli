@@ -1,9 +1,9 @@
 version: "3.9"
 services:
   server1:
-    build: './stampli'
+    build: './stampli-backend'
   server2:
-    build: './stampli'
+    build: './stampli-backend'
   nginx:
     build: './nginx'
     ports:
