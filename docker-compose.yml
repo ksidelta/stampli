@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  server1:
+    build: './stampli'
+  server2:
+    build: './stampli'
+  nginx:
+    build: './nginx'
+    ports:
+      - '8080:8080'
