@@ -1,6 +1,11 @@
 kind: pipeline
 name: default
 
+environment:
+  DEPLOY_HOST: artur.at.hsp.sh
+  DEPLOY_USERNAME: psuwala
+  DEPLOY_FOLDER: /etc/nixos/docker/stampli
+
 steps:
 - name: build-java
   image: maven:3-jdk-11
@@ -27,4 +32,4 @@ steps:
     port: 22
     script:
       - docker-compose build
-      - docker-compose up
+      - docker-compose up --detach
