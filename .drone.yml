@@ -15,7 +15,8 @@ steps:
     key:
       from_secret: ssh_key
     port: 22
-    target: /etc/nixos/docker/stampli
+    rm: true
+    target: /etc/nixos/docker/stampli/target/
     source: ./*
 - name: deploy-start-compose
   image: appleboy/drone-ssh
@@ -26,6 +27,6 @@ steps:
       from_secret: ssh_key
     port: 22
     script:
-      - cd /etc/nixos/docker/stampli
+      - cd /etc/nixos/docker/stampli/target/
       - docker-compose build
       - docker-compose up --detach

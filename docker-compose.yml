@@ -10,6 +10,6 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
       - "traefik.http.routers.stampli.entrypoints=websecure"
-      - "traefik.http.routers.stampi.tls=true"
+      - "traefik.http.routers.stampli.tls=true"
       - "traefik.http.routers.stampli.tls.certresolver=le"
 
