@@ -15,7 +15,7 @@ steps:
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
-    host: ${DEPLOY_HOST}
+    host: artur.at.hsp.sh
     username: ${DEPLOY_USERNAME}
     key:
       from_secret: ssh_key
@@ -31,5 +31,6 @@ steps:
       from_secret: ssh_key
     port: 22
     script:
+      - cd ${DEPLOY_FOLDER}
       - docker-compose build
       - docker-compose up --detach
