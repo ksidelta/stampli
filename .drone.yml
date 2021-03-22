@@ -7,17 +7,6 @@ steps:
   commands:
   - cd stampli-backend
   - mvn install
-- name: deploy-stop-compose
-  image: appleboy/drone-ssh
-  settings:
-    host: artur.at.hsp.sh
-    username: psuwala
-    key:
-      from_secret: ssh_key
-    port: 22
-    script:
-      - cd /etc/nixos/docker/stampli/target/
-      - docker-compose down
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
@@ -40,4 +29,4 @@ steps:
     script:
       - cd /etc/nixos/docker/stampli/target/
       - docker-compose build
-      - docker-compose up --detach
+      - docker-compose up --detach --remove-orphans

@@ -6,8 +6,6 @@ services:
     build: './stampli-backend'
   nginx:
     build: './nginx'
-    ports:
-      - 8069:80
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
