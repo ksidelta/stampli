@@ -5,7 +5,7 @@ steps:
 - name: build-java
   image: maven:3-jdk-11
   commands:
-  - cd stampli
+  - cd stampli-backend
   - mvn install
 - name: deploy-copy
   image: appleboy/drone-scp
