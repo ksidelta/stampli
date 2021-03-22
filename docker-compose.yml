@@ -14,3 +14,7 @@ services:
       - "traefik.http.routers.stampli.entrypoints=websecure"
       - "traefik.http.routers.stampli.tls=true"
       - "traefik.http.routers.stampli.tls.certresolver=le"
+networks:
+  default:
+    external:
+      name: common-network
