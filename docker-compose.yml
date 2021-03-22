@@ -6,6 +6,9 @@ services:
     build: './stampli-backend'
   nginx:
     build: './nginx'
+    links:
+      - server1:server1
+      - server2:server2
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
