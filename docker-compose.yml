@@ -8,8 +8,8 @@ services:
     build: './nginx'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.drone.rule=Host(`stampli.at.hsp.sh`)"
-      - "traefik.http.routers.drone.entrypoints=websecure"
-      - "traefik.http.routers.drone.tls=true"
-      - "traefik.http.routers.drone.tls.certresolver=le"
+      - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
+      - "traefik.http.routers.stampli.entrypoints=websecure"
+      - "traefik.http.routers.stampi.tls=true"
+      - "traefik.http.routers.stampli.tls.certresolver=le"
 
