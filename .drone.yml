@@ -16,17 +16,17 @@ steps:
   image: appleboy/drone-scp
   settings:
     host: $DEPLOY_HOST
-    username: ${DEPLOY_USERNAME}
+    username: $DEPLOY_USERNAME
     key:
       from_secret: ssh_key
     port: 22
-    target: ${DEPLOY_FOLDER}
+    target: $DEPLOY_FOLDER
     source: /*
 - name: deploy-start-compose
   image: appleboy/drone-ssh
   settings:
-    host: ${DEPLOY_HOST}
-    username: ${DEPLOY_USERNAME}
+    host: $DEPLOY_HOST
+    username: $DEPLOY_USERNAME
     key:
       from_secret: ssh_key
     port: 22
