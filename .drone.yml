@@ -15,7 +15,7 @@ steps:
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
-    host: artur.at.hsp.sh
+    host: $DEPLOY_HOST
     username: ${DEPLOY_USERNAME}
     key:
       from_secret: ssh_key
