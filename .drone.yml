@@ -1,11 +1,6 @@
 kind: pipeline
 name: default
 
-environment:
-  DEPLOY_HOST: artur.at.hsp.sh
-  DEPLOY_USERNAME: psuwala
-  DEPLOY_FOLDER: /etc/nixos/docker/stampli
-
 steps:
 - name: build-java
   image: maven:3-jdk-11
@@ -15,22 +10,22 @@ steps:
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
-    host: $DEPLOY_HOST
-    username: $DEPLOY_USERNAME
+    host: artur.at.hsp.sh
+    username: psuwala
     key:
       from_secret: ssh_key
     port: 22
-    target: $DEPLOY_FOLDER
+    target: /etc/nixos/docker/stampli
     source: ./*
 - name: deploy-start-compose
   image: appleboy/drone-ssh
   settings:
-    host: $DEPLOY_HOST
-    username: $DEPLOY_USERNAME
+    host: artur.at.hsp.sh
+    username: psuwala
     key:
       from_secret: ssh_key
     port: 22
     script:
-      - cd ${DEPLOY_FOLDER}
+      - cd /etc/nixos/docker/stampli
       - docker-compose build
       - docker-compose up --detach
