@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from 'react';
+import styled from 'styled-components';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InnerHeader = styled.div`
   height: 5rem;
@@ -30,16 +30,10 @@ const InnerHeader = styled.div`
   }
 `;
 
-export const Header = ({
-  title,
-  icon,
-}: {
-  title: string;
-  icon?: IconDefinition;
-}) => (
+export const Header = ({ title, icon }: { title: string; icon?: IconDefinition }) => (
   <InnerHeader>
     <div className="manipulator">
-      <div>{icon && <FontAwesomeIcon className={"icon"} icon={icon} />}</div>
+      <div>{icon && <FontAwesomeIcon className={'icon'} icon={icon} />}</div>
     </div>
     <div className="text">{title}</div>
   </InnerHeader>

@@ -1,6 +1,6 @@
-import React, { ReactNode } from "react";
-import styled from "styled-components";
-import { CommonPage } from "./CommonPage";
+import React, { ReactNode } from 'react';
+import styled from 'styled-components';
+import { CommonPage } from './CommonPage';
 
 const Inner = styled.div`
   width: 768px;
@@ -18,12 +18,8 @@ const Inner = styled.div`
   background-color: var(--bg-color);
 `;
 
-export const MobilePage: React.FunctionComponent = ({
-  children,
-}: {
-  children?: ReactNode;
-}) => (
-  <CommonPage className={"krincz"}>
+export const MobilePage: React.FunctionComponent = ({ children }: { children?: ReactNode }) => (
+  <CommonPage className={'krincz'}>
     <Inner>{children}</Inner>
   </CommonPage>
 );

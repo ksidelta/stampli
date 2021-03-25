@@ -1,15 +1,17 @@
-import React from "react";
-import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import { RouterServiceContext } from '../../../router/AppRouter';
+import { RoutingService } from '../../../router/services/RoutingService';
 
 const Inner = styled.div`
-  margin: 1em;
+  margin-bottom: var(--gap);
   border: 0.15em solid var(--text-color);
-  border-radius: 1em;
-  padding: 2em;
-  padding-top: 1.5em;
-  padding-bottom: 1.5em;
+  border-radius: var(--gap);
+  padding: var(--sidewise-gap);
+  padding-top: var(--ceiling-gap);
+  padding-bottom: var(--ceiling-gap);
 
   cursor: pointer;
 
@@ -34,14 +36,18 @@ const Inner = styled.div`
 export const SimpleButton = ({
   text,
   onClick,
-  icon,
+  icon
 }: {
   text?: string;
-  onClick?: () => void;
+  onClick?: (history: RoutingService) => void;
   icon?: IconDefinition;
-}) => (
-  <Inner onClick={() => onClick && onClick()}>
-    <div className={"text"}>{text ?? ""}</div>
-    {icon && <FontAwesomeIcon className={"icon"} icon={icon} />}
-  </Inner>
-);
+}) => {
+  const historyInstance = useContext(RouterServiceContext);
+
+  return (
+    <Inner onClick={() => onClick && onClick(historyInstance)}>
+      <div className={'text'}>{text ?? ''}</div>
+      {icon && <FontAwesomeIcon className={'icon'} icon={icon} />}
+    </Inner>
+  );
+};

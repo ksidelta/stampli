@@ -1,10 +1,7 @@
-import React from "react";
-import ReactDOM from 'react-dom'
-import {EntryPage} from "./pages/Entry";
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-import './utils/main.css'
+import './css/main.css';
+import { AppRouter } from './router/AppRouter';
 
-ReactDOM.render(
-    <EntryPage/>,
-    document.getElementById('app')
-);
+ReactDOM.render(<AppRouter />, document.getElementById('app'));
