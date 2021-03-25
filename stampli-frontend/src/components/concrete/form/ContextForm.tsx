@@ -32,11 +32,11 @@ export const ContextForm = ({
       onSubmit={onSubmit}>
       {(props: {
         values: Record<string, string>;
-        submit: () => void;
+        handleSubmit: () => void;
         handleChange: (e: React.ChangeEvent<any>) => void;
       }) => (
         <FormValuesContext.Provider value={props.values}>
-          <FormSubmitContext.Provider value={props.submit}>
+          <FormSubmitContext.Provider value={props.handleSubmit}>
             <FormOnChangeContext.Provider value={props.handleChange}>{children}</FormOnChangeContext.Provider>
           </FormSubmitContext.Provider>
         </FormValuesContext.Provider>
