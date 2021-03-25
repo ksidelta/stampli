@@ -8,6 +8,7 @@ import { RoutingService } from '../../../router/services/RoutingService';
 const Inner = styled.div`
   margin-bottom: var(--gap);
   border: 0.15em solid var(--text-color);
+  border-radius: var(--gap);
   padding: var(--sidewise-gap);
   padding-top: var(--ceiling-gap);
   padding-bottom: var(--ceiling-gap);
@@ -27,16 +28,26 @@ const Inner = styled.div`
 
   & .text {
     flex-grow: 1;
-    text-align: center;
+  }
+  & .icon {
   }
 `;
 
-export const SimpleButton = ({ text, onClick }: { text?: string; onClick?: (history: RoutingService) => void }) => {
+export const IconButton = ({
+  text,
+  onClick,
+  icon
+}: {
+  text?: string;
+  onClick?: (history: RoutingService) => void;
+  icon?: IconDefinition;
+}) => {
   const historyInstance = useContext(RouterServiceContext);
 
   return (
     <Inner onClick={() => onClick && onClick(historyInstance)}>
       <div className={'text'}>{text ?? ''}</div>
+      {icon && <FontAwesomeIcon className={'icon'} icon={icon} />}
     </Inner>
   );
 };

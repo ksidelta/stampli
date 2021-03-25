@@ -18,14 +18,14 @@ export const ContextTitledInput = ({ title, name }: { title: string; name: strin
 );
 
 const Inner = styled.div`
-  margin-bottom: var(--ceiling-gap);
+  margin-bottom: calc(var(--gap));
 
   & label {
     display: block;
     text-align: left;
 
     font-size: calc(var(--gap));
-    padding-bottom: var(--gap);
+    padding-bottom: calc(0.2 * var(--gap));
   }
 
   & input {
