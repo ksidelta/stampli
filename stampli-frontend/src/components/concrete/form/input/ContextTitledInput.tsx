@@ -36,8 +36,10 @@ const Inner = styled.div`
     padding-bottom: calc(var(--gap) * 0.5);
     padding-left: calc(var(--gap));
 
-    font-size: calc(var(--gap));
+    border: 0.15rem black solid;
+    border-radius: 0.2rem;
 
+    font-size: calc(var(--gap));
     box-sizing: border-box;
   }
 `;
