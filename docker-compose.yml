@@ -4,6 +4,8 @@ services:
     build: './stampli-backend'
   server2:
     build: './stampli-backend'
+  frontend:
+    build: './stampli-frontend'
   nginx:
     build: './nginx'
     labels:
