@@ -29,4 +29,5 @@ steps:
     script:
       - cd /etc/nixos/docker/stampli/target/
       - docker-compose build
+      - docker-compose down
       - docker-compose up --detach --remove-orphans
