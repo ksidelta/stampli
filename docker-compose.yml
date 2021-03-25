@@ -4,9 +4,11 @@ services:
     build: './stampli-backend'
   server2:
     build: './stampli-backend'
-  frontend:
+  front:
     build: './stampli-frontend'
   nginx:
+    # ports: // for local only
+    #  - 8080:80
     build: './nginx'
     labels:
       - "traefik.enable=true"
