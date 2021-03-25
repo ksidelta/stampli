@@ -7,8 +7,8 @@ services:
   front:
     build: './stampli-frontend'
   nginx:
-    # ports: // for local only
-    #  - 8080:80
+    ports: # for local only
+     - 8080:80
     build: './nginx'
     labels:
       - "traefik.enable=true"
