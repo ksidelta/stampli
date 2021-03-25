@@ -7,7 +7,7 @@ const Inner = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (orientation: portrait) {
     width: 100%;
     height: 100%;
     margin-left: 0;
