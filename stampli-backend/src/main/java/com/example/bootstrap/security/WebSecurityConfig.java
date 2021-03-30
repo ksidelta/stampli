@@ -13,7 +13,7 @@ import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @Import({BaseSecurityAdapter.class, OAuthConfig.class})
 public class WebSecurityConfig {
 
