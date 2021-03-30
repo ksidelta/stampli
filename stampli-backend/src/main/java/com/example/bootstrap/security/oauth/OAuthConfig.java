@@ -6,20 +6,19 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.AuthenticatedPrincipalOAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.core.ClientAuthenticationMethod;
 import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 
 @Configuration
 public class OAuthConfig {
-    @Bean
-    public ClientRegistrationRepository clientRegistrationRepository() {
-        return new
-                InMemoryClientRegistrationRepository(this.googleClientRegistration());
-    }
     private ClientRegistration googleClientRegistration() {
         return ClientRegistration.withRegistrationId("google")
                 .clientId("155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com")
@@ -37,16 +36,20 @@ public class OAuthConfig {
                 .build();
     }
 
-    @Primary
     @Bean
-    public AuthenticationManager authenticationManager(){
-        return new AuthenticationManager(){
-            @Override
-            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-                System.out.println("KIERWAAAAAAAAAAAA");
-                System.out.println(authentication);
-                return authentication;
-            }
-        };
+    public ClientRegistrationRepository clientRegistrationRepository() {
+        return new InMemoryClientRegistrationRepository(this.googleClientRegistration());
+    }
+
+    @Bean
+    public OAuth2AuthorizedClientService authorizedClientService(
+            ClientRegistrationRepository clientRegistrationRepository) {
+        return new InMemoryOAuth2AuthorizedClientService(clientRegistrationRepository);
+    }
+
+    @Bean
+    public OAuth2AuthorizedClientRepository authorizedClientRepository(
+            OAuth2AuthorizedClientService authorizedClientService) {
+        return new AuthenticatedPrincipalOAuth2AuthorizedClientRepository(authorizedClientService);
     }
 }
