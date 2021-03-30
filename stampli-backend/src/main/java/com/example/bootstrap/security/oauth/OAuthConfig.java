@@ -26,7 +26,7 @@ public class OAuthConfig {
                 .clientSecret("y_JNjn5Wl2acmo01UEIdQM3W")
                 .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
                 .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("https://stampli.at.hsp.sh/api/login/oauth2/code/{registrationId}")
+                .redirectUri("https://stampli.at.hsp.sh/api/login/oauth2/code/google")
                 .scope("openid", "email")
                 .authorizationUri("https://accounts.google.com/o/oauth2/v2/auth")
                 .tokenUri("https://www.googleapis.com/oauth2/v4/token")
