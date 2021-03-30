@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.oauth2.client.CommonOAuth2Provider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.InMemoryOAuth2AuthorizedClientService;
@@ -20,19 +21,9 @@ import org.springframework.security.oauth2.core.oidc.IdTokenClaimNames;
 @Configuration
 public class OAuthConfig {
     private ClientRegistration googleClientRegistration() {
-        return ClientRegistration.withRegistrationId("google")
+        return CommonOAuth2Provider.GOOGLE.getBuilder("google")
                 .clientId("155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com")
                 .clientSecret("y_JNjn5Wl2acmo01UEIdQM3W")
-                .clientAuthenticationMethod(ClientAuthenticationMethod.BASIC)
-                .authorizationGrantType(AuthorizationGrantType.AUTHORIZATION_CODE)
-                .redirectUri("https://stampli.at.hsp.sh/api/login/oauth2/code/google")
-                .scope("openid", "email")
-                .authorizationUri("https://accounts.google.com/o/oauth2/v2/auth")
-                .tokenUri("https://www.googleapis.com/oauth2/v4/token")
-                .userInfoUri("https://www.googleapis.com/oauth2/v3/userinfo")
-                .userNameAttributeName(IdTokenClaimNames.SUB)
-                .jwkSetUri("https://www.googleapis.com/oauth2/v3/certs")
-                .clientName("Google")
                 .build();
     }
 
