@@ -8,7 +8,9 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final HttpSecurity output = http.oauth2Login(withDefaults());
+        final HttpSecurity output = http
+                .formLogin(login -> login.loginPage("/login"))
+                .oauth2Login(withDefaults());
         super.configure(output);
     }
 }
