@@ -2,6 +2,7 @@ package com.example.bootstrap.security.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -36,6 +37,7 @@ public class OAuthConfig {
                 .build();
     }
 
+    @Primary
     @Bean
     public AuthenticationManager authenticationManager(){
         return new AuthenticationManager(){
