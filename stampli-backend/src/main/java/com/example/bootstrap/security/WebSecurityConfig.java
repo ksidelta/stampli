@@ -18,14 +18,6 @@ import org.springframework.security.web.firewall.HttpFirewall;
 public class WebSecurityConfig {
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withUsername("user").password("password").roles("USER").build());
-
-        return manager;
-    }
-
-    @Bean
     public HttpFirewall defaultHttpFirewall() {
         return new DefaultHttpFirewall();
     }
