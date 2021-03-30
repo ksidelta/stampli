@@ -2,8 +2,6 @@ version: "3.3"
 services:
   server1:
     build: './stampli-backend'
-  server2:
-    build: './stampli-backend'
   front:
     build: './stampli-frontend'
   nginx:
