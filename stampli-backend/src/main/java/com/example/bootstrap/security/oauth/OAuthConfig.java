@@ -2,6 +2,9 @@ package com.example.bootstrap.security.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
@@ -31,5 +34,17 @@ public class OAuthConfig {
                 .jwkSetUri("https://www.googleapis.com/oauth2/v3/certs")
                 .clientName("Google")
                 .build();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(){
+        return new AuthenticationManager(){
+            @Override
+            public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+                System.out.println("KIERWAAAAAAAAAAAA");
+                System.out.println(authentication);
+                return authentication;
+            }
+        };
     }
 }
