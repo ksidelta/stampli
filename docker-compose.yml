@@ -2,11 +2,11 @@ version: "3.3"
 services:
   server1:
     build: './stampli-backend'
+    ports: # for local only
+     - 2137:2137
   front:
     build: './stampli-frontend'
   nginx:
-    # ports: # for local only
-    #  - 80:80
     build: './nginx'
     labels:
       - "traefik.enable=true"

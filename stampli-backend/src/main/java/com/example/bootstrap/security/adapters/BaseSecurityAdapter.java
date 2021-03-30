@@ -12,7 +12,6 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         final HttpSecurity output = http
                 .addFilterBefore(new ForwardedHeaderFilter(), HeaderWriterFilter.class)
-                .formLogin(login -> login.loginPage("/login"))
                 .oauth2Login(withDefaults());
         super.configure(output);
     }
