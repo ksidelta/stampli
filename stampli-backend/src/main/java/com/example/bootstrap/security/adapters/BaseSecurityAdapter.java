@@ -11,15 +11,15 @@ import static org.springframework.security.config.Customizer.withDefaults;
 public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        final HttpSecurity output = http
+        http
                 .authorizeRequests(authorize -> authorize
                         .mvcMatchers("/login").permitAll()
                         .mvcMatchers("/test/string").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin().and()
+                .oauth2Login(withDefaults())
+                .formLogin(withDefaults())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
-                .oauth2Login(withDefaults());
+                .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class);
     }
 }
