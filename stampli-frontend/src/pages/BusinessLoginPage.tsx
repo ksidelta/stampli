@@ -22,6 +22,7 @@ export const BusinessLoginPage = () => (
         <ContextSubmitButton text={'Zaloguj się'} />
         <ContextSubmitButton text={'Zarejestruj się'} />
         <GoogleLogin
+          redirectUri={'/api/login/oauth2/code/google'}
           clientId="155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={x => console.log(x)}
