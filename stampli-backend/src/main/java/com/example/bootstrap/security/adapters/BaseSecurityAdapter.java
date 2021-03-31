@@ -13,7 +13,7 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .mvcMatchers("/login").permitAll()
+                        .mvcMatchers("/login/**").permitAll()
                         .mvcMatchers("/test/string").permitAll()
                         .anyRequest().authenticated()
                 )
