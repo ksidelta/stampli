@@ -1,6 +1,6 @@
 FROM tomcat:9.0.44
 
-ADD ./target/stampli-*.war /usr/local/tomcat/webapps/stampli.war
+ADD ./target/stampli-*.war /usr/local/tomcat/webapps/api.war
 
 # I don;t want to add more configuration yet
 #RUN echo '<Host name="localhost"  appBase="webapps" \
