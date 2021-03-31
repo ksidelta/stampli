@@ -17,7 +17,7 @@ public class OAuthConfig {
         return CommonOAuth2Provider.GOOGLE.getBuilder("google")
                 .clientId("155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com")
                 .clientSecret("y_JNjn5Wl2acmo01UEIdQM3W")
-                .redirectUri("/api/login/oauth2/code/google")
+                .redirectUri("{baseUrl}/api/login/oauth2/code/google")
                 .build();
     }
 
