@@ -17,7 +17,7 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/api/test/string").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2Login(oauth -> oauth.loginProcessingUrl("/api/oauth2/authorization/google/"))
+                .oauth2Login(oauth -> oauth.loginPage("/api/oauth2/authorization/google/"))
                 .formLogin(x -> x.loginPage("/api/login"))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class);
