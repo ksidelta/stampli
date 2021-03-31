@@ -12,7 +12,11 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         final HttpSecurity output = http
-                .formLogin(x -> x.successForwardUrl("/test/string"))
+                .authorizeRequests(authorize -> authorize
+                        .mvcMatchers("/api/login").permitAll()
+                        .anyRequest().authenticated()
+                )
+                .formLogin(x -> x.successForwardUrl("/api/test/string"))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
                 .oauth2Login(withDefaults());
