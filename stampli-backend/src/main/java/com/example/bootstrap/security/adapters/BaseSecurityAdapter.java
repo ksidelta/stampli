@@ -21,6 +21,5 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
                 .oauth2Login(withDefaults());
-        super.configure(output);
     }
 }
