@@ -10,6 +10,14 @@ ADD ./target/stampli-*.war /usr/local/tomcat/webapps/api.war
 
 RUN echo 'export JPDA_ADDRESS=*:1995' > /usr/local/tomcat/bin/setenv.sh
 
+RUN mkdir -p /usr/local/tomcat/conf/Catalina/
+
+RUN echo '<Context       \
+           docBase="api" \
+           path=""       \
+           /> > /usr/local/tomcat/conf/Catalina/ROOT.xml
+
+
 HEALTHCHECK --interval=30s --timeout=3s \
   CMD curl -f http://localhost:8080/stampli/test/string
 
