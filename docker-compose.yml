@@ -3,7 +3,7 @@ services:
   server1:
     build: './stampli-backend'
     ports: # for local only
-     - 2137:2137
+     - 1995:1995
   front:
     build: './stampli-frontend'
   nginx:
