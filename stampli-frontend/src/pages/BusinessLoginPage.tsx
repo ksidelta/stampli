@@ -22,7 +22,7 @@ export const BusinessLoginPage = () => (
         <ContextSubmitButton text={'Zaloguj się'} />
         <ContextSubmitButton text={'Zarejestruj się'} />
         <GoogleLogin
-          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+          clientId="155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com"
           buttonText="Login"
           onSuccess={x => console.log(x)}
           onFailure={x => console.error(x)}
