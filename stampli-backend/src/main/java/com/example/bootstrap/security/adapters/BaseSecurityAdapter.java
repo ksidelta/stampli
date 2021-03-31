@@ -17,7 +17,7 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/test/string").permitAll()
                         .anyRequest().authenticated()
                 )
-                .formLogin(x -> x.loginPage("/login").successForwardUrl("/test/string"))
+                .formLogin().and()
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
                 .oauth2Login(withDefaults());
