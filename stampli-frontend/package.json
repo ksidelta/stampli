@@ -69,6 +69,7 @@
     "mobx-react": "^6.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-google-login": "^5.2.2",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",
     "ts-node": "^9.0.0"

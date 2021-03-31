@@ -7,6 +7,7 @@ import { VerticalFlex } from '../components/concrete/container/flex/VerticalFlex
 import { ContextSubmitButton } from '../components/concrete/form/input/ContextSubmitButton';
 import { Delimeter } from '../components/concrete/container/flex/Delimeter';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import GoogleLogin from 'react-google-login';
 
 export const BusinessLoginPage = () => (
   <MobilePage>
@@ -20,6 +21,13 @@ export const BusinessLoginPage = () => (
         <Delimeter />
         <ContextSubmitButton text={'Zaloguj się'} />
         <ContextSubmitButton text={'Zarejestruj się'} />
+        <GoogleLogin
+          clientId="658977310896-knrl3gka66fldh83dao2rhgbblmd4un9.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={x => console.log(x)}
+          onFailure={x => console.error(x)}
+          cookiePolicy={'single_host_origin'}
+        />
       </ContextForm>
     </VerticalFlex>
   </MobilePage>
