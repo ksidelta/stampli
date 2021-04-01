@@ -10,13 +10,16 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.AuthenticatedPrincipalOAuth2AuthorizedClientRepository;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtDecoders;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
 @Configuration
 public class OAuthConfig {
     private ClientRegistration googleClientRegistration() {
         return CommonOAuth2Provider.GOOGLE.getBuilder("google")
-                .clientId("155167860801-d72fthptdqh1a4ssu59h87923lbk7jgi.apps.googleusercontent.com")
-                .clientSecret("y_JNjn5Wl2acmo01UEIdQM3W")
+                .clientId("155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com")
+                .clientSecret("mFEm5Q3Y_Gu293ZV1LMXIoJ4")
                 .redirectUri("{baseUrl}/api/login/oauth2/code/google")
                 .build();
     }
@@ -36,5 +39,9 @@ public class OAuthConfig {
     public OAuth2AuthorizedClientRepository authorizedClientRepository(
             OAuth2AuthorizedClientService authorizedClientService) {
         return new AuthenticatedPrincipalOAuth2AuthorizedClientRepository(authorizedClientService);
+    }
+
+    public JwtDecoder jwtDecoder(){
+
     }
 }

@@ -14,15 +14,15 @@
   "author": "oneacik",
   "license": "ISC",
   "devDependencies": {
-    "@babel/cli": "^7.11.6",
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/preset-env": "^7.11.5",
-    "@babel/preset-react": "^7.10.4",
-    "@babel/preset-typescript": "^7.10.4",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
+    "@babel/preset-typescript": "^7.13.0",
     "@types/enzyme": "^3.10.7",
     "@types/enzyme-adapter-react-16": "^1.0.6",
-    "@types/jest": "^26.0.14",
+    "@types/jest": "^26.0.22",
     "@types/styled-components": "^5.1.4",
     "@types/webpack-dev-middleware": "^3.7.2",
     "@typescript-eslint/eslint-plugin": "^4.12.0",
@@ -40,12 +40,12 @@
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-react": "^7.22.0",
     "express": "^4.17.1",
-    "jest": "^26.5.2",
+    "jest": "^26.6.3",
     "jest-localstorage-mock": "^2.4.3",
     "prettier": "^2.2.1",
     "style-loader": "^2.0.0",
-    "ts-jest": "^26.4.1",
-    "ts-loader": "^8.0.4",
+    "ts-jest": "^26.5.4",
+    "ts-loader": "^8.1.0",
     "typescript": "^4.0.3",
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
@@ -53,7 +53,8 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "@babel/node": "^7.12.6",
+    "@babel/node": "^7.13.13",
+    "@babel/plugin-transform-runtime": "^7.13.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
@@ -61,10 +62,14 @@
     "@types/express-urlrewrite": "^1.2.1",
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
+    "axios": "^0.21.1",
     "cypress": "^6.0.1",
     "express-urlrewrite": "^1.3.0",
     "formik": "^2.2.6",
     "html-webpack-plugin": "^4.5.0",
+    "jest-runner-mocha": "^0.6.0",
+    "jest-runner-tsc": "^1.6.0",
+    "jose": "^3.11.2",
     "mobx": "^6.0.4",
     "mobx-react": "^6.3.0",
     "react": "^16.13.1",
@@ -72,11 +77,6 @@
     "react-google-login": "^5.2.2",
     "react-router-dom": "^5.2.0",
     "styled-components": "^5.2.1",
-    "ts-node": "^9.0.0"
-  },
-  "jest": {
-    "setupFiles": [
-      "jest-localstorage-mock"
-    ]
+    "ts-node": "^9.1.1"
   }
 }
