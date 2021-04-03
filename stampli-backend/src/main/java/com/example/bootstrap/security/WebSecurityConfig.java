@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Import;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
+import org.springframework.web.context.WebApplicationContext;
 
 @Configuration
 @EnableWebSecurity(debug = true)

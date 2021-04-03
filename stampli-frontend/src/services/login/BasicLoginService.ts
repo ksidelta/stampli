@@ -1,17 +1,22 @@
+import { Token } from '../token/TokenService';
 import { LoginService } from './LoginService';
+import { RequestService } from '../request/RequestService';
+import { endpointMap } from '../request/constants/EndpointMap';
+import { headersMap } from '../request/constants/HeadersMap';
 
 export class BasicLoginService implements LoginService {
-  token: string | undefined = undefined;
+  constructor(protected requestService: RequestService) {}
 
-  getToken(): string {
-    return this.token || '';
-  }
+  async login(user: string, password: string): Promise<Token> {
+    const logQuery = await this.requestService.query(endpointMap.LOGIN, 'post');
+    if (logQuery.isSuccessful()) {
+      return logQuery.headers[headersMap.SET_TOKEN];
+    }
 
-  isAuthenticated(): boolean {
-    return this.token !== undefined;
-  }
+    if (logQuery.isNotFound()) {
+      return Promise.reject('Wrong Credentials');
+    }
 
-  async setToken(token: string | undefined): Promise<void> {
-    this.token = token;
+    return Promise.reject('Error');
   }
 }

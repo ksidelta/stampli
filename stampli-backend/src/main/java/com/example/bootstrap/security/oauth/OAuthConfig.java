@@ -40,8 +40,4 @@ public class OAuthConfig {
             OAuth2AuthorizedClientService authorizedClientService) {
         return new AuthenticatedPrincipalOAuth2AuthorizedClientRepository(authorizedClientService);
     }
-
-    public JwtDecoder jwtDecoder(){
-
-    }
 }

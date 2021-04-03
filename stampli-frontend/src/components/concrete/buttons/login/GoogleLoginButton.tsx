@@ -1,24 +1,30 @@
-import GoogleLogin from 'react-google-login';
+import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
 import React from 'react';
-import { Configuration } from '../../../../services/config/Configuration';
 import styled from 'styled-components';
+import { OpenIdConfiguration } from '../../../../services/config/parts/OpenIdConfiguration';
 
 export const GoogleLoginButton = ({
   config,
-  onSuccess
+  onSuccess,
+  onFailure = console.error
 }: {
-  config: Configuration;
+  config: OpenIdConfiguration;
   onSuccess: (token: string) => void;
+  onFailure?: (error: string) => void;
 }) => (
   <StyledGoogleLogin
-    clientId={config.openIdConfiguration.googleClientId}
+    clientId={config.googleClientId}
     buttonText="Login"
-    onSuccess={x => console.log(x)}
-    onFailure={x => console.error(x)}
+    onSuccess={x => ('accessToken' in x ? onSuccess((x as GoogleLoginResponse).accessToken) : onFailure('Offline!'))}
+    onFailure={x => onFailure(x)}
     cookiePolicy={'single_host_origin'}
   />
 );
 
 const StyledGoogleLogin = styled(GoogleLogin)`
-  height: calc(3 * var(--gap));
+  height: calc(5 * var(--gap));
+
+  & span {
+    font-size: calc(1.2 * var(--gap));
+  }
 `;

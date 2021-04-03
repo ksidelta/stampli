@@ -1,13 +1,13 @@
 import { givwhenify } from '../../utils/tests/GivWhenify';
 import { BasicRequestResponse } from './response/BasicRequestResponse';
-import { BasicLoginService } from '../login/BasicLoginService';
+import { TokenService } from '../token/BasicLoginService';
 import { AuthenticationAwareRequestService } from './AuthenticationAwareRequestService';
 
 describe('AuthenticationAwareRequestService', () => {
   givwhenify(
     'given unlogged user',
     async () => {
-      const service = new BasicLoginService();
+      const service = new TokenService();
       return service;
     },
     loginService => {
@@ -33,7 +33,7 @@ describe('AuthenticationAwareRequestService', () => {
   givwhenify(
     'given logged user',
     async () => {
-      const service = new BasicLoginService();
+      const service = new TokenService();
       await service.setToken('lol');
       return service;
     },
