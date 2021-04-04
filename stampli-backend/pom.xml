@@ -15,6 +15,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
+        <mysql.version>10.5.9</mysql.version>
+        <test.mysql.username>sa</test.mysql.username>
+        <test.mysql.password>sa</test.mysql.password>
+        <test.mysql.port>2137</test.mysql.port>
+        <test.mysql.db>MYSQL_DATABASE</test.mysql.db>
     </properties>
 
     <reporting>
@@ -76,9 +82,9 @@
             <version>2.1.7</version>
         </dependency>
         <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.194</version>
+            <groupId>org.mariadb.jdbc</groupId>
+            <artifactId>mariadb-java-client</artifactId>
+            <version>2.7.2</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -161,6 +167,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.7.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <version>1.3</version>
@@ -182,6 +194,77 @@
                     <target>10</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <includes>**/*Test.java</includes>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <includes>**/*Integration.java</includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>docker-maven-plugin</artifactId>
+                <version>0.35.0</version>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>mariadb:10.5.9</name>
+                            <alias>database</alias>
+                            <run>
+                                <wait>
+                                    <log>mysqld: ready for connections.</log>
+                                    <time>20000</time>
+                                </wait>
+                                <ports>
+                                    <port>test.mysql.port:3306</port>
+                                </ports>
+                                <env>
+                                    <MYSQL_DATABASE>${test.mysql.db}</MYSQL_DATABASE>
+                                    <MYSQL_USERNAME>${test.mysql.username}</MYSQL_USERNAME>
+                                    <MYSQL_PASSWORD>${test.mysql.password}</MYSQL_PASSWORD>
+                                    <MYSQL_ROOT_PASSWORD>unused</MYSQL_ROOT_PASSWORD>
+                                </env>
+                                <!-- <log>
+                                    <prefix>TC</prefix>
+                                    <date>default</date>
+                                    <color>cyan</color>
+                                </log> -->
+                            </run>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>start</id>
+                        <goals>
+                            <goal>start</goal>
+                        </goals>
+                        <phase>pre-integration-test</phase>
+                    </execution>
+                    <execution>
+                        <id>stop</id>
+                        <goals>
+                            <goal>stop</goal>
+                        </goals>
+                        <phase>post-integration-test</phase>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
@@ -202,6 +285,10 @@
                 <plugin>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.22.1</version>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.22.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-jar-plugin</artifactId>
