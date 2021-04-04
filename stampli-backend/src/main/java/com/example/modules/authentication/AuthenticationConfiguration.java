@@ -1,5 +1,9 @@
 package com.example.modules.authentication;
 
+import com.example.modules.authentication.token.TokenGenerator;
+import com.example.modules.authentication.token.TokenGeneratorImpl;
+import com.example.modules.authentication.token.sign.AlgorithmHolder;
+import com.example.modules.authentication.token.sign.InMemoryAlgorithmHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -31,7 +35,7 @@ public class AuthenticationConfiguration {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         final var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return passwordEncoder;
     }
@@ -39,10 +43,24 @@ public class AuthenticationConfiguration {
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         final var inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-        final var user = User.builder().username("username").password("{noop}password").authorities("USER").build();
+        final var user = User.builder()
+                .username("username")
+                .password("{noop}password")
+                .authorities("USER")
+                .build();
 
         inMemoryUserDetailsManager.createUser(user);
 
         return inMemoryUserDetailsManager;
+    }
+
+    @Bean
+    public AlgorithmHolder algorithmHolder() {
+        return new InMemoryAlgorithmHolder("TWOJASTARA");
+    }
+
+    @Bean
+    public TokenGenerator tokenGenerator(AlgorithmHolder algorithmHolder) {
+        return new TokenGeneratorImpl(algorithmHolder);
     }
 }

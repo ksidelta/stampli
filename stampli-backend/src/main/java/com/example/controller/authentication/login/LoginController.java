@@ -1,46 +1,45 @@
-package com.example.modules.authentication.login;
+package com.example.controller.authentication.login;
 
+import com.example.modules.authentication.user.UserImpl;
+import com.example.service.authentication.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.ProviderManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
     protected final ProviderManager providerManager;
+    protected final LoginService loginService;
 
     @Autowired
-    LoginController(ProviderManager authenticationManager) {
+    LoginController(ProviderManager authenticationManager, LoginService loginService) {
         this.providerManager = authenticationManager;
+        this.loginService = loginService;
     }
 
     @PostMapping("/basic")
     public ResponseEntity<Object> login(@RequestBody LoginAndPasswordDto loginAndPasswordDto) {
         try {
-            final var token = new UsernamePasswordAuthenticationToken(
-                    loginAndPasswordDto.getUsername(),
-                    loginAndPasswordDto.getPassword()
-            );
-            final var authentication = this.providerManager.authenticate(token);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (BadCredentialsException badCredentialsException){
+            final var token = loginService.login(loginAndPasswordDto.getUsername(), loginAndPasswordDto.getPassword());
+            return ResponseEntity.ok().header("Set-Token", token).build();
+        } catch (BadCredentialsException badCredentialsException) {
             return ResponseEntity.notFound().build();
         }
-        // https://github.com/jwtk/jjwt
-        return null;
     }
-
 }
 
 class LoginAndPasswordDto {
     private String username;
     private String password;
 
-    public LoginAndPasswordDto(){}
+    public LoginAndPasswordDto() {
+    }
 
     public String getUsername() {
         return username;
