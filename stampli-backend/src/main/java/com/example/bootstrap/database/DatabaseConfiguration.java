@@ -1,18 +1,11 @@
 package com.example.bootstrap.database;
 
-import org.flywaydb.core.Flyway;
-import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.sql.DataSource;
-
+@Configuration
+@Import({FlywayConfiguration.class, HibernateConfiguration.class, JdbcConfiguration.class})
+@EnableTransactionManagement
 public class DatabaseConfiguration {
-    @Bean(initMethod = "migrate")
-    Flyway flyway(DataSource dataSource) {
-        return Flyway
-                .configure()
-                .baselineOnMigrate(false)
-                .locations("classpath:/resources/migrations")
-                .dataSource(dataSource)
-                .load();
-    }
 }

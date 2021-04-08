@@ -1,11 +1,9 @@
 package com.example.controller.authentication.login;
 
-import com.example.modules.authentication.user.UserImpl;
 import com.example.service.authentication.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.authentication.ProviderManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/login")
 public class LoginController {
-    protected final ProviderManager providerManager;
     protected final LoginService loginService;
 
     @Autowired
-    LoginController(ProviderManager authenticationManager, LoginService loginService) {
-        this.providerManager = authenticationManager;
+    LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 

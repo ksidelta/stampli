@@ -1,4 +1,4 @@
-package com.example.modules.authentication.token.sign;
+package com.example.domain.authentication.token.sign;
 
 import com.auth0.jwt.algorithms.Algorithm;
 

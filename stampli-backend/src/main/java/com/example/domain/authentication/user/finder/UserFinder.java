@@ -1,6 +1,6 @@
-package com.example.modules.authentication.user.finder;
+package com.example.domain.authentication.user.finder;
 
-import com.example.modules.authentication.user.User;
+import com.example.domain.authentication.user.User;
 import org.springframework.security.authentication.BadCredentialsException;
 
 public interface UserFinder {

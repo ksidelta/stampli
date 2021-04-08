@@ -1,28 +1,29 @@
 package com.example.controller.authentication.login;
 
 import com.auth0.jwt.JWT;
-import com.example.AppConfig;
-import com.example.modules.authentication.token.sign.AlgorithmHolder;
-import com.example.modules.authentication.user.User;
-import com.example.modules.authentication.user.UserImpl;
-import com.example.modules.authentication.user.finder.UserFinder;
-import org.hamcrest.MatcherAssert;
+import com.example.domain.authentication.AuthenticationConfiguration;
+import com.example.domain.authentication.token.sign.AlgorithmHolder;
+import com.example.domain.authentication.user.User;
+import com.example.domain.authentication.user.UserImpl;
+import com.example.domain.authentication.user.finder.UserFinder;
+import com.example.service.authentication.login.LoginServiceImpl;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.beans.factory.config.BeanFactoryPostProcessor;
+import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtDecoders;
-import org.springframework.security.oauth2.server.resource.authentication.BearerTokenAuthentication;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,7 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @ExtendWith(SpringExtension.class)
-@SpringJUnitWebConfig({AppConfig.class})
+@SpringJUnitWebConfig({LoginControllerTest.LocalTestConfiguration.class})
+@ActiveProfiles({"com.example.controller.authentication.login.LoginController"})
 public class LoginControllerTest {
     protected MockMvc mockMvc;
 
@@ -78,30 +80,32 @@ public class LoginControllerTest {
         assertThat(decodedToken.getSubject(), Matchers.equalTo("2137"));
         algorithmHolder.getAlgorithm().verify(decodedToken);
     }
-}
 
-@Configuration
-@Import({AppConfig.class})
-class TestConfiguration {
-    @Bean
-    UserFinder userFinder(ApplicationContext applicationContext) {
-        return new UserFinder() {
-            @Override
-            public User findByUsernameAndPassword(String username, String password) {
-                if (username.equals("username") && password.equals("password")) {
-                    var user = userImpl();
-                    user.setId(2137);
-                    user.setRoles(Arrays.asList("USER"));
+    @Import({LoginController.class, AuthenticationConfiguration.class, UserImpl.class, LoginServiceImpl.class})
+    @Profile({"com.example.controller.authentication.login.LoginController"})
+    static class LocalTestConfiguration {
+        @Bean
+        UserFinder userFinder(ApplicationContext applicationContext) {
+            return new UserFinder() {
+                @Override
+                public User findByUsernameAndPassword(String username, String password) {
+                    if (username.equals("username") && password.equals("password")) {
+                        var user = userImpl();
+                        user.setId(2137);
+                        user.setRoles(Arrays.asList("USER"));
 
-                    return user;
+                        return user;
+                    }
+                    throw new BadCredentialsException("");
                 }
-                throw new BadCredentialsException("");
-            }
 
-            @Lookup
-            UserImpl userImpl() {
-                return applicationContext.getBean(UserImpl.class);
-            }
-        };
+                @Lookup
+                UserImpl userImpl() {
+                    return applicationContext.getBean(UserImpl.class);
+                }
+            };
+        }
     }
+
 }
+

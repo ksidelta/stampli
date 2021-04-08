@@ -1,6 +1,6 @@
-package com.example.modules.authentication.user;
+package com.example.domain.authentication.user;
 
-import com.example.modules.authentication.token.TokenGenerator;
+import com.example.domain.authentication.token.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -24,11 +24,6 @@ public class UserImpl implements User {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
-    }
-
-    @Override
-    public String createToken() {
-        return tokenGenerator.createToken(id, roles);
     }
 
     @Override

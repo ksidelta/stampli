@@ -1,24 +1,24 @@
-CREATE TABLE user
+CREATE TABLE users
 (
-    id    INTEGER UNIQUE,
-    email VARCHAR(255) NOT NULL,
-    roles VARCHAR(255) NOT NULL,
+    id INTEGER UNIQUE AUTO_INCREMENT,
+
     PRIMARY KEY (id)
 );
 
-CREATE TABLE roles
+CREATE TABLE user_roles
 (
-    id      INTEGER UNIQUE,
-    name    VARCHAR(16) NOT NULL,
-    user_id INTEGER UNIQUE,
-    PRIMARY KEY (id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+    name   VARCHAR(16) NOT NULL,
+    userId INTEGER,
+
+    PRIMARY KEY (userId, name),
+    FOREIGN KEY (userId) REFERENCES users (id)
 );
 
-CREATE TABLE authentication_password
+CREATE TABLE user_authentication_password
 (
-    user_id INTEGER UNIQUE,
+    userId   INTEGER UNIQUE,
     password VARCHAR(16) NOT NULL,
-    PRIMARY_KEY (user_id),
-    FOREIGN KEY (user_id) REFERENCES user (id)
+
+    PRIMARY KEY (userId),
+    FOREIGN KEY (userId) REFERENCES users (id)
 )

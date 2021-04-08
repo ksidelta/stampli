@@ -17,10 +17,11 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <mysql.version>10.5.9</mysql.version>
-        <test.mysql.username>sa</test.mysql.username>
-        <test.mysql.password>sa</test.mysql.password>
-        <test.mysql.port>2137</test.mysql.port>
-        <test.mysql.db>MYSQL_DATABASE</test.mysql.db>
+        <test.mysql.host>localhost</test.mysql.host>
+        <test.mysql.username>root</test.mysql.username>
+        <test.mysql.password>password</test.mysql.password>
+        <test.mysql.port>3306</test.mysql.port>
+        <test.mysql.db>baza</test.mysql.db>
     </properties>
 
     <reporting>
@@ -58,6 +59,12 @@
             <artifactId>java-jwt</artifactId>
             <version>3.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.14.1</version>
+        </dependency>
+
 
         <!-- Spring -->
         <!-- Core -->
@@ -76,6 +83,11 @@
             <artifactId>spring-data-commons</artifactId>
             <version>2.4.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-orm -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jdbc</artifactId>
@@ -84,12 +96,17 @@
         <dependency>
             <groupId>org.mariadb.jdbc</groupId>
             <artifactId>mariadb-java-client</artifactId>
-            <version>2.7.2</version>
+            <version>2.6.2</version>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
             <version>7.7.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.30.Final</version>
         </dependency>
 
 
@@ -198,6 +215,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
+                    <forkCount>1</forkCount>
                     <includes>**/*Test.java</includes>
                 </configuration>
             </plugin>
@@ -205,7 +223,16 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <configuration>
+                    <forkCount>1</forkCount>
                     <includes>**/*Integration.java</includes>
+                    <environmentVariables>
+                        <mysql.version>${mysql.version}</mysql.version>
+                        <test.mysql.username>${test.mysql.username}</test.mysql.username>
+                        <test.mysql.password>${test.mysql.password}</test.mysql.password>
+                        <test.mysql.port>${test.mysql.port}</test.mysql.port>
+                        <test.mysql.db>${test.mysql.db}</test.mysql.db>
+                        <test.mysql.host>${test.mysql.host}</test.mysql.host>
+                    </environmentVariables>
                 </configuration>
                 <executions>
                     <execution>
@@ -227,7 +254,8 @@
                             <alias>database</alias>
                             <run>
                                 <wait>
-                                    <log>mysqld: ready for connections.</log>
+                                    <!-- shit is executed twice -->
+                                    <log>(?s)(mysqld: ready for connections\..*){2}</log>
                                     <time>20000</time>
                                 </wait>
                                 <ports>
@@ -237,13 +265,13 @@
                                     <MYSQL_DATABASE>${test.mysql.db}</MYSQL_DATABASE>
                                     <MYSQL_USERNAME>${test.mysql.username}</MYSQL_USERNAME>
                                     <MYSQL_PASSWORD>${test.mysql.password}</MYSQL_PASSWORD>
-                                    <MYSQL_ROOT_PASSWORD>unused</MYSQL_ROOT_PASSWORD>
+                                    <MYSQL_ROOT_PASSWORD>${test.mysql.password}</MYSQL_ROOT_PASSWORD>
                                 </env>
-                                <!-- <log>
+                                <log>
                                     <prefix>TC</prefix>
                                     <date>default</date>
                                     <color>cyan</color>
-                                </log> -->
+                                </log>
                             </run>
                         </image>
                     </images>

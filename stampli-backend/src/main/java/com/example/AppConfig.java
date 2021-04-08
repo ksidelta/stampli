@@ -1,5 +1,6 @@
 package com.example;
 
+import com.example.bootstrap.database.DatabaseConfiguration;
 import com.example.bootstrap.security.WebSecurityConfig;
 import com.example.controller.ControllerConfiguration;
 import com.example.service.ServiceConfiguration;
@@ -10,7 +11,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.example.modules")
-@Import({WebSecurityConfig.class, ControllerConfiguration.class, ServiceConfiguration.class})
+@ComponentScan("com.example.domain")
+@Import({
+        WebSecurityConfig.class,
+        DatabaseConfiguration.class,
+        ControllerConfiguration.class,
+        ServiceConfiguration.class
+})
 public class AppConfig {
 }
