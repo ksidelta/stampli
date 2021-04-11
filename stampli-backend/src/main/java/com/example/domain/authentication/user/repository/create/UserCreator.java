@@ -1,4 +1,4 @@
-package com.example.domain.authentication.user.repository.creation;
+package com.example.domain.authentication.user.repository.create;
 
 import com.example.domain.authentication.user.entity.User;
 

@@ -1,14 +1,15 @@
-package com.example.service.authentication.user.repository.creation;
+package com.example.service.authentication.user.repository.create;
 
 import com.example.domain.authentication.user.entity.User;
-import com.example.domain.authentication.user.repository.creation.UserCreationDto;
-import com.example.domain.authentication.user.repository.creation.UserCreator;
-import com.example.domain.authentication.user.repository.creation.UserDuplicationException;
+import com.example.domain.authentication.user.repository.create.UserCreationDto;
+import com.example.domain.authentication.user.repository.create.UserCreator;
+import com.example.domain.authentication.user.repository.create.UserDuplicationException;
 import com.example.service.authentication.user.entity.UserEntity;
 import com.example.service.authentication.roles.UserRoleEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @Transactional
+@Qualifier("userCreator")
 public class UserCreatorImpl implements UserCreator {
     final protected SessionFactory sessionFactory;
 

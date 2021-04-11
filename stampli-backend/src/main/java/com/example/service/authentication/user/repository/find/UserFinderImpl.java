@@ -1,11 +1,11 @@
-package com.example.service.authentication.user.repository.finder;
+package com.example.service.authentication.user.repository.find;
 
 import com.example.domain.authentication.user.entity.User;
 import com.example.domain.authentication.user.repository.find.UserFinder;
 import com.example.service.authentication.user.entity.UserAuthenticationPasswordEntity;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,11 +14,11 @@ import javax.persistence.NoResultException;
 
 @Repository
 @Transactional
+@Qualifier("userFinder")
 public class UserFinderImpl implements UserFinder {
-    Log logger = LogFactory.getLog(getClass());
-
     protected SessionFactory sessionFactory;
 
+    @Autowired
     public UserFinderImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

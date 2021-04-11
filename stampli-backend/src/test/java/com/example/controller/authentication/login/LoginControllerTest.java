@@ -2,7 +2,11 @@ package com.example.controller.authentication.login;
 
 import com.auth0.jwt.JWT;
 import com.example.domain.authentication.AuthenticationConfiguration;
-import com.example.domain.authentication.token.sign.AlgorithmHolder;
+import com.example.domain.authentication.user.repository.UserRepository;
+import com.example.domain.authentication.user.repository.create.UserCreationDto;
+import com.example.domain.authentication.user.repository.create.UserDuplicationException;
+import com.example.service.ServiceConfiguration;
+import com.example.service.authentication.token.sign.AlgorithmHolder;
 import com.example.domain.authentication.user.entity.User;
 import com.example.domain.authentication.user.entity.UserImpl;
 import com.example.domain.authentication.user.repository.find.UserFinder;
@@ -81,8 +85,13 @@ public class LoginControllerTest {
     @Profile({"com.example.controller.authentication.login.LoginController"})
     static class LocalTestConfiguration {
         @Bean
-        UserFinder userFinder(ApplicationContext applicationContext) {
-            return new UserFinder() {
+        UserRepository userRepository(ApplicationContext applicationContext) {
+            return new UserRepository() {
+                @Override
+                public User createUser(UserCreationDto userCreationDto) throws UserDuplicationException {
+                    throw new UnsupportedOperationException();
+                }
+
                 @Override
                 public User findByUsernameAndPassword(String username, String password) {
                     if (username.equals("username") && password.equals("password")) {

@@ -1,16 +1,16 @@
-package com.example.service.authentication.register.creation;
+package com.example.service.authentication.user.repository.create;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.authenticator.UserPasswordAuthenticator;
-import com.example.domain.authentication.user.repository.creation.UserCreationDto;
-import com.example.domain.authentication.user.repository.creation.UserCreator;
-import com.example.domain.authentication.user.repository.creation.UserDuplicationException;
+import com.example.domain.authentication.user.repository.create.UserCreationDto;
+import com.example.domain.authentication.user.repository.create.UserCreator;
+import com.example.domain.authentication.user.repository.create.UserDuplicationException;
 import com.example.domain.authentication.user.repository.find.UserFinder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,9 +27,11 @@ public class UserCreatorImplIntegration {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    @Qualifier("userFinder")
     @Autowired
     UserFinder userFinder;
 
+    @Qualifier("userCreator")
     @Autowired
     UserCreator userCreator;
 

@@ -1,7 +1,8 @@
-package com.example.domain.authentication.token;
+package com.example.service.authentication.token;
 
 import com.auth0.jwt.JWT;
-import com.example.domain.authentication.token.sign.AlgorithmHolder;
+import com.example.domain.authentication.token.TokenGenerator;
+import com.example.service.authentication.token.sign.AlgorithmHolder;
 import com.example.domain.authentication.user.entity.User;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;

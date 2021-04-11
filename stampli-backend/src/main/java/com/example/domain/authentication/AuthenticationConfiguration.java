@@ -1,9 +1,9 @@
 package com.example.domain.authentication;
 
 import com.example.domain.authentication.token.TokenGenerator;
-import com.example.domain.authentication.token.TokenGeneratorImpl;
-import com.example.domain.authentication.token.sign.AlgorithmHolder;
-import com.example.domain.authentication.token.sign.InMemoryAlgorithmHolder;
+import com.example.service.authentication.token.TokenGeneratorImpl;
+import com.example.service.authentication.token.sign.AlgorithmHolder;
+import com.example.service.authentication.token.sign.InMemoryAlgorithmHolder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;

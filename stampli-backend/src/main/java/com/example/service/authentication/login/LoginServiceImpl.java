@@ -2,17 +2,18 @@ package com.example.service.authentication.login;
 
 import com.example.domain.authentication.token.TokenGenerator;
 import com.example.domain.authentication.user.entity.UserImpl;
-import com.example.domain.authentication.user.repository.find.UserFinder;
+import com.example.domain.authentication.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Lookup;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoginServiceImpl implements LoginService {
-    protected final UserFinder userFinder;
+    protected final UserRepository userRepository;
     protected final TokenGenerator tokenGenerator;
 
-    LoginServiceImpl(UserFinder userFinder, TokenGenerator tokenGenerator) {
-        this.userFinder = userFinder;
+    LoginServiceImpl(UserRepository userRepository, TokenGenerator tokenGenerator) {
+        this.userRepository = userRepository;
         this.tokenGenerator = tokenGenerator;
     }
 
@@ -20,7 +21,7 @@ public class LoginServiceImpl implements LoginService {
      * @return JWT token
      */
     public String login(String username, String password) {
-        var user = this.userFinder.findByUsernameAndPassword(username, password);
+        var user = this.userRepository.findByUsernameAndPassword(username, password);
         return tokenGenerator.createToken(user);
     }
 

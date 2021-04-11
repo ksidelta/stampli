@@ -38,6 +38,11 @@ public class UserImpl implements User {
     }
 
     @Override
+    public UserAuthenticationPassword getPassword() {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
     public void addPasswordAuthentication(UserPasswordAuthenticationDto userPasswordAuthenticationDto) {
         throw new UnsupportedOperationException();
     }

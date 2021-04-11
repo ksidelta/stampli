@@ -2,6 +2,7 @@ package com.example.service.authentication.user.entity;
 
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.authentication.user.entity.User;
+import com.example.domain.authentication.user.entity.UserAuthenticationPassword;
 import com.example.service.authentication.roles.UserRoleEntity;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class UserEntity implements User {
             fetch = FetchType.LAZY)
     protected UserAuthenticationPasswordEntity password;
 
+
     @Override
     public Integer getId() {
         return id;
@@ -40,11 +42,17 @@ public class UserEntity implements User {
     }
 
     @Override
+    public UserAuthenticationPassword getPassword() {
+        return password;
+    }
+
+    @Override
     public void addPasswordAuthentication(UserPasswordAuthenticationDto userPasswordAuthenticationDto) {
         password = new UserAuthenticationPasswordEntity();
         password.setPassword(userPasswordAuthenticationDto.getPassword());
         password.setUser(this);
     }
+
 
     public void setId(Integer id) {
         this.id = id;
