@@ -29,7 +29,7 @@ public class UserFinderImpl implements UserFinder {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(
                             "SELECT AUTH FROM UserAuthenticationPasswordEntity AUTH  "
-                                    + "LEFT JOIN UserEntity USER ON USER.id = AUTH.userId "
+                                    + "LEFT JOIN UserEntity USER ON USER = AUTH.user "
                                     + "WHERE USER.email=:email AND AUTH.password=:password"
                             , UserAuthenticationPasswordEntity.class)
                     .setParameter("email", username)

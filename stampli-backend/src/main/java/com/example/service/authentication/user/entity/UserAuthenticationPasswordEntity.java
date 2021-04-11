@@ -8,12 +8,9 @@ import java.io.Serializable;
 @Entity
 @Table(name = "user_authentication_password")
 public class UserAuthenticationPasswordEntity implements UserAuthenticationPassword, Serializable {
-    @Id
-    @Column(name = "userId")
-    protected Integer userId;
-
     @OneToOne(fetch = FetchType.EAGER)
-    @MapsId("userId")
+    @Id
+    @JoinColumn(name = "userId")
     protected UserEntity user;
 
     protected String password;
@@ -24,7 +21,6 @@ public class UserAuthenticationPasswordEntity implements UserAuthenticationPassw
 
     public void setUser(UserEntity user) {
         this.user = user;
-        this.userId = user.getId();
     }
 
     public String getPassword() {
