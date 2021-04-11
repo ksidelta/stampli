@@ -1,7 +1,7 @@
 package com.example.domain.authentication.token;
 
-import com.example.domain.authentication.user.entity.User;
+import com.example.domain.authentication.user.entity.UserEntity;
 
 public interface TokenGenerator {
-    String createToken(User user);
+    String createToken(UserEntity user);
 }

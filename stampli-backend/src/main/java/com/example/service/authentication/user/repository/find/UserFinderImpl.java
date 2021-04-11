@@ -1,8 +1,8 @@
 package com.example.service.authentication.user.repository.find;
 
-import com.example.domain.authentication.user.entity.User;
+import com.example.domain.authentication.user.entity.UserEntity;
 import com.example.domain.authentication.user.repository.find.UserFinder;
-import com.example.service.authentication.user.entity.UserAuthenticationPasswordEntity;
+import com.example.domain.authentication.user.entity.UserAuthenticationPasswordEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,7 +24,7 @@ public class UserFinderImpl implements UserFinder {
     }
 
     @Override
-    public User findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
+    public UserEntity findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
         try {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(

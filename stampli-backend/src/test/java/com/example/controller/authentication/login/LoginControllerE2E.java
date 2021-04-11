@@ -3,6 +3,7 @@ package com.example.controller.authentication.login;
 import com.auth0.jwt.JWT;
 import com.example.BaseTestConfiguration;
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.authentication.user.entity.UserEntity;
 import com.example.domain.authentication.user.repository.UserRepository;
 import com.example.domain.authentication.user.repository.create.UserCreationDto;
 import com.example.service.authentication.token.sign.AlgorithmHolder;
@@ -60,10 +61,11 @@ public class LoginControllerE2E {
         var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
         var authenticationDto = new UserPasswordAuthenticationDto("password");
 
-
-        var savedUser = userRepository.createUser(user);
+        var savedUser = UserEntity.createUser(user);
         savedUser.addPasswordAuthentication(authenticationDto);
 
+        userRepository.saveUser(savedUser);
+        userId = savedUser.getId();
     }
 
     @AfterEach
@@ -94,7 +96,7 @@ public class LoginControllerE2E {
         final var decodedToken = JWT.decode(token);
 
         assertThat(decodedToken.getClaim("roles").asList(String.class), contains("USER"));
-        assertThat(decodedToken.getSubject(), Matchers.equalTo("2137"));
+        assertThat(decodedToken.getSubject(), Matchers.equalTo(userId.toString()));
         algorithmHolder.getAlgorithm().verify(decodedToken);
     }
 }

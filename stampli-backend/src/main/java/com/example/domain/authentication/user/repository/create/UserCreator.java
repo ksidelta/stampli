@@ -1,7 +1,7 @@
 package com.example.domain.authentication.user.repository.create;
 
-import com.example.domain.authentication.user.entity.User;
+import com.example.domain.authentication.user.entity.UserEntity;
 
 public interface UserCreator {
-    void saveUser(User user) throws UserDuplicationException;
+    void saveUser(UserEntity user) throws UserDuplicationException;
 }

@@ -1,9 +1,9 @@
-package com.example.service.authentication.user.entity;
+package com.example.domain.authentication.user.entity;
 
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.user.entity.User;
-import com.example.domain.authentication.user.entity.UserAuthenticationPassword;
+import com.example.domain.authentication.user.repository.create.UserCreationDto;
 import com.example.service.authentication.roles.UserRoleEntity;
+import org.springframework.security.core.userdetails.User;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class UserEntity implements User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
@@ -28,26 +28,25 @@ public class UserEntity implements User {
             fetch = FetchType.LAZY)
     protected UserAuthenticationPasswordEntity password;
 
-
-    @Override
     public Integer getId() {
         return id;
     }
 
-    @Override
     public List<String> getRoles() {
         return roles.stream()
                 .map(UserRoleEntity::getName)
                 .collect(Collectors.toList());
     }
 
-    @Override
-    public UserAuthenticationPassword getPassword() {
+    public UserAuthenticationPasswordEntity getPassword() {
         return password;
     }
 
-    @Override
     public void addPasswordAuthentication(UserPasswordAuthenticationDto userPasswordAuthenticationDto) {
+        if (password != null) {
+            throw new IllegalStateException("You can add PasswordAuthentication only once");
+        }
+
         password = new UserAuthenticationPasswordEntity();
         password.setPassword(userPasswordAuthenticationDto.getPassword());
         password.setUser(this);
@@ -68,5 +67,13 @@ public class UserEntity implements User {
 
     public void setRoles(List<UserRoleEntity> roles) {
         this.roles = roles;
+    }
+
+    public static UserEntity createUser(UserCreationDto userCreationDto) {
+        var user = new UserEntity();
+        user.setEmail(userCreationDto.getEmail());
+        user.setRoles(userCreationDto.getRoles()
+                .stream().map(x -> new UserRoleEntity(user, x)).collect(Collectors.toList()));
+        return user;
     }
 }

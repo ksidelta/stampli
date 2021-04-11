@@ -2,8 +2,8 @@ package com.example.service.authentication.token;
 
 import com.auth0.jwt.JWT;
 import com.example.domain.authentication.token.TokenGenerator;
+import com.example.domain.authentication.user.entity.UserEntity;
 import com.example.service.authentication.token.sign.AlgorithmHolder;
-import com.example.domain.authentication.user.entity.User;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -22,7 +22,7 @@ public class TokenGeneratorImpl implements TokenGenerator {
     }
 
     @Override
-    public String createToken(User user) {
+    public String createToken(UserEntity user) {
         return JWT.create()
                 .withSubject(user.getId().toString()) // id of User
                 .withIssuer("https://stampli.at.hsp/") // page url
