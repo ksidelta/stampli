@@ -19,40 +19,6 @@ import java.util.List;
 
 @Configuration
 public class AuthenticationConfiguration {
-
-    @Bean
-    public ProviderManager providerManager(List<AuthenticationProvider> authenticationProviders) {
-        return new ProviderManager(authenticationProviders);
-    }
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService, PasswordEncoder passwordEncoder) {
-        final var provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(passwordEncoder);
-        return provider;
-    }
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        final var passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
-        return passwordEncoder;
-    }
-
-    @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
-        final var inMemoryUserDetailsManager = new InMemoryUserDetailsManager();
-        final var user = User.builder()
-                .username("username")
-                .password("{noop}password")
-                .authorities("USER")
-                .build();
-
-        inMemoryUserDetailsManager.createUser(user);
-
-        return inMemoryUserDetailsManager;
-    }
-
     @Bean
     public AlgorithmHolder algorithmHolder() {
         return new InMemoryAlgorithmHolder("TWOJASTARA");
