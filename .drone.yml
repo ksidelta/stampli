@@ -5,6 +5,9 @@ type: docker
 steps:
 - name: build-java
   image: maven:3-jdk-11
+  volumes:
+    - name: dockersock
+      path: /var/run/docker.sock
   commands:
   - cd stampli-backend
   - mvn install
@@ -32,3 +35,8 @@ steps:
       - docker-compose build
       - docker-compose down
       - docker-compose up --detach --remove-orphans
+
+volumes:
+- name: dockersock
+  host:
+    path: /var/run/docker.sock

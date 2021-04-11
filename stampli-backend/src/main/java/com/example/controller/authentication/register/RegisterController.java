@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import static org.springframework.http.HttpStatus.CONFLICT;
+import static org.springframework.http.HttpStatus.CREATED;
 
 @Controller
 @RequestMapping("/api/authentication/register")
@@ -29,6 +30,6 @@ public class RegisterController {
             return ResponseEntity.status(CONFLICT).build();
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(CREATED).build();
     }
 }

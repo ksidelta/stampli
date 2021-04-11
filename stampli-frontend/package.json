@@ -63,6 +63,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
+    "core-js": "^3.10.1",
     "cypress": "^6.0.1",
     "express-urlrewrite": "^1.3.0",
     "formik": "^2.2.6",
@@ -70,12 +71,14 @@
     "jest-runner-mocha": "^0.6.0",
     "jest-runner-tsc": "^1.6.0",
     "jose": "^3.11.2",
+    "js-logger": "^1.6.1",
     "mobx": "^6.0.4",
     "mobx-react": "^6.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.2.2",
     "react-router-dom": "^5.2.0",
+    "regenerator-runtime": "^0.13.7",
     "styled-components": "^5.2.1",
     "ts-node": "^9.1.1"
   }

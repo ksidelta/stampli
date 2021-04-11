@@ -5,17 +5,22 @@ import { ContextSubmitButton } from '../../concrete/form/input/ContextSubmitButt
 import React from 'react';
 import { OpenIdConfiguration } from '../../../services/config/parts/OpenIdConfiguration';
 import { GoogleLoginButton } from '../../concrete/buttons/login/GoogleLoginButton';
+import { LoginService } from '../../../services/login/LoginService';
 
 export const BusinessLogin = ({
+  loginService,
   openIdConfiguration,
   onSuccess
 }: {
+  loginService: LoginService;
   openIdConfiguration: OpenIdConfiguration;
   onSuccess: (token: string) => void;
 }) => (
   <ContextForm
     definitions={[{ name: 'user', initialValue: 'twoj stary' }, { name: 'password' }]}
-    onSubmit={x => console.log(x)}>
+    onSubmit={x => {
+      loginService.login(x.user, x.password);
+    }}>
     <ContextTitledInput title={'login'} name={'user'} />
     <ContextTitledInput title={'hasło'} name={'password'} />
     <Delimeter />

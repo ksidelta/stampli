@@ -75,13 +75,13 @@ public class RegisterControllerE2E {
     }
 
     @Test
-    public void correctRegisterReturns200() throws Exception {
+    public void correctRegisterReturns201() throws Exception {
         mockMvc.perform(
                 post("/api/authentication/register/basic")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"email\":\"new@user.registered\", \"password\": \"password\"}")
-        ).andExpect(status().is(200));
+        ).andExpect(status().is(201));
     }
 
     @Test

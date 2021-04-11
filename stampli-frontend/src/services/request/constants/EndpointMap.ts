@@ -1,3 +1,4 @@
 export const endpointMap = {
-  LOGIN: '/api/login'
+  LOGIN_BASIC: '/api/authentication/login/basic',
+  REGISTER_BASIC: '/api/authentication/login/basic'
 };
