@@ -17,8 +17,8 @@ public class LoginServiceImpl implements LoginService {
     /**
      * @return JWT token
      */
-    public String login(String username, String password) {
-        var user = this.userRepository.findByUsernameAndPassword(username, password);
+    public String login(String email, String password) {
+        var user = this.userRepository.findByUsernameAndPassword(email, password);
         return tokenGenerator.createToken(user);
     }
 }

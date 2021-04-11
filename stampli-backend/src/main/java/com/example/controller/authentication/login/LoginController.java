@@ -1,5 +1,6 @@
 package com.example.controller.authentication.login;
 
+import com.example.controller.authentication.common.EmailAndPasswordDto;
 import com.example.service.authentication.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/login")
+@RequestMapping("/api/authentication/login")
 public class LoginController {
     protected final LoginService loginService;
 
@@ -20,9 +21,9 @@ public class LoginController {
     }
 
     @PostMapping("/basic")
-    public ResponseEntity<Object> login(@RequestBody LoginAndPasswordDto loginAndPasswordDto) {
+    public ResponseEntity<Object> login(@RequestBody EmailAndPasswordDto emailAndPasswordDto) {
         try {
-            final var token = loginService.login(loginAndPasswordDto.getUsername(), loginAndPasswordDto.getPassword());
+            final var token = loginService.login(emailAndPasswordDto.getEmail(), emailAndPasswordDto.getPassword());
             return ResponseEntity.ok().header("Set-Token", token).build();
         } catch (BadCredentialsException badCredentialsException) {
             return ResponseEntity.notFound().build();
@@ -30,26 +31,3 @@ public class LoginController {
     }
 }
 
-class LoginAndPasswordDto {
-    private String username;
-    private String password;
-
-    public LoginAndPasswordDto() {
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-}

@@ -1,7 +1,8 @@
-package com.example.controller.authentication.login;
+package com.example.controller.authentication.register;
 
 import com.auth0.jwt.JWT;
 import com.example.BaseTestConfiguration;
+import com.example.controller.authentication.login.LoginController;
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.authentication.user.entity.UserEntity;
 import com.example.domain.authentication.user.repository.UserRepository;
@@ -33,11 +34,11 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @ActiveProfiles({"com.example.controller.authentication.login.LoginController"})
 @Transactional
-public class LoginControllerE2E {
+public class RegisterControllerE2E {
     protected MockMvc mockMvc;
 
     @Autowired
-    protected LoginController loginController;
+    protected RegisterController registerController;
 
     @Autowired
     protected AlgorithmHolder algorithmHolder;
@@ -51,7 +52,7 @@ public class LoginControllerE2E {
 
     @BeforeEach
     public void setUp() {
-        mockMvc = standaloneSetup(loginController).build();
+        mockMvc = standaloneSetup(registerController).build();
     }
 
     Integer userId;
@@ -74,30 +75,23 @@ public class LoginControllerE2E {
     }
 
     @Test
-    public void incorrectLoginReturns404() throws Exception {
+    public void correctRegisterReturns200() throws Exception {
         mockMvc.perform(
-                post("/api/authentication/login/basic")
+                post("/api/authentication/register/basic")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"email\":\"incorrect\", \"password\": \"incorrect\"}")
-        ).andExpect(status().is(404));
+                        .content("{\"email\":\"new@user.registered\", \"password\": \"password\"}")
+        ).andExpect(status().is(200));
     }
 
     @Test
-    public void correctLoginReturnsToken() throws Exception {
-        final var mvcResult = mockMvc.perform(
-                post("/api/authentication/login/basic")
+    public void duplicatedRegisterReturns409() throws Exception {
+        mockMvc.perform(
+                post("/api/authentication/register/basic")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"email\":\"user@is.existent\", \"password\": \"password\"}")
-        ).andExpect(status().is(200)).andReturn();
-
-        final var token = mvcResult.getResponse().getHeader("Set-Token");
-        final var decodedToken = JWT.decode(token);
-
-        assertThat(decodedToken.getClaim("roles").asList(String.class), contains("USER"));
-        assertThat(decodedToken.getSubject(), Matchers.equalTo(userId.toString()));
-        algorithmHolder.getAlgorithm().verify(decodedToken);
+        ).andExpect(status().is(409));
     }
 }
 
