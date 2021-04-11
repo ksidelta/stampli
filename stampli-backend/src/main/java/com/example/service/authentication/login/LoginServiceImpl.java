@@ -1,8 +1,8 @@
 package com.example.service.authentication.login;
 
 import com.example.domain.authentication.token.TokenGenerator;
-import com.example.domain.authentication.user.UserImpl;
-import com.example.domain.authentication.user.finder.UserFinder;
+import com.example.domain.authentication.user.entity.UserImpl;
+import com.example.domain.authentication.user.repository.find.UserFinder;
 import org.springframework.beans.factory.annotation.Lookup;
 import org.springframework.stereotype.Component;
 

@@ -1,17 +1,16 @@
 package com.example.service.authentication.login.finder;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.authentication.user.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.user.authenticator.UserPasswordAuthenticator;
-import com.example.domain.authentication.user.creation.UserCreationDto;
-import com.example.domain.authentication.user.creation.UserCreator;
-import com.example.domain.authentication.user.finder.UserFinder;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticator;
+import com.example.domain.authentication.user.repository.creation.UserCreationDto;
+import com.example.domain.authentication.user.repository.creation.UserCreator;
+import com.example.domain.authentication.user.repository.find.UserFinder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,9 +33,6 @@ public class UserFinderImplIntegration {
     @Autowired
     UserCreator userCreator;
 
-    @Autowired
-    UserPasswordAuthenticator userPasswordAuthenticator;
-
     @BeforeEach
     public void createUser() {
         var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
@@ -44,7 +40,7 @@ public class UserFinderImplIntegration {
 
 
         var savedUser = userCreator.createUser(user);
-        userPasswordAuthenticator.addAuthentication(savedUser, authenticationDto);
+        savedUser.addPasswordAuthentication(authenticationDto);
     }
 
     @BeforeEach
@@ -54,7 +50,7 @@ public class UserFinderImplIntegration {
 
 
         var savedUser = userCreator.createUser(user);
-        userPasswordAuthenticator.addAuthentication(savedUser, authenticationDto);
+        savedUser.addPasswordAuthentication(authenticationDto);
     }
 
     @AfterEach

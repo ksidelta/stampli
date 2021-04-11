@@ -1,6 +1,6 @@
-package com.example.service.authentication.login.user.roles;
+package com.example.service.authentication.roles;
 
-import com.example.service.authentication.login.user.UserEntity;
+import com.example.service.authentication.user.entity.UserEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;

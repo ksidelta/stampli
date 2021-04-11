@@ -1,4 +1,4 @@
-package com.example.domain.authentication.user.authenticator;
+package com.example.domain.authentication.authenticator;
 
 public class UserPasswordAuthenticationDto {
     protected String password;

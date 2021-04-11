@@ -1,23 +1,18 @@
 package com.example.service.authentication.register.creation;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.authentication.user.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.user.authenticator.UserPasswordAuthenticator;
-import com.example.domain.authentication.user.creation.UserCreationDto;
-import com.example.domain.authentication.user.creation.UserCreator;
-import com.example.domain.authentication.user.creation.UserDuplicationException;
-import com.example.domain.authentication.user.finder.UserFinder;
-import org.hibernate.Session;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticator;
+import com.example.domain.authentication.user.repository.creation.UserCreationDto;
+import com.example.domain.authentication.user.repository.creation.UserCreator;
+import com.example.domain.authentication.user.repository.creation.UserDuplicationException;
+import com.example.domain.authentication.user.repository.find.UserFinder;
 import org.hibernate.SessionFactory;
-import org.hibernate.exception.ConstraintViolationException;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.stereotype.Repository;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -37,9 +32,6 @@ public class UserCreatorImplIntegration {
 
     @Autowired
     UserCreator userCreator;
-
-    @Autowired
-    UserPasswordAuthenticator userPasswordAuthenticator;
 
     @AfterEach
     public void removeUsers() {
@@ -71,7 +63,7 @@ public class UserCreatorImplIntegration {
 
 
         var savedUser = userCreator.createUser(user);
-        userPasswordAuthenticator.addAuthentication(savedUser, authenticationDto);
+        savedUser.addPasswordAuthentication(authenticationDto);
     }
 
 

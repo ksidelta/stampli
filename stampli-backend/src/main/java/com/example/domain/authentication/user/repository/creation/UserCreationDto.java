@@ -1,4 +1,4 @@
-package com.example.domain.authentication.user.creation;
+package com.example.domain.authentication.user.repository.creation;
 
 import java.util.List;
 

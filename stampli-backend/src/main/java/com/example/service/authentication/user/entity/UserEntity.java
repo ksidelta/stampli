@@ -1,7 +1,8 @@
-package com.example.service.authentication.login.user;
+package com.example.service.authentication.user.entity;
 
-import com.example.domain.authentication.user.User;
-import com.example.service.authentication.login.user.roles.UserRoleEntity;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.authentication.user.entity.User;
+import com.example.service.authentication.roles.UserRoleEntity;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +20,13 @@ public class UserEntity implements User {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "id.user")
     List<UserRoleEntity> roles;
 
+    @OneToOne(
+            mappedBy = "user",
+            cascade = CascadeType.ALL,
+            orphanRemoval = true,
+            fetch = FetchType.LAZY)
+    protected UserAuthenticationPasswordEntity password;
+
     @Override
     public Integer getId() {
         return id;
@@ -29,6 +37,13 @@ public class UserEntity implements User {
         return roles.stream()
                 .map(UserRoleEntity::getName)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void addPasswordAuthentication(UserPasswordAuthenticationDto userPasswordAuthenticationDto) {
+        password = new UserAuthenticationPasswordEntity();
+        password.setPassword(userPasswordAuthenticationDto.getPassword());
+        password.setUser(this);
     }
 
     public void setId(Integer id) {

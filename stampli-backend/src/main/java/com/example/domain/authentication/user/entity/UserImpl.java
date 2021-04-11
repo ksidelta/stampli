@@ -1,5 +1,6 @@
-package com.example.domain.authentication.user;
+package com.example.domain.authentication.user.entity;
 
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.authentication.token.TokenGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -34,5 +35,10 @@ public class UserImpl implements User {
     @Override
     public List<String> getRoles() {
         return roles;
+    }
+
+    @Override
+    public void addPasswordAuthentication(UserPasswordAuthenticationDto userPasswordAuthenticationDto) {
+        throw new UnsupportedOperationException();
     }
 }

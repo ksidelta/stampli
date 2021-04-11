@@ -1,28 +1,22 @@
-package com.example.service.authentication.login.user;
+package com.example.service.authentication.user.entity;
 
-import com.example.domain.authentication.user.UserAuthenticationPassword;
+import com.example.domain.authentication.user.entity.UserAuthenticationPassword;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "user_authentication_password")
-public class UserAuthenticationPasswordEntity implements UserAuthenticationPassword {
+public class UserAuthenticationPasswordEntity implements UserAuthenticationPassword, Serializable {
     @Id
+    @Column(name = "userId")
     protected Integer userId;
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "userId")
+    @MapsId("userId")
     protected UserEntity user;
 
     protected String password;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 
     public UserEntity getUser() {
         return user;
@@ -30,6 +24,7 @@ public class UserAuthenticationPasswordEntity implements UserAuthenticationPassw
 
     public void setUser(UserEntity user) {
         this.user = user;
+        this.userId = user.getId();
     }
 
     public String getPassword() {

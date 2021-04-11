@@ -1,8 +1,8 @@
-package com.example.service.authentication.login.user.finder;
+package com.example.service.authentication.user.repository.finder;
 
-import com.example.domain.authentication.user.User;
-import com.example.domain.authentication.user.finder.UserFinder;
-import com.example.service.authentication.login.user.UserAuthenticationPasswordEntity;
+import com.example.domain.authentication.user.entity.User;
+import com.example.domain.authentication.user.repository.find.UserFinder;
+import com.example.service.authentication.user.entity.UserAuthenticationPasswordEntity;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.SessionFactory;

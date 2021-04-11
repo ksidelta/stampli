@@ -2,7 +2,7 @@ package com.example.domain.authentication.token;
 
 import com.auth0.jwt.JWT;
 import com.example.domain.authentication.token.sign.AlgorithmHolder;
-import com.example.domain.authentication.user.User;
+import com.example.domain.authentication.user.entity.User;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
