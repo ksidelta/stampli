@@ -7,7 +7,7 @@ steps:
   image: maven:3-jdk-11
   commands:
   - cd stampli-backend
-  - mvn install -DskipTests
+  - mvn compile
 
 - name: test-java
   image: maven:3-jdk-11
