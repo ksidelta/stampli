@@ -232,14 +232,14 @@
                         <include>**/*E2E.java</include>
                         <include>**/*E2e.java</include>
                     </includes>
-                    <environmentVariables>
+                    <systemPropertyVariables>
                         <mysql.version>${mysql.version}</mysql.version>
                         <test.mysql.username>${test.mysql.username}</test.mysql.username>
                         <test.mysql.password>${test.mysql.password}</test.mysql.password>
                         <test.mysql.port>${test.mysql.port}</test.mysql.port>
                         <test.mysql.db>${test.mysql.db}</test.mysql.db>
                         <test.mysql.host>${test.mysql.host}</test.mysql.host>
-                    </environmentVariables>
+                    </systemPropertyVariables>
                 </configuration>
                 <executions>
                     <execution>
