@@ -14,6 +14,8 @@ public class UserEntity implements User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
 
+    protected String email;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "id.user")
     List<UserRoleEntity> roles;
 
@@ -31,6 +33,14 @@ public class UserEntity implements User {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setRoles(List<UserRoleEntity> roles) {

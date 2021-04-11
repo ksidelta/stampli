@@ -50,6 +50,13 @@ public class UserRoleEntity {
     @EmbeddedId
     protected UserAndRoleNameUniqueId id = new UserAndRoleNameUniqueId();
 
+    public UserRoleEntity() {
+    }
+
+    public UserRoleEntity(UserEntity user, String name) {
+        id.setUser(user);
+        id.setName(name);
+    }
 
     public void setUser(UserEntity user) {
         this.id.setUser(user);

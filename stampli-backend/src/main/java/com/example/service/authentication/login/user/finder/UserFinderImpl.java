@@ -30,8 +30,9 @@ public class UserFinderImpl implements UserFinder {
                     .createQuery(
                             "SELECT AUTH FROM UserAuthenticationPasswordEntity AUTH  "
                                     + "LEFT JOIN UserEntity USER ON USER.id = AUTH.userId "
-                                    + "WHERE AUTH.password=:password"
+                                    + "WHERE USER.email=:email AND AUTH.password=:password"
                             , UserAuthenticationPasswordEntity.class)
+                    .setParameter("email", username)
                     .setParameter("password", password)
                     .getSingleResult();
 
