@@ -32,4 +32,9 @@ public class UserRepositoryFacade implements UserRepository {
     public User findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
         return userFinder.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User saveUser(User userToSave) throws UserDuplicationException {
+        return userCreator.createUser(userCreationDto);
+    }
 }

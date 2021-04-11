@@ -1,32 +1,24 @@
 package com.example.controller.authentication.login;
 
 import com.auth0.jwt.JWT;
-import com.example.domain.authentication.AuthenticationConfiguration;
+import com.example.BaseTestConfiguration;
+import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.authentication.user.repository.UserRepository;
 import com.example.domain.authentication.user.repository.create.UserCreationDto;
-import com.example.domain.authentication.user.repository.create.UserDuplicationException;
-import com.example.service.ServiceConfiguration;
 import com.example.service.authentication.token.sign.AlgorithmHolder;
-import com.example.domain.authentication.user.entity.User;
-import com.example.domain.authentication.user.entity.UserImpl;
-import com.example.domain.authentication.user.repository.find.UserFinder;
-import com.example.service.authentication.login.LoginServiceImpl;
 import org.hamcrest.Matchers;
+import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Lookup;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.MediaType;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
@@ -37,9 +29,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @ExtendWith(SpringExtension.class)
-@SpringJUnitWebConfig({LoginControllerTest.LocalTestConfiguration.class})
+@SpringJUnitWebConfig({BaseTestConfiguration.class})
 @ActiveProfiles({"com.example.controller.authentication.login.LoginController"})
-public class LoginControllerTest {
+@Transactional
+public class LoginControllerE2E {
     protected MockMvc mockMvc;
 
     @Autowired
@@ -48,9 +41,34 @@ public class LoginControllerTest {
     @Autowired
     protected AlgorithmHolder algorithmHolder;
 
+    @Autowired
+    protected UserRepository userRepository;
+
+    @Autowired
+    protected SessionFactory sessionFactory;
+
+
     @BeforeEach
     public void setUp() {
         mockMvc = standaloneSetup(loginController).build();
+    }
+
+    Integer userId;
+
+    @BeforeEach
+    public void createUser() {
+        var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
+        var authenticationDto = new UserPasswordAuthenticationDto("password");
+
+
+        var savedUser = userRepository.createUser(user);
+        savedUser.addPasswordAuthentication(authenticationDto);
+
+    }
+
+    @AfterEach
+    public void removeUsers() {
+        sessionFactory.getCurrentSession().getTransaction().rollback();
     }
 
     @Test
@@ -69,48 +87,15 @@ public class LoginControllerTest {
                 post("/api/login/basic")
                         .accept(MediaType.APPLICATION_JSON)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"username\":\"username\", \"password\": \"password\"}")
+                        .content("{\"username\":\"user@is.existent\", \"password\": \"password\"}")
         ).andExpect(status().is(200)).andReturn();
 
         final var token = mvcResult.getResponse().getHeader("Set-Token");
         final var decodedToken = JWT.decode(token);
 
-
         assertThat(decodedToken.getClaim("roles").asList(String.class), contains("USER"));
         assertThat(decodedToken.getSubject(), Matchers.equalTo("2137"));
         algorithmHolder.getAlgorithm().verify(decodedToken);
     }
-
-    @Import({LoginController.class, AuthenticationConfiguration.class, UserImpl.class, LoginServiceImpl.class})
-    @Profile({"com.example.controller.authentication.login.LoginController"})
-    static class LocalTestConfiguration {
-        @Bean
-        UserRepository userRepository(ApplicationContext applicationContext) {
-            return new UserRepository() {
-                @Override
-                public User createUser(UserCreationDto userCreationDto) throws UserDuplicationException {
-                    throw new UnsupportedOperationException();
-                }
-
-                @Override
-                public User findByUsernameAndPassword(String username, String password) {
-                    if (username.equals("username") && password.equals("password")) {
-                        var user = userImpl();
-                        user.setId(2137);
-                        user.setRoles(Arrays.asList("USER"));
-
-                        return user;
-                    }
-                    throw new BadCredentialsException("");
-                }
-
-                @Lookup
-                UserImpl userImpl() {
-                    return applicationContext.getBean(UserImpl.class);
-                }
-            };
-        }
-    }
-
 }
 

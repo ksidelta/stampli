@@ -227,7 +227,10 @@
                     <forkCount>1</forkCount>
                     <includes>
                         <include>**/*Integration.java</include>
-
+                        <include>**/*DbTest.java</include>
+                        <include>**/*DBTest.java</include>
+                        <include>**/*E2E.java</include>
+                        <include>**/*E2e.java</include>
                     </includes>
                     <environmentVariables>
                         <mysql.version>${mysql.version}</mysql.version>

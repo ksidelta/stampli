@@ -27,16 +27,7 @@ public class UserCreatorImpl implements UserCreator {
     }
 
     @Override
-    public User createUser(UserCreationDto userCreationDto) {
-        var userEntity = new UserEntity();
-
-        userEntity.setEmail(userCreationDto.getEmail());
-        userEntity.setRoles(
-                userCreationDto.getRoles().stream().map(role ->
-                        new UserRoleEntity(userEntity, role)
-                ).collect(Collectors.toList())
-        );
-
+    public void saveUser(User userToSave) {
         try {
             sessionFactory.getCurrentSession().save(userEntity);
         } catch (ConstraintViolationException constraintViolationException) {
