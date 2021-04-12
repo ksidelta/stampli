@@ -1,5 +1,6 @@
 package com.example.bootstrap.database;
 
+import org.mariadb.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -32,6 +33,7 @@ public class JdbcConfiguration {
     public DataSource dataSource(StandardEnvironment env) {
         final var source = new DriverManagerDataSource();
         source.setUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&enablePacketDebug=true");
+        source.setDriverClassName(Driver.class.getName());
         return source;
     }
 
