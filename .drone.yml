@@ -5,12 +5,9 @@ type: docker
 steps:
 - name: java-verification
   image: maven:3-jdk-11
-  volumes:
-    - name: dockersock
-      path: /var/run/docker.sock
   commands:
   - cd stampli-backend
-  - mvn verify -DtestNoDB -Dtest.mysql.host=testDB
+  - mvn verify -DnoTestDB -Dtest.mysql.host=testDB
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
@@ -44,8 +41,3 @@ services:
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
-
-volumes:
-- name: dockersock
-  host:
-    path: /var/run/docker.sock
