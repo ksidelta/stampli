@@ -7,6 +7,7 @@ import com.example.service.ServiceConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
@@ -18,5 +19,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
         ControllerConfiguration.class,
         ServiceConfiguration.class
 })
+@EnableRetry
 public class AppConfig {
 }

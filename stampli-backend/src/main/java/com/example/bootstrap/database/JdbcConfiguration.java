@@ -1,5 +1,6 @@
 package com.example.bootstrap.database;
 
+import com.example.infrastructure.db.jdbc.RetryableDataSource;
 import org.mariadb.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -34,7 +35,7 @@ public class JdbcConfiguration {
         final var source = new DriverManagerDataSource();
         source.setUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&enablePacketDebug=true");
         source.setDriverClassName(Driver.class.getName());
-        return source;
+        return new RetryableDataSource(source);
     }
 
 
