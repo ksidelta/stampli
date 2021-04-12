@@ -24,7 +24,7 @@ export class BasicRequestService implements RequestService {
         return Promise.reject();
       })
       .then(x => {
-        Logger.trace(`query headers: ${x.headers}`);
+        Logger.debug(`query headers: ${x.headers}`);
         return this.toRequestResponse(x as AxiosResponse<RESPONSE>);
       });
   }

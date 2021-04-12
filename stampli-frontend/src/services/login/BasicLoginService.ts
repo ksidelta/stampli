@@ -9,7 +9,7 @@ export class BasicLoginService implements LoginService {
   constructor(protected requestService: RequestService) {}
 
   async login(user: string, password: string): Promise<Token> {
-    Logger.trace(`Login initiated by ${user} and ${password}`);
+    Logger.debug(`Login initiated by ${user} and ${password}`);
 
     const logQuery = await this.requestService.query(endpointMap.LOGIN_BASIC, 'post', undefined, {
       email: user,
