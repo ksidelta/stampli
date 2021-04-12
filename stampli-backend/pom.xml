@@ -73,6 +73,17 @@
 
 
         <!-- Spring -->
+        <!-- Common -->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+            <version>1.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+
         <!-- Core -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -81,11 +92,6 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.retry</groupId>
-            <artifactId>spring-retry</artifactId>
-            <version>1.3.1</version>
         </dependency>
 
 
