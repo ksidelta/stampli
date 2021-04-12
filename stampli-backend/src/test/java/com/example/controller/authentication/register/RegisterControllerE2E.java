@@ -32,7 +32,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@ActiveProfiles({"com.example.controller.authentication.login.LoginController"})
 @Transactional
 public class RegisterControllerE2E {
     protected MockMvc mockMvc;
