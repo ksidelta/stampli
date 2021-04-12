@@ -1,15 +1,7 @@
 kind: pipeline
 name: default
 type: docker
-
-steps:
-- name: build-java
-  image: maven:3-jdk-11
-  commands:
-  - cd stampli-backend
-  - mvn compile
-
-- name: test-java
+- name: java-verification
   image: maven:3-jdk-11
   volumes:
     - name: dockersock

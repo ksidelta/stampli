@@ -12,19 +12,19 @@ import javax.sql.DataSource;
 @Configuration
 public class JdbcConfiguration {
 
-    @Value("#{systemProperties['test.mysql.host']}")
+    @Value("#{systemEnvironment['test.mysql.host']}")
     protected String host;
 
-    @Value("#{systemProperties['test.mysql.db']}")
+    @Value("#{systemEnvironment['test.mysql.db']}")
     protected String database;
 
-    @Value("#{systemProperties['test.mysql.username']}")
+    @Value("#{systemEnvironment['test.mysql.username']}")
     protected String username;
 
-    @Value("#{systemProperties['test.mysql.password']}")
+    @Value("#{systemEnvironment['test.mysql.password']}")
     protected String password;
 
-    @Value("#{systemProperties['test.mysql.port']}")
+    @Value("#{systemEnvironment['test.mysql.port']}")
     protected String port;
 
     @Primary

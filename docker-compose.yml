@@ -4,6 +4,8 @@ services:
     build: './stampli-backend'
     ports: # for local only
      - 1995:1995
+    environment:
+      
   front:
     build: './stampli-frontend'
   nginx:
