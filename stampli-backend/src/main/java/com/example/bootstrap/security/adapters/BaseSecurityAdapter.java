@@ -21,7 +21,8 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                 )
                 .csrf(x -> x.disable()) // TODO: Fix it later
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
-                .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class);
+                .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
+                .sessionManagement(x -> x.disable()); // We will use JWT so fuck sessions
     }
 
 }
