@@ -5,9 +5,23 @@ services:
     ports: # for local only
      - 1995:1995
     environment:
-      
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      MYSQL_HOST: db
+      MYSQL_PORT: 3306
+      MYSQL_DB: baza
+
   front:
     build: './stampli-frontend'
+  
+  db:
+    image: mariadb:10.5.9
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_PASSOWRD: password
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: baza
+      
   nginx:
     build: './nginx'
     labels:

@@ -9,7 +9,15 @@ ADD ./target/stampli-*.war /usr/local/stampli/stampli.war
 #          <Context path="/mydemo/version1" docBase="sampli.war"/> \
 #    </Host>' > /usr/local/tomcat/conf/server.xml
 
-RUN echo 'export JPDA_ADDRESS=*:1995' > /usr/local/tomcat/bin/setenv.sh
+RUN echo 'export JPDA_ADDRESS=*:1995;      \
+          export JAVA_OPTS="               \
+          -Dmysql.host=$MYSQL_HOST         \
+          -Dmysql.port=$MYSQL_PORT         \
+          -Dmysql.db=$MYSQL_DB             \
+          -Dmysql.username=$MYSQL_USERNAME \
+          -Dmysql.password=$MYSQL_PASSWORD \
+          " \
+' > /usr/local/tomcat/bin/setenv.sh
 
 RUN mkdir -p /usr/local/tomcat/conf/Catalina/localhost
 RUN echo '<Context                                       \
