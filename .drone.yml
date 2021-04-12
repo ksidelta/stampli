@@ -3,11 +3,13 @@ name: default
 type: docker
 
 steps:
+
 - name: java-verify
   image: maven:3-jdk-11
   commands:
   - cd stampli-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=testDB
+
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
@@ -19,6 +21,7 @@ steps:
     rm: true
     target: /etc/nixos/docker/stampli/target/
     source: ./*
+
 - name: deploy-start-compose
   image: appleboy/drone-ssh
   settings:
