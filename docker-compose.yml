@@ -10,9 +10,13 @@ services:
       MYSQL_HOST: db
       MYSQL_PORT: 3306
       MYSQL_DB: baza
+    networks:
+      - stampli
 
   front:
     build: './stampli-frontend'
+    networks:
+      - stampli
   
   db:
     image: mariadb:10.5.9
@@ -21,6 +25,8 @@ services:
       MYSQL_PASSOWRD: password
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: baza
+    networks:
+      - stampli
       
   nginx:
     build: './nginx'
@@ -30,7 +36,12 @@ services:
       - "traefik.http.routers.stampli.entrypoints=websecure"
       - "traefik.http.routers.stampli.tls=true"
       - "traefik.http.routers.stampli.tls.certresolver=le"
+    networks:
+      - outside
+      - stampli
 networks:
-  default:
+  outside:
     external:
       name: common-network
+  stampli:
+    internal: true
