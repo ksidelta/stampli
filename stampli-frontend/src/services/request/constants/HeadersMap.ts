@@ -1,4 +1,4 @@
 export const headersMap = {
-  AUTHORIZATION: 'Authorization',
-  SET_TOKEN: 'Set-Token'
+  AUTHORIZATION: 'authorization',
+  SET_TOKEN: 'set-token'
 };
