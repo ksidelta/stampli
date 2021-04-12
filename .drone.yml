@@ -1,6 +1,8 @@
 kind: pipeline
 name: default
 type: docker
+
+steps:
 - name: java-verification
   image: maven:3-jdk-11
   volumes:
@@ -9,7 +11,6 @@ type: docker
   commands:
   - cd stampli-backend
   - mvn verify -DtestNoDB -Dtest.mysql.host=testDB
-
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
