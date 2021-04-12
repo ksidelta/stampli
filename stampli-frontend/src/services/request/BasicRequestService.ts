@@ -3,6 +3,7 @@ import { RequestService } from './RequestService';
 import { RequestResponse } from './response/RequestResponse';
 import axios, { AxiosResponse } from 'axios';
 import { BasicRequestResponse } from './response/BasicRequestResponse';
+import Logger from 'js-logger';
 
 export class BasicRequestService implements RequestService {
   constructor(protected config: Configuration) {}
@@ -22,7 +23,10 @@ export class BasicRequestService implements RequestService {
         }
         return Promise.reject();
       })
-      .then(x => this.toRequestResponse(x as AxiosResponse<RESPONSE>));
+      .then(x => {
+        Logger.trace(`query headers: ${x.headers}`);
+        return this.toRequestResponse(x as AxiosResponse<RESPONSE>);
+      });
   }
 
   private toRequestResponse<PAYLOAD>(response: AxiosResponse<PAYLOAD>): RequestResponse<PAYLOAD> {

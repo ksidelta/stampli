@@ -1,4 +1,5 @@
 import { TokenService } from './TokenService';
+import Logger from 'js-logger';
 
 export class BasicTokenService implements TokenService {
   token: string | undefined = undefined;
@@ -12,6 +13,7 @@ export class BasicTokenService implements TokenService {
   }
 
   async setToken(token: string | undefined): Promise<void> {
+    Logger.debug(`updating token ${token}`);
     this.token = token;
   }
 }

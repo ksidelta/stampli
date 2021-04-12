@@ -2,9 +2,7 @@ import { RequestService } from './RequestService';
 import { TokenService } from '../token/TokenService';
 import { RequestResponse } from './response/RequestResponse';
 import { headersMap } from './constants/HeadersMap';
-
-const SET_TOKEN = 'Set-Token';
-const AUTHORIZATION = 'Authorization';
+import Logger from 'js-logger';
 
 export class AuthenticationAwareRequestService implements RequestService {
   constructor(protected requestService: RequestService, protected loginService: TokenService) {}
@@ -18,7 +16,8 @@ export class AuthenticationAwareRequestService implements RequestService {
     return this.requestService
       .query<PAYLOAD, RESPONSE>(path, method, { ...headers, ...this.defaultHeaders() }, payload)
       .then(async x => {
-        if (SET_TOKEN in x.headers) {
+        if (headersMap.SET_TOKEN in x.headers) {
+          Logger.debug(`Found Set-Token in Headers`);
           await this.loginService.setToken(x.headers[headersMap.SET_TOKEN]);
         }
         return x;
