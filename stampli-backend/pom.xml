@@ -250,56 +250,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>io.fabric8</groupId>
-                <artifactId>docker-maven-plugin</artifactId>
-                <version>0.35.0</version>
-                <configuration>
-                    <images>
-                        <image>
-                            <name>mariadb:10.5.9</name>
-                            <alias>database</alias>
-                            <run>
-                                <wait>
-                                    <!-- shit is executed twice -->
-                                    <log>(?s)(mysqld: ready for connections\..*){2}</log>
-                                    <time>20000</time>
-                                </wait>
-                                <ports>
-                                    <port>test.mysql.port:3306</port>
-                                </ports>
-                                <env>
-                                    <MYSQL_DATABASE>${test.mysql.db}</MYSQL_DATABASE>
-                                    <MYSQL_USERNAME>${test.mysql.username}</MYSQL_USERNAME>
-                                    <MYSQL_PASSWORD>${test.mysql.password}</MYSQL_PASSWORD>
-                                    <MYSQL_ROOT_PASSWORD>${test.mysql.password}</MYSQL_ROOT_PASSWORD>
-                                </env>
-                                <log>
-                                    <prefix>TC</prefix>
-                                    <date>default</date>
-                                    <color>cyan</color>
-                                </log>
-                            </run>
-                        </image>
-                    </images>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>start</id>
-                        <goals>
-                            <goal>start</goal>
-                        </goals>
-                        <phase>pre-integration-test</phase>
-                    </execution>
-                    <execution>
-                        <id>stop</id>
-                        <goals>
-                            <goal>stop</goal>
-                        </goals>
-                        <phase>post-integration-test</phase>
-                    </execution>
-                </executions>
-            </plugin>
         </plugins>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
@@ -349,4 +299,69 @@
             </plugins>
         </pluginManagement>
     </build>
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <activation>
+                <property>
+                    <name>!noTestDB</name>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <version>0.35.0</version>
+                        <configuration>
+                            <images>
+                                <image>
+                                    <name>mariadb:10.5.9</name>
+                                    <alias>database</alias>
+                                    <run>
+                                        <wait>
+                                            <!-- shit is executed twice -->
+                                            <log>(?s)(mysqld: ready for connections\..*){2}</log>
+                                            <time>20000</time>
+                                        </wait>
+                                        <ports>
+                                            <port>test.mysql.port:3306</port>
+                                        </ports>
+                                        <env>
+                                            <MYSQL_DATABASE>${test.mysql.db}</MYSQL_DATABASE>
+                                            <MYSQL_USERNAME>${test.mysql.username}</MYSQL_USERNAME>
+                                            <MYSQL_PASSWORD>${test.mysql.password}</MYSQL_PASSWORD>
+                                            <MYSQL_ROOT_PASSWORD>${test.mysql.password}</MYSQL_ROOT_PASSWORD>
+                                        </env>
+                                        <log>
+                                            <prefix>TC</prefix>
+                                            <date>default</date>
+                                            <color>cyan</color>
+                                        </log>
+                                    </run>
+                                </image>
+                            </images>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>start</id>
+                                <goals>
+                                    <goal>start</goal>
+                                </goals>
+                                <phase>pre-integration-test</phase>
+                            </execution>
+                            <execution>
+                                <id>stop</id>
+                                <goals>
+                                    <goal>stop</goal>
+                                </goals>
+                                <phase>post-integration-test</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

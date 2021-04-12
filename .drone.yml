@@ -16,7 +16,7 @@ steps:
       path: /var/run/docker.sock
   commands:
   - cd stampli-backend
-  - mvn verify
+  - mvn verify -DtestNoDB -Dtest.mysql.host=testDB
 
 - name: deploy-copy
   image: appleboy/drone-scp
@@ -42,6 +42,15 @@ steps:
       - docker-compose build
       - docker-compose down
       - docker-compose up --detach --remove-orphans
+
+services:
+  - name: testDB
+    image: mariadb:10.5.9
+    environment:
+      MYSQL_DATABASE: baza
+      MYSQL_USERNAME: root
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
 
 volumes:
 - name: dockersock
