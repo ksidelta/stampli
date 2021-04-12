@@ -22,10 +22,12 @@ import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.Filter;
 import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
@@ -48,10 +50,14 @@ public class RegisterControllerE2E {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    @Autowired
+    protected Filter springSecurityFilterChain;
 
     @BeforeEach
     public void setUp() {
-        mockMvc = standaloneSetup(registerController).build();
+        mockMvc = standaloneSetup(registerController)
+                .apply(springSecurity(springSecurityFilterChain))
+                .build();
     }
 
     Integer userId;

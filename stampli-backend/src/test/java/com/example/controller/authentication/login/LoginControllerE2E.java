@@ -25,6 +25,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.servlet.Filter;
 import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -52,10 +53,15 @@ public class LoginControllerE2E {
     @Autowired
     protected SessionFactory sessionFactory;
 
+    @Autowired
+    protected Filter springSecurityFilterChain;
+
 
     @BeforeEach
     public void setUp() {
-        mockMvc = standaloneSetup(loginController).build();
+        mockMvc = standaloneSetup(loginController)
+                .apply(springSecurity(springSecurityFilterChain))
+                .build();
     }
 
     Integer userId;

@@ -15,13 +15,13 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests(authorize -> authorize
-                        .mvcMatchers("/api/authentication/**").denyAll()
+                        .mvcMatchers("/api/authentication/**").permitAll()
                         .mvcMatchers("/api/test/string").permitAll()
                         .anyRequest().authenticated()
                 )
-                .oauth2Login(oauth -> oauth.loginPage("/api/login/oauth2/authorization/google/"))
-                .formLogin(x -> x.loginPage("/api/login"))
+                .csrf(x -> x.disable()) // TODO: Fix it later
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class);
     }
+
 }
