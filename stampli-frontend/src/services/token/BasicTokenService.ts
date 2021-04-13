@@ -16,4 +16,9 @@ export class BasicTokenService implements TokenService {
     Logger.debug(`updating token ${token}`);
     this.token = token;
   }
+
+  unsetToken(): void {
+    Logger.debug(`invalidated token`);
+    this.token = undefined;
+  }
 }

@@ -5,6 +5,9 @@ import { BusinessLoginPage } from '../pages/BusinessLoginPage';
 import { RoutingServiceInstance } from './services/RoutingService';
 import { InjectionContext } from '../components/stated/context/InjectionContext';
 import { BasicServicesFactory } from '../services/factory/BasicServicesFactory';
+import { UnauthenticatedCondition } from '../components/stated/condition/authentication/UnauthenticatedCondition';
+import { AuthenticatedCondition } from '../components/stated/condition/authentication/AuthenticatedCondition';
+import { TestPage } from '../pages/TestPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -22,7 +25,12 @@ export const AppRouter = () => (
             <EntryPage />
           </Route>
           <Route path={'/business/login'}>
-            <BusinessLoginPage />
+            <UnauthenticatedCondition>
+              <BusinessLoginPage />
+            </UnauthenticatedCondition>
+            <AuthenticatedCondition>
+              <TestPage />
+            </AuthenticatedCondition>
           </Route>
         </Switch>
       </Router>
