@@ -1,5 +1,6 @@
 import { TokenService } from './TokenService';
 import Logger from 'js-logger';
+import { makeAutoObservable } from 'mobx';
 
 export class BasicTokenService implements TokenService {
   token: string | undefined = undefined;
