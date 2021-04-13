@@ -10,6 +10,13 @@ steps:
   - cd stampli-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=testDB
 
+- name: node-test
+  image: node:15.12.0
+  commands:
+  - cd stampli-frontend   
+  - npm install
+  - npm test
+
 - name: deploy-copy
   image: appleboy/drone-scp
   settings:
