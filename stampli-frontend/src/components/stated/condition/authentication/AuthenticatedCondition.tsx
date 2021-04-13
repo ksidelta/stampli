@@ -3,15 +3,12 @@ import { Condition } from '../../../concrete/condition/Condition';
 import { InjectionContext } from '../../context/InjectionContext';
 import { Observer, observer } from 'mobx-react';
 
-export const AuthenticatedCondition = observer(({ children }: { children: React.ReactNode }) => (
-  <InjectionContext.Consumer>
-    {({ tokenService }) => (
-      <Observer>
-        {() => {
-          console.log(`KAWASICA: ${tokenService.isAuthenticated()}`);
-          return <Condition predicate={tokenService.isAuthenticated()}>{children}</Condition>;
-        }}
-      </Observer>
-    )}
-  </InjectionContext.Consumer>
-));
+export const AuthenticatedCondition = observer(({ children }: { children: React.ReactNode }) => {
+  return (
+    <InjectionContext.Consumer>
+      {({ tokenService }) => (
+        <Observer>{() => <Condition predicate={tokenService.isAuthenticated()}>{children}</Condition>}</Observer>
+      )}
+    </InjectionContext.Consumer>
+  );
+});

@@ -21,7 +21,7 @@ describe('AuthenticationAwareRequestService', () => {
       });
 
       it('when query returns Set-Token then loginService is updated', async () => {
-        const fun = jest.fn(async () => new BasicRequestResponse(200, { 'Set-Token': 'SMTH' }));
+        const fun = jest.fn(async () => new BasicRequestResponse(200, { 'set-token': 'SMTH' }));
         //@ts-ignore
         const service = new AuthenticationAwareRequestService({ query: fun }, loginService());
         await service.query('', 'get', {});
@@ -44,11 +44,11 @@ describe('AuthenticationAwareRequestService', () => {
         const service = new AuthenticationAwareRequestService({ query: fun }, loginService());
         await service.query('', 'get', {});
 
-        expect(fun).toBeCalledWith('', 'get', { Authorization: 'Bearer lol' }, undefined);
+        expect(fun).toBeCalledWith('', 'get', { authorization: 'Bearer lol' }, undefined);
       });
 
       it('when Set-Token is returned then authorization header is updated', async () => {
-        const fun = jest.fn(async () => new BasicRequestResponse(200, { 'Set-Token': 'SMTH' }));
+        const fun = jest.fn(async () => new BasicRequestResponse(200, { 'set-token': 'SMTH' }));
         //@ts-ignore
         const service = new AuthenticationAwareRequestService({ query: fun }, loginService());
         await service.query('', 'get', {});
