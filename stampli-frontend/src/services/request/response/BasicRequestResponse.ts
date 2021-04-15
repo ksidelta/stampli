@@ -10,4 +10,8 @@ export class BasicRequestResponse<PAYLOAD> implements RequestResponse<PAYLOAD> {
   isNotFound(): boolean {
     return [400].includes(this.status);
   }
+
+  isDuplicate(): boolean {
+    return [400].includes(this.status);
+  }
 }

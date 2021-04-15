@@ -6,7 +6,8 @@ import { ServicesBundle } from '../ServicesBundle';
 import { BasicRequestService } from '../request/BasicRequestService';
 import { AuthenticationAwareRequestService } from '../request/AuthenticationAwareRequestService';
 import { BasicLoginService } from '../login/BasicLoginService';
-import { makeAutoObservable, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
+import { BasicRegisterService } from '../register/BasicRegisterService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -18,6 +19,7 @@ export class BasicServicesFactory implements ServicesFactory {
     const tokenService = makeAutoObservable(new BasicTokenService());
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
     const loginService = new BasicLoginService(requestService);
-    return { config, tokenService, requestService, loginService };
+    const registerService = new BasicRegisterService(requestService);
+    return { config, tokenService, requestService, loginService, registerService };
   }
 }

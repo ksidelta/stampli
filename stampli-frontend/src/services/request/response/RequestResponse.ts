@@ -4,4 +4,5 @@ export interface RequestResponse<P> {
 
   isSuccessful(): boolean;
   isNotFound(): boolean;
+  isDuplicate(): boolean;
 }

@@ -1,9 +1,15 @@
 import React from 'react';
 import { SimpleButton } from '../../buttons/SimpleButton';
-import { FormSubmitContext } from '../ContextForm';
+import { FormOnChangeContext, FormSetValueContext, FormSubmitContext } from '../ContextForm';
 
-export const ContextSubmitButton = ({ text }: { text: string }) => (
+export const ContextSubmitButton = ({ text, value }: { text: string; value?: any }) => (
   <>
-    <FormSubmitContext.Consumer>{submit => <SimpleButton text={text} onClick={submit} />}</FormSubmitContext.Consumer>
+    <FormSetValueContext.Consumer>
+      {setValue => (
+        <FormSubmitContext.Consumer>
+          {submit => <SimpleButton text={text} onClick={() => setValue('submit', value).then(x => submit())} />}
+        </FormSubmitContext.Consumer>
+      )}
+    </FormSetValueContext.Consumer>
   </>
 );

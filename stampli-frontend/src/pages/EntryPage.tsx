@@ -14,7 +14,7 @@ export const EntryPage = () => (
       <IconButton
         text={'Chcę rozdawać pieczątki!'}
         icon={faArrowRight}
-        onClick={history => history.goToBusinessLoginPage()}
+        onClick={history => history.goToBusinessOptionsPage()}
       />
       <IconButton text={'Chcę dowiedzieć się więcej!'} icon={faArrowRight} />
     </VerticalFlex>

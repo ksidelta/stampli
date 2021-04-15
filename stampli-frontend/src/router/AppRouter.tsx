@@ -7,7 +7,7 @@ import { InjectionContext } from '../components/stated/context/InjectionContext'
 import { BasicServicesFactory } from '../services/factory/BasicServicesFactory';
 import { UnauthenticatedCondition } from '../components/stated/condition/authentication/UnauthenticatedCondition';
 import { AuthenticatedCondition } from '../components/stated/condition/authentication/AuthenticatedCondition';
-import { TestPage } from '../pages/TestPage';
+import { BusinessOptionsPage } from '../pages/BusinessOptionsPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -24,12 +24,12 @@ export const AppRouter = () => (
           <Route path={'/home'} exact={true}>
             <EntryPage />
           </Route>
-          <Route path={'/business/login'}>
+          <Route path={'/business/'}>
             <UnauthenticatedCondition>
               <BusinessLoginPage />
             </UnauthenticatedCondition>
             <AuthenticatedCondition>
-              <TestPage />
+              <BusinessOptionsPage />
             </AuthenticatedCondition>
           </Route>
         </Switch>
