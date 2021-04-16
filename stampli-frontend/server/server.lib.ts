@@ -7,6 +7,7 @@ import config from '../webpack.config';
 import * as path from 'path';
 
 import rewrite from 'express-urlrewrite';
+import { configurationForFrontend } from './configuration';
 
 export function createDevServer(): Promise<void> {
   return new Promise(async resolve => {
@@ -22,6 +23,7 @@ export function createDevServer(): Promise<void> {
 
 async function configureRoutes(server: express.Express) {
   await directToWebpackButWaitForCompilation(server);
+  directToConfiguration(server);
   directToPublic(server);
   directToIndex(server);
 }
@@ -38,6 +40,22 @@ async function directToWebpackButWaitForCompilation(server: express.Express): Pr
     server.use(webpackMiddleware);
 
     webpackMiddleware.waitUntilValid(() => resolve());
+  });
+}
+
+function directToConfiguration(server: express.Express) {
+  server.get('/configuration.json', async (req, res) => {
+    try {
+      const configuration = await configurationForFrontend();
+
+      res.setHeader('content-type', 'application/json');
+      res.status(200);
+      res.send(configuration);
+    } catch (ex) {
+      res.setHeader('content-type', 'text/plain');
+      res.status(500);
+      res.send(ex);
+    }
   });
 }
 

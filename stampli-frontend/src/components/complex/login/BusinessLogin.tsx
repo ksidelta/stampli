@@ -1,7 +1,7 @@
-import { ContextForm } from '../../concrete/form/ContextForm';
-import { ContextTitledInput } from '../../concrete/form/input/ContextTitledInput';
+import { ContextForm } from '../../contexted/form/ContextForm';
+import { ContextTitledInput } from '../../contexted/form/input/ContextTitledInput';
 import { Delimeter } from '../../concrete/container/flex/Delimeter';
-import { ContextSubmitButton } from '../../concrete/form/input/ContextSubmitButton';
+import { ContextSubmitButton } from '../../contexted/form/input/ContextSubmitButton';
 import React from 'react';
 import { OpenIdConfiguration } from '../../../services/config/parts/OpenIdConfiguration';
 import { GoogleLoginButton } from '../../concrete/buttons/login/GoogleLoginButton';
@@ -25,7 +25,7 @@ export const BusinessLogin = ({
       x.submit(x.user, x.password); // it comes from button values
     }}>
     <ContextTitledInput title={'login'} name={'user'} />
-    <ContextTitledInput title={'hasło'} name={'password'} />
+    <ContextTitledInput type={'password'} title={'hasło'} name={'password'} />
     <Delimeter />
     <ContextSubmitButton
       value={(username: string, password: string) => loginService.login(username, password)}
