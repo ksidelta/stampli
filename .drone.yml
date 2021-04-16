@@ -13,7 +13,7 @@ steps:
 - name: node-test
   image: node:15.12.0
   commands:
-  - cd stampli-frontend   
+  - cd stampli-frontend
   - npm install
   - npm test
 
@@ -41,7 +41,7 @@ steps:
       - cd /etc/nixos/docker/stampli/target/
       - docker-compose build
       - docker-compose down
-      - docker-compose up --detach --remove-orphans
+      - ./scripts/run-production.sh
 
 services:
   - name: testDB

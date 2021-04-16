@@ -2,8 +2,6 @@ version: "3.3"
 services:
   server1:
     build: './stampli-backend'
-    ports: # for local only
-     - 1995:1995
     environment:
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
@@ -17,7 +15,7 @@ services:
     build: './stampli-frontend'
     networks:
       - stampli
-  
+
   db:
     image: mariadb:10.5.9
     environment:
@@ -27,21 +25,12 @@ services:
       MYSQL_DATABASE: baza
     networks:
       - stampli
-      
+
   nginx:
     build: './nginx'
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
-      - "traefik.http.routers.stampli.entrypoints=websecure"
-      - "traefik.http.routers.stampli.tls=true"
-      - "traefik.http.routers.stampli.tls.certresolver=le"
     networks:
-      - outside
       - stampli
+
 networks:
-  outside:
-    external:
-      name: common-network
   stampli:
     internal: true

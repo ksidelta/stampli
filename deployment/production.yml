@@ -1,0 +1,19 @@
+version: "3.3"
+services:
+  nginx:
+    build: './nginx'
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
+      - "traefik.http.routers.stampli.entrypoints=websecure"
+      - "traefik.http.routers.stampli.tls=true"
+      - "traefik.http.routers.stampli.tls.certresolver=le"
+    networks:
+      - outside
+      - stampli
+networks:
+  outside:
+    external:
+      name: common-network
+  stampli:
+    internal: true
