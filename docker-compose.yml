@@ -33,4 +33,4 @@ services:
 
 networks:
   stampli:
-    internal: true
+    internal: false

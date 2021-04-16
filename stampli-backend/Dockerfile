@@ -27,8 +27,8 @@ RUN echo '<Context                                       \
            />' > /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
 
 
-HEALTHCHECK --interval=30s --timeout=3s \
-  CMD curl -f http://localhost:8080/stampli/test/string
+# HEALTHCHECK --interval=30s --timeout=3s \
+#  CMD curl -f http://localhost:8080/stampli/test/string
 
 CMD ["catalina.sh", "jpda",  "run"]
 

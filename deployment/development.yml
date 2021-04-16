@@ -4,3 +4,9 @@ services:
     build: './nginx'
     networks:
       - stampli
+    ports:
+      - 80:80
+  front:
+    environment:
+      BASE_URL: 'http://localhost'
+      OAUTH__GOOGLE__CLIENT_ID: '155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com'
