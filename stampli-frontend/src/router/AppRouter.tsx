@@ -9,6 +9,8 @@ import { UnauthenticatedCondition } from '../components/stated/condition/authent
 import { AuthenticatedCondition } from '../components/stated/condition/authentication/AuthenticatedCondition';
 import { BusinessOptionsPage } from '../pages/BusinessOptionsPage';
 import { ServicesBundle } from '../services/ServicesBundle';
+import { Routes } from './routes/Routes';
+import { TestPage } from '../pages/TestPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -34,12 +36,18 @@ export const AppRouter = () => {
             <Route path={'/home'} exact={true}>
               <EntryPage />
             </Route>
-            <Route path={'/business/'}>
+            <Route path={Routes.business.root}>
               <UnauthenticatedCondition>
                 <BusinessLoginPage />
               </UnauthenticatedCondition>
+
               <AuthenticatedCondition>
-                <BusinessOptionsPage />
+                <Route path={Routes.business.root} exact={true}>
+                  <BusinessOptionsPage />
+                </Route>
+                <Route path={Routes.business.settings}>
+                  <TestPage />
+                </Route>
               </AuthenticatedCondition>
             </Route>
           </Switch>

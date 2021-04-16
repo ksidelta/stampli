@@ -10,7 +10,11 @@ export const BusinessOptionsPage = () => (
     <Header title={'Wybierz akcje dla biznesu'} />
     <VerticalFlex>
       <IconButton text={'Przenieś mnie do rozdawania pieczątek'} icon={faArrowRight} />
-      <IconButton text={'Skonfiguruj dane biznesu'} icon={faArrowRight} />
+      <IconButton
+        text={'Skonfiguruj dane biznesu!'}
+        icon={faArrowRight}
+        onClick={history => history.goToBusinessSettingsPage()}
+      />
     </VerticalFlex>
   </MobilePage>
 );
