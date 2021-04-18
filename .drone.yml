@@ -41,7 +41,7 @@ steps:
       - cd /etc/nixos/docker/stampli/target/
       - docker-compose build
       - docker-compose down
-      - ./scripts/run-production.sh
+      - docker-compose -f docker-compose.yml -f deployment/production.yml up --detach 
 
 services:
   - name: testDB
