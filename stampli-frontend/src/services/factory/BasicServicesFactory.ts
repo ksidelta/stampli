@@ -10,6 +10,7 @@ import { makeAutoObservable } from 'mobx';
 import { BasicRegisterService } from '../register/BasicRegisterService';
 import axios from 'axios';
 import Logger from 'js-logger';
+import { LocalStorageTokenService } from '../token/LocalStorageTokenService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -23,7 +24,7 @@ export class BasicServicesFactory implements ServicesFactory {
       Logger.error(`Couldn't load settings, using defaults`);
       return BasicServicesFactory.defaultConfiguration;
     });
-    const tokenService = makeAutoObservable(new BasicTokenService());
+    const tokenService = makeAutoObservable(new LocalStorageTokenService(new BasicTokenService()));
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);

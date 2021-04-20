@@ -5,8 +5,8 @@ import { makeAutoObservable } from 'mobx';
 export class BasicTokenService implements TokenService {
   token: string | undefined = undefined;
 
-  getToken(): string {
-    return this.token || '';
+  getToken(): string | undefined {
+    return this.token;
   }
 
   isAuthenticated(): boolean {

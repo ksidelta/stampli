@@ -35,5 +35,5 @@ They have layered hiererchy
 - may interact with MobX
 
 ##### pages
-- must not have any dependencies
+- may only depend on url arguments
 - should use only stated-components & concrete-components

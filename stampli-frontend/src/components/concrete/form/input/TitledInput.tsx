@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BasicLabel } from '../../label/BasicLabel';
 
 export const TitledInput = ({
   title,
@@ -13,21 +14,13 @@ export const TitledInput = ({
   onChange: (value: string) => void;
 }) => (
   <Inner>
-    <label>{title}</label>
+    <BasicLabel>{title}</BasicLabel>
     <input type={type} value={value} onChange={e => onChange(e.target.value)} />
   </Inner>
 );
 
 const Inner = styled.div`
   margin-bottom: calc(var(--gap));
-
-  & label {
-    display: block;
-    text-align: left;
-
-    font-size: calc(var(--gap));
-    padding-bottom: calc(0.2 * var(--gap));
-  }
 
   & input {
     display: block;

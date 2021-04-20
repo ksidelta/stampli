@@ -3,7 +3,7 @@ export interface TokenService {
 
   unsetToken(): void;
 
-  getToken(): Token;
+  getToken(): Token | undefined;
 
   isAuthenticated(): boolean;
 }

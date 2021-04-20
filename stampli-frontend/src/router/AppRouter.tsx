@@ -11,6 +11,7 @@ import { BusinessOptionsPage } from '../pages/BusinessOptionsPage';
 import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
 import { TestPage } from '../pages/TestPage';
+import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -46,7 +47,7 @@ export const AppRouter = () => {
                   <BusinessOptionsPage />
                 </Route>
                 <Route path={Routes.business.settings}>
-                  <TestPage />
+                  <BusinessSettingsPage />
                 </Route>
               </AuthenticatedCondition>
             </Route>

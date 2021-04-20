@@ -4,12 +4,12 @@ import { MobilePage } from './base/MobilePage';
 import { IconButton } from '../components/concrete/buttons/IconButton';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
-import { VerticalFlex } from '../components/concrete/container/flex/VerticalFlex';
+import { Content } from '../components/simple/container/layout/structure/Content';
 
 export const EntryPage = () => (
   <MobilePage>
     <Header title={'W czym mogę Ci dzisiaj pomóc?'} icon={faCircle} />
-    <VerticalFlex>
+    <Content>
       <IconButton text={'Chcę zacząć zbierać pieczątki!'} icon={faArrowRight} />
       <IconButton
         text={'Chcę rozdawać pieczątki!'}
@@ -17,6 +17,6 @@ export const EntryPage = () => (
         onClick={history => history.goToBusinessOptionsPage()}
       />
       <IconButton text={'Chcę dowiedzieć się więcej!'} icon={faArrowRight} />
-    </VerticalFlex>
+    </Content>
   </MobilePage>
 );

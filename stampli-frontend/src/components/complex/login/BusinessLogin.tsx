@@ -1,6 +1,6 @@
 import { ContextForm } from '../../contexted/form/ContextForm';
 import { ContextTitledInput } from '../../contexted/form/input/ContextTitledInput';
-import { Delimeter } from '../../concrete/container/flex/Delimeter';
+import { Delimeter } from '../../simple/container/flex/Delimeter';
 import { ContextSubmitButton } from '../../contexted/form/input/ContextSubmitButton';
 import React from 'react';
 import { OpenIdConfiguration } from '../../../services/config/parts/OpenIdConfiguration';

@@ -28,7 +28,7 @@ export const ContextForm = ({
 }: {
   definitions: FieldDefinitions;
   onSubmit: (values: Record<string, any>) => void;
-  children: ReactNode[];
+  children: ReactNode;
 }) => (
   <>
     <Formik

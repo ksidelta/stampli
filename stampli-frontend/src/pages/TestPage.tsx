@@ -1,13 +1,13 @@
 import React from 'react';
 import { MobilePage } from './base/MobilePage';
-import { VerticalFlex } from '../components/concrete/container/flex/VerticalFlex';
+import { Content } from '../components/simple/container/layout/structure/Content';
 
 export const TestPage = () => (
   <MobilePage>
-    <VerticalFlex>
+    <Content>
       <div style={{ flexGrow: 1 }} />
       <div style={{ textAlign: 'center' }}>JEBAĆ TEDEGO!</div>
       <div style={{ flexGrow: 1 }} />
-    </VerticalFlex>
+    </Content>
   </MobilePage>
 );
