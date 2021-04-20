@@ -24,7 +24,7 @@ export class BasicServicesFactory implements ServicesFactory {
       Logger.error(`Couldn't load settings, using defaults`);
       return BasicServicesFactory.defaultConfiguration;
     });
-    const tokenService = makeAutoObservable(new LocalStorageTokenService(new BasicTokenService()));
+    const tokenService = new LocalStorageTokenService(makeAutoObservable(new BasicTokenService()));
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);
