@@ -1,13 +1,20 @@
 import React from 'react';
-import { ImageUpload } from '../../../concrete/upload/img/ImageUpload';
-import { ContextTitledInput } from '../../../contexted/form/input/ContextTitledInput';
-import { ContextForm } from '../../../contexted/form/ContextForm';
+import { ImageUpload } from '../../../simple/upload/img/ImageUpload';
+import { TitledInputComponent } from '../../../simple/form/input/TitledInputComponent';
 
-export const BusinessSettingsForm = () => (
+export const BusinessSettingsForm = ({
+  businessName,
+  businessNameOnChange,
+  imageUrl,
+  imageOnChange
+}: {
+  businessName: string;
+  businessNameOnChange: (value: string) => void;
+  imageUrl: string | undefined;
+  imageOnChange: (file: File, url: string) => void;
+}) => (
   <>
-    <ContextForm definitions={[{ name: 'businessName', initialValue: 'Twój stary' }]} onSubmit={console.log}>
-      <ContextTitledInput title={'Nazwa Biznesu'} name={'businessName'} />
-    </ContextForm>
-    <ImageUpload />
+    <TitledInputComponent title={'Nazwa Biznesu'} type={'text'} onChange={businessNameOnChange} value={businessName} />
+    <ImageUpload onUpload={imageOnChange} imageUrl={imageUrl} />
   </>
 );

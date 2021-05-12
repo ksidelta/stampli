@@ -1,10 +1,10 @@
 import { ContextForm } from '../../contexted/form/ContextForm';
-import { ContextTitledInput } from '../../contexted/form/input/ContextTitledInput';
+import { ContextTitledInputComponent } from '../../contexted/form/input/ContextTitledInputComponent';
 import { Delimeter } from '../../simple/container/flex/Delimeter';
 import { ContextSubmitButton } from '../../contexted/form/input/ContextSubmitButton';
 import React from 'react';
 import { OpenIdConfiguration } from '../../../services/config/parts/OpenIdConfiguration';
-import { GoogleLoginButton } from '../../concrete/buttons/login/GoogleLoginButton';
+import { GoogleLoginButton } from '../../simple/buttons/login/GoogleLoginButton';
 import { LoginService } from '../../../services/login/LoginService';
 import { RegisterService } from '../../../services/register/RegisterService';
 
@@ -24,8 +24,8 @@ export const BusinessLogin = ({
     onSubmit={x => {
       x.submit(x.user, x.password); // it comes from button values
     }}>
-    <ContextTitledInput title={'login'} name={'user'} />
-    <ContextTitledInput type={'password'} title={'hasło'} name={'password'} />
+    <ContextTitledInputComponent title={'login'} name={'user'} />
+    <ContextTitledInputComponent type={'password'} title={'hasło'} name={'password'} />
     <Delimeter />
     <ContextSubmitButton
       value={(username: string, password: string) => loginService.login(username, password)}

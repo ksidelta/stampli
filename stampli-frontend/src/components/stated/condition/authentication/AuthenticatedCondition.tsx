@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Condition } from '../../../concrete/condition/Condition';
+import { Condition } from '../../../simple/condition/Condition';
 import { InjectionContext } from '../../context/InjectionContext';
 import { Observer, observer } from 'mobx-react';
 

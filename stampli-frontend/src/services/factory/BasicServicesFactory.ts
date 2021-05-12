@@ -11,6 +11,7 @@ import { BasicRegisterService } from '../register/BasicRegisterService';
 import axios from 'axios';
 import Logger from 'js-logger';
 import { LocalStorageTokenService } from '../token/LocalStorageTokenService';
+import { BasicBusinessSettings } from '../business/settings/BasicBusinessSettings';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -28,7 +29,9 @@ export class BasicServicesFactory implements ServicesFactory {
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);
-    return { config, tokenService, requestService, loginService, registerService };
+    const businessSettings = makeAutoObservable(new BasicBusinessSettings('', undefined));
+
+    return { config, tokenService, requestService, loginService, registerService, businessSettings };
   }
 
   async fetchConfiguration(): Promise<Configuration> {

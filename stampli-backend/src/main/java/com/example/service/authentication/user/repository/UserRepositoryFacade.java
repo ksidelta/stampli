@@ -8,8 +8,9 @@ import com.example.domain.authentication.user.repository.find.UserFinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
-@Component
+@Repository
 public class UserRepositoryFacade implements UserRepository {
 
     final protected UserCreator userCreator;

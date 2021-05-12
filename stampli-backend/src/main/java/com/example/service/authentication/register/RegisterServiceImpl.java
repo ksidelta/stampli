@@ -7,10 +7,11 @@ import com.example.domain.authentication.user.repository.UserRepository;
 import com.example.domain.authentication.user.repository.create.UserCreationDto;
 import com.example.domain.authentication.user.repository.create.UserDuplicationException;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Repository
+@Service
 public class RegisterServiceImpl implements RegisterService {
     protected final UserRepository userRepository;
 

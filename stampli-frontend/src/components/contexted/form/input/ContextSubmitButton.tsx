@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleButton } from '../../../concrete/buttons/SimpleButton';
+import { SimpleButton } from '../../../simple/buttons/SimpleButton';
 import { FormSetValueContext, FormSubmitContext } from '../ContextForm';
 
 export const ContextSubmitButton = ({ text, value }: { text: string; value?: any }) => (

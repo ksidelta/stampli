@@ -1,5 +1,5 @@
 import React from 'react';
-import { Header } from '../components/concrete/Header';
+import { Header } from '../components/simple/Header';
 import { MobilePage } from './base/MobilePage';
 import { VerticalFlex } from '../components/simple/container/flex/VerticalFlex';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';

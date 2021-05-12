@@ -1,7 +1,7 @@
 import React from 'react';
-import { Header } from '../components/concrete/Header';
+import { Header } from '../components/simple/Header';
 import { MobilePage } from './base/MobilePage';
-import { IconButton } from '../components/concrete/buttons/IconButton';
+import { IconButton } from '../components/simple/buttons/IconButton';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons/faArrowRight';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { Content } from '../components/simple/container/layout/structure/Content';

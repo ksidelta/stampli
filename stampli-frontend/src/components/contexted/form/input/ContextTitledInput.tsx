@@ -1,9 +1,9 @@
 import React from 'react';
 import { FormOnChangeContext, FormSetValueContext, FormValuesContext } from '../ContextForm';
 import styled from 'styled-components';
-import { TitledInput } from '../../../concrete/form/input/TitledInput';
+import { TitledInputComponent } from '../../../simple/form/input/TitledInputComponent';
 
-export const ContextTitledInput = ({
+export const ContextTitledInputComponent = ({
   title,
   name,
   type = 'text'
@@ -16,7 +16,12 @@ export const ContextTitledInput = ({
     {values => (
       <FormSetValueContext.Consumer>
         {onChange => (
-          <TitledInput title={title} type={type} value={values[name]} onChange={value => onChange(name, value)} />
+          <TitledInputComponent
+            title={title}
+            type={type}
+            value={values[name]}
+            onChange={value => onChange(name, value)}
+          />
         )}
       </FormSetValueContext.Consumer>
     )}
