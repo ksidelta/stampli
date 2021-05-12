@@ -1,5 +1,4 @@
 import { ContextForm } from '../../contexted/form/ContextForm';
-import { ContextTitledInputComponent } from '../../contexted/form/input/ContextTitledInputComponent';
 import { Delimeter } from '../../simple/container/flex/Delimeter';
 import { ContextSubmitButton } from '../../contexted/form/input/ContextSubmitButton';
 import React from 'react';
@@ -7,6 +6,7 @@ import { OpenIdConfiguration } from '../../../services/config/parts/OpenIdConfig
 import { GoogleLoginButton } from '../../simple/buttons/login/GoogleLoginButton';
 import { LoginService } from '../../../services/login/LoginService';
 import { RegisterService } from '../../../services/register/RegisterService';
+import { ContextTitledInputComponent } from '../../contexted/form/input/ContextTitledInput';
 
 export const BusinessLogin = ({
   loginService,
