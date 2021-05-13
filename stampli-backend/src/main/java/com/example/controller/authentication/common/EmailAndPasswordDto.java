@@ -23,5 +23,3 @@ public class EmailAndPasswordDto {
         this.password = password;
     }
 }
-
-{ email: "login", password: "password"}

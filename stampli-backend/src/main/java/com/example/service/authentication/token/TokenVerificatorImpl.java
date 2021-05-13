@@ -14,10 +14,10 @@ import java.util.Date;
 
 @Component
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class TokenGeneratorImpl implements TokenGenerator {
+public class TokenVerificatorImpl implements TokenGenerator {
     protected AlgorithmHolder algorithmHolder;
 
-    public TokenGeneratorImpl(AlgorithmHolder algorithmHolder) {
+    public TokenVerificatorImpl(AlgorithmHolder algorithmHolder) {
         this.algorithmHolder = algorithmHolder;
     }
 

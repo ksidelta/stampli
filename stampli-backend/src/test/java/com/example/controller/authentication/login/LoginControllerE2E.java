@@ -47,7 +47,7 @@ public class LoginControllerE2E {
     @Autowired
     protected AlgorithmHolder algorithmHolder;
 
-    @Autowiredget
+    @Autowired
     protected UserRepository userRepository;
 
     @Autowired
