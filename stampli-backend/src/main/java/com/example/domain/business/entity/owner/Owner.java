@@ -1,9 +1,11 @@
 package com.example.domain.business.entity.owner;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
 public class Owner {
+    @Column(name = "owner_id")
     Integer ownerId;
 
     protected Owner() {

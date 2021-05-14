@@ -2,6 +2,7 @@ package com.example.domain.business.entity.business;
 
 import com.example.domain.business.entity.business.profile.BusinessLogo;
 import com.example.domain.business.entity.business.profile.BusinessName;
+import com.example.domain.business.entity.owner.Owner;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -9,20 +10,27 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-@Entity(name = "business")
+@Entity(name = "BusinessAggregate")
+@Table(name = "business")
 public class BusinessAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Embedded
+    Owner owner;
+
+    @Embedded
     BusinessProfile businessProfile;
+
+    protected BusinessAggregate() {
+    }
 
     public BusinessProfile usingBusinessProfile() {
         return this.businessProfile;
     }
 
-    public static BusinessAggregate createBusinessAggregate() {
+    public static BusinessAggregate createBusinessAggregate(Owner owner) {
         final var businessAggregate = new BusinessAggregate();
 
         final var profile = new BusinessProfile();
@@ -30,6 +38,7 @@ public class BusinessAggregate {
         profile.updateBusinessName(new BusinessName("???"));
 
         businessAggregate.businessProfile = profile;
+        businessAggregate.owner = owner;
 
         return businessAggregate;
     }
