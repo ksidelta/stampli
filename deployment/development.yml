@@ -3,6 +3,10 @@ services:
   server1:
     ports:
       - 1995:1995
+    volumes:
+      - type: bind
+        source: ./stampli-backend/target/stampli-output/
+        target: /usr/local/stampli/stampli/
   nginx:
     build: './nginx'
     networks:

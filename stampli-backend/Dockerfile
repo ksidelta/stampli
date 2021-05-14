@@ -1,7 +1,7 @@
 FROM tomcat:9.0.44
 
 RUN mkdir -p /usr/local/stampli/
-ADD ./target/stampli-*.war /usr/local/stampli/stampli.war
+ADD ./target/stampli-output /usr/local/stampli/stampli/
 
 # I don;t want to add more configuration yet
 #RUN echo '<Host name="localhost"  appBase="webapps" \
@@ -10,7 +10,7 @@ ADD ./target/stampli-*.war /usr/local/stampli/stampli.war
 #    </Host>' > /usr/local/tomcat/conf/server.xml
 
 RUN echo 'export JPDA_ADDRESS=*:1995;      \
-          export JPDA_SUSPEND=y            \
+          export JPDA_SUSPEND=n            \
           export JAVA_OPTS="               \
           -Dmysql.host=$MYSQL_HOST         \
           -Dmysql.port=$MYSQL_PORT         \
@@ -22,9 +22,9 @@ RUN echo 'export JPDA_ADDRESS=*:1995;      \
 
 RUN mkdir -p /usr/local/tomcat/conf/Catalina/localhost
 RUN echo '<Context                                       \
-           docBase="/usr/local/stampli/stampli.war"      \
+           docBase="/usr/local/stampli/stampli/"      \
            path=""                                       \
-           reloadable="false"                            \
+           reloadable="true"                            \
            />' > /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
 
 
