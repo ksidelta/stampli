@@ -1,25 +1,29 @@
 package com.example.bootstrap;
 
 import com.example.AppConfig;
+import org.springframework.security.config.BeanIds;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.servlet.DispatcherServlet;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRegistration;
 
-public class ApplicationInitializer implements WebApplicationInitializer {
+public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override
+    protected String[] getServletMappings() {
+        return new String[]{"/"};
+    }
 
     @Override
-    public void onStartup(ServletContext servletContext) {
-        // Load Spring web application configuration
-        AnnotationConfigWebApplicationContext context = new AnnotationConfigWebApplicationContext();
-        context.register(AppConfig.class);
+    protected Class<?>[] getRootConfigClasses() {
+        return new Class[]{AppConfig.class};
+    }
 
-        // Create and register the DispatcherServlet
-        DispatcherServlet servlet = new DispatcherServlet(context);
-        ServletRegistration.Dynamic registration = servletContext.addServlet("app", servlet);
-        registration.setLoadOnStartup(1);
-        registration.addMapping("/");
+    @Override
+    protected Class<?>[] getServletConfigClasses() {
+        return new Class[]{AppConfig.class};
     }
 }

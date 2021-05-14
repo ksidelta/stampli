@@ -3,6 +3,10 @@ export interface RequestResponse<P> {
   payload?: P;
 
   isSuccessful(): boolean;
+
   isNotFound(): boolean;
+
   isDuplicate(): boolean;
+
+  asType<T>(ctor: { new (): T }): RequestResponse<T>;
 }

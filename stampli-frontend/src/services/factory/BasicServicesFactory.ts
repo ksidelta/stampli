@@ -12,6 +12,7 @@ import axios from 'axios';
 import Logger from 'js-logger';
 import { LocalStorageTokenService } from '../token/LocalStorageTokenService';
 import { BasicBusinessSettings } from '../business/settings/BasicBusinessSettings';
+import { EventRequester } from '../../events/producers/request/EventRequester';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -30,8 +31,9 @@ export class BasicServicesFactory implements ServicesFactory {
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);
     const businessSettings = makeAutoObservable(new BasicBusinessSettings('', undefined));
+    const eventRequester = new EventRequester(requestService);
 
-    return { config, tokenService, requestService, loginService, registerService, businessSettings };
+    return { config, tokenService, requestService, loginService, registerService, businessSettings, eventRequester };
   }
 
   async fetchConfiguration(): Promise<Configuration> {

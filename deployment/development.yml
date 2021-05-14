@@ -1,5 +1,8 @@
 version: "3.3"
 services:
+  server1:
+    ports:
+      - 1995:1995
   nginx:
     build: './nginx'
     networks:

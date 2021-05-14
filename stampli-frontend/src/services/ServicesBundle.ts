@@ -4,6 +4,7 @@ import { Configuration } from './config/Configuration';
 import { LoginService } from './login/LoginService';
 import { RegisterService } from './register/RegisterService';
 import { BusinessSettings } from './business/settings/BusinessSettings';
+import { EventRequester } from '../events/producers/request/EventRequester';
 
 export interface ServicesBundle {
   loginService: LoginService;
@@ -12,4 +13,5 @@ export interface ServicesBundle {
   requestService: RequestService;
   config: Configuration;
   businessSettings: BusinessSettings;
+  eventRequester: EventRequester;
 }

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
         ServiceConfiguration.class,
         AnticorruptionLayerConfiguration.class
 })
+@EnableWebSecurity
 @EnableRetry
 public class AppConfig {
 }

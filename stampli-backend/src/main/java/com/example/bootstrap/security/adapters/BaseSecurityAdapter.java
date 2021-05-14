@@ -1,7 +1,6 @@
 package com.example.bootstrap.security.adapters;
 
 import com.example.infrastructure.jwt.BasicJwtAuthenticationProvider;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,9 +10,12 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
-@EnableWebSecurity
+import java.util.logging.Logger;
+
 @Configuration
 public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
+    final static Logger logger = Logger.getLogger(BaseSecurityAdapter.class.toString());
+
     final BasicJwtAuthenticationProvider basicJwtAuthenticationProvider;
 
     public BaseSecurityAdapter(BasicJwtAuthenticationProvider basicJwtAuthenticationProvider) {

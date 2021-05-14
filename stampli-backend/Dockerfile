@@ -10,6 +10,7 @@ ADD ./target/stampli-*.war /usr/local/stampli/stampli.war
 #    </Host>' > /usr/local/tomcat/conf/server.xml
 
 RUN echo 'export JPDA_ADDRESS=*:1995;      \
+          export JPDA_SUSPEND=y            \
           export JAVA_OPTS="               \
           -Dmysql.host=$MYSQL_HOST         \
           -Dmysql.port=$MYSQL_PORT         \
