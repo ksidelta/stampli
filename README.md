@@ -14,15 +14,14 @@ To start application locally you need to:
 - run `mvn package` in stampli-backend  
 - run `docker-compose -f ./docker-compose.yml -f ./deployment/development.yml up`  
 
-It will start application on port 80.
+It will start application on port 80!!!
 
 ### Developing
 
 #### Backend
 
-Backend doesn't have yet quick reload.  
-Java Package needs to be rebuilt every time and docker-compose needs to be restarted.  
-TODO: fix this shit  
+Backend has finally autoreload.
+You just have to run `mvn package -DskipTests` to make it rebuilt.
 
 #### Frontend
 
