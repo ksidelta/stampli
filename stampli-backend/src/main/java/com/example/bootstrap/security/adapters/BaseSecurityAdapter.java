@@ -2,9 +2,11 @@ package com.example.bootstrap.security.adapters;
 
 import com.example.infrastructure.jwt.BasicJwtAuthenticationProvider;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
@@ -28,15 +30,17 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authorize -> authorize
                         .mvcMatchers("/api/authentication/**").permitAll()
                         .mvcMatchers("/api/test/string").permitAll()
-                        .mvcMatchers("/api/business/").authenticated()
+                        .mvcMatchers(HttpMethod.POST, "/api/business/**").authenticated()
+                        .mvcMatchers(HttpMethod.PUT, "/api/business/**").authenticated()
+                        .mvcMatchers(HttpMethod.GET, "/api/business/**").permitAll()
                         .anyRequest().denyAll()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .authenticationProvider(basicJwtAuthenticationProvider)
-                .csrf(x -> x.disable()) // TODO: Fix it later
+                .csrf(AbstractHttpConfigurer::disable) // TODO: Fix it later
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
-                .sessionManagement(x -> x.disable()); // We will use JWT so fuck sessions
+                .sessionManagement(AbstractHttpConfigurer::disable); // We will use JWT so fuck sessions
     }
 
 }
