@@ -4,9 +4,13 @@ import com.example.service.business.service.profile.BusinessProfileService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/business/:id/name")
+@RequestMapping("/api/business/{id}/name")
 public class BusinessProfileController {
     BusinessProfileService businessProfileService;
+
+    public BusinessProfileController(BusinessProfileService businessProfileService) {
+        this.businessProfileService = businessProfileService;
+    }
 
     @GetMapping
     public String getBusinessName(@PathVariable Integer id) {
