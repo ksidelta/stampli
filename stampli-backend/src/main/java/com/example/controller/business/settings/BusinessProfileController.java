@@ -1,29 +1,40 @@
 package com.example.controller.business.settings;
 
-import com.example.controller.business.BusinessController;
+import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
 import com.example.service.business.service.profile.BusinessProfileService;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.charset.StandardCharsets;
+import java.awt.image.BufferedImage;
 
 @RestController
-@RequestMapping("/api/business/{id}/name")
+@RequestMapping("/api/business/{id}")
 public class BusinessProfileController {
-    BusinessProfileService businessProfileService;
+    final BusinessProfileService businessProfileService;
+    final ImageToBlobConverter imageToBlobConverter;
 
-    public BusinessProfileController(BusinessProfileService businessProfileService) {
+    public BusinessProfileController(BusinessProfileService businessProfileService, ImageToBlobConverter imageToBlobConverter) {
         this.businessProfileService = businessProfileService;
+        this.imageToBlobConverter = imageToBlobConverter;
     }
 
-    @GetMapping(produces = "plain/text;charset=UTF-8")
+    @GetMapping(path = "/name", produces = "plain/text;charset=UTF-8")
     public String getBusinessName(@PathVariable Integer id) {
         return businessProfileService.getName(id).getName();
     }
 
-    @PutMapping(consumes = "plain/text;charset=UTF-8")
+    @PutMapping(path = "/name", consumes = "plain/text;charset=UTF-8")
     public void updateBusinessName(@PathVariable Integer id, @RequestBody String body) {
         businessProfileService.updateName(id, body);
+    }
+
+    @PutMapping(path = "/logo", consumes = "image/png")
+    public void updateBusinessLogo(@PathVariable Integer id, @RequestBody byte[] body) {
+        businessProfileService.updateLogo(id, imageToBlobConverter.convertToEntityAttribute(body));
+    }
+
+    @GetMapping(path = "/logo", produces = "image/png")
+    public byte[] getBusinessLogo(@PathVariable Integer id) {
+        return imageToBlobConverter.convertToDatabaseColumn(businessProfileService.getLogo(id));
     }
 
 }

@@ -1,5 +1,7 @@
 package com.example.infrastructure.db.hibernate;
 
+import org.springframework.stereotype.Component;
+
 import javax.imageio.ImageIO;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -11,6 +13,7 @@ import java.io.IOException;
 import java.sql.Blob;
 
 @Converter
+@Component
 public class ImageToBlobConverter
         implements AttributeConverter<BufferedImage, byte[]> {
 
