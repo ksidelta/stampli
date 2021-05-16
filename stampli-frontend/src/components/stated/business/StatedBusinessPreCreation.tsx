@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { InjectionContext } from '../context/InjectionContext';
 import { Subject } from 'rxjs';
-import { RequestResolvedEvent } from '../../../events/producers/request/RequestResolvedEvent';
 import { RequestResponseState } from '../../../events/producers/request/RequestResponseState';
 import { RequestResponseStateUpdater } from '../../../events/producers/request/RequestResponseStateUpdater';
 import { endpointMap } from '../../../services/request/constants/EndpointMap';
@@ -9,12 +8,13 @@ import { CenterMiddle } from '../../simple/container/layout/CenterMiddle';
 import { IconButton } from '../../simple/buttons/IconButton';
 import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import { observer } from 'mobx-react';
+import { InputEvent } from '../../../events/producers/input/InputEvent';
 
 export const StatedBusinessPreCreation = observer(({ children }: { children: (id: number) => React.ReactElement }) => {
   const servicesBundle = useContext(InjectionContext);
 
   const [businessSubject] = useState(() => {
-    const subject = new Subject<RequestResolvedEvent<BusinessDto>>();
+    const subject = new Subject<InputEvent<BusinessDto>>();
     return subject;
   });
 
