@@ -4,6 +4,7 @@ import { EventRequester } from './EventRequester';
 import { ReplaySubject, Subject } from 'rxjs';
 import { givwhenify } from '../../../utils/tests/GivWhenify';
 import { RequestResolvedEvent } from './RequestResolvedEvent';
+import { InputEvent } from '../input/InputEvent';
 
 describe('EventRequester', () => {
   givwhenify(
@@ -30,13 +31,13 @@ describe('EventRequester', () => {
 
       it('when request sent then eventually payload is wrapped into type', async () => {
         const eventRequester = new EventRequester(requestService());
-        const subject: Subject<RequestResolvedEvent<Payload>> = new ReplaySubject();
+        const subject: Subject<InputEvent<Payload>> = new ReplaySubject();
 
         eventRequester.onSubject(subject).withPayloadType(Payload).request('/lol/');
 
         await expect(
-          new Promise<RequestResolvedEvent<Payload>>(resolve => subject.subscribe(resolve)).then(
-            x => x.requestResponse.payload
+          new Promise<InputEvent<Payload>>(resolve => subject.subscribe(resolve)).then(
+            x => (x as RequestResolvedEvent<Payload>).requestResponse.payload
           )
         ).resolves.toBeInstanceOf(Payload);
       });
