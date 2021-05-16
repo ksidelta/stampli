@@ -1,7 +1,7 @@
 import React from 'react';
 import { Subject } from 'rxjs';
-import { InputEvent } from '../../../../events/events/form/input/InputEvent';
-import { InputChangedEvent } from '../../../../events/events/form/input/InputChangedEvent';
+import { InputEvent } from '../../../../events/producers/input/InputEvent';
+import { InputChangedEvent } from '../../../../events/producers/input/InputChangedEvent';
 
 export const EventDrivenTextInput = ({
   topic,

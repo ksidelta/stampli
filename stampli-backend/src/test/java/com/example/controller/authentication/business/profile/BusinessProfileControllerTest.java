@@ -55,7 +55,10 @@ public class BusinessProfileControllerTest {
         Mockito.when(businessProfileService.getName(1)).thenReturn(new BusinessName("name"));
 
         mockMvc.perform(get("/api/business/1/name").accept("plain/text"))
-                .andExpect(status().is(200)).andExpect(content().string("name"));
+                .andExpect(status().is(200))
+                .andExpect(content().contentType("plain/text; charset=UTF-8"))
+                .andExpect(content().string("name"));
+
 
         verify(businessProfileService).getName(1);
     }

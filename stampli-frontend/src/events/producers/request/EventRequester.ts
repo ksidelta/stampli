@@ -1,11 +1,12 @@
 import { RequestService } from '../../../services/request/RequestService';
 import { Subject } from 'rxjs';
 import { RequestResolvedEvent } from './RequestResolvedEvent';
+import { InputEvent } from '../input/InputEvent';
 
 export class EventRequester {
   constructor(protected requestService: RequestService) {}
 
-  onSubject<T>(subject: Subject<RequestResolvedEvent<T>>) {
+  onSubject<T>(subject: Subject<InputEvent<T>>) {
     const requestService = this.requestService;
 
     return {

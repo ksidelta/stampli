@@ -1,8 +1,9 @@
 import { Observer } from 'rxjs';
-import { InputEvent } from '../../../events/form/input/InputEvent';
-import { InputState } from '../../../../state/form/input/InputState';
+import { InputEvent } from './InputEvent';
+import { InputState } from '../../../state/form/input/InputState';
 import { action } from 'mobx';
-import { InputChangedEvent } from '../../../events/form/input/InputChangedEvent';
+import { InputChangedEvent } from './InputChangedEvent';
+import { RequestResolvedEvent } from '../request/RequestResolvedEvent';
 
 export class InputChangedEventToStateUpdate<T> implements Observer<InputEvent<T>> {
   constructor(protected inputState: InputState<T>, protected name: string) {}
@@ -14,6 +15,10 @@ export class InputChangedEventToStateUpdate<T> implements Observer<InputEvent<T>
   next(inputEvent: InputEvent<T>): void {
     if (inputEvent instanceof InputChangedEvent && inputEvent.inputName === this.name) {
       action(() => (this.inputState.valueState.value = inputEvent.changedValue.value))();
+    }
+
+    if (inputEvent instanceof RequestResolvedEvent) {
+      this.inputState.valueState.value = inputEvent.requestResponse.payload;
     }
   }
 }

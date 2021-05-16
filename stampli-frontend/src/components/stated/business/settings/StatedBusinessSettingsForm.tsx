@@ -4,24 +4,34 @@ import { InjectionContext } from '../../context/InjectionContext';
 import { ServicesBundle } from '../../../../services/ServicesBundle';
 import { Observer } from 'mobx-react';
 import { Subject } from 'rxjs';
-import { InputEvent } from '../../../../events/events/form/input/InputEvent';
-import { InputChangedEventToStateUpdate } from '../../../../events/consumers/form/input/InputChangedEventToStateUpdate';
+import { InputEvent } from '../../../../events/producers/input/InputEvent';
+import { InputChangedEventToStateUpdate } from '../../../../events/producers/input/InputChangedEventToStateUpdate';
 import { InputState } from '../../../../state/form/input/InputState';
 import { TitledTextInput } from '../../../simple/form/input/TitledTextInput';
-import { InputChangedEventToApiQuery } from '../../../../events/consumers/form/input/InputChangedEventToApiQuery';
+import { InputChangedEventToApiQuery } from '../../../../events/producers/input/InputChangedEventToApiQuery';
+import { endpointMap } from '../../../../services/request/constants/EndpointMap';
 
-export const StatedBusinessSettingsForm = () => {
+export const StatedBusinessSettingsForm = ({ businessId }: { businessId: number }) => {
   const servicesBundle = useContext(InjectionContext);
 
   const [inputState] = useState(InputState.createStringInputState());
 
   const [nameTopic] = useState(() => {
-    const nameSubject = new Subject<InputEvent<string>>();
+    const nameSubject = new Subject<InputEvent<String>>();
 
     nameSubject.subscribe(new InputChangedEventToStateUpdate(inputState, 'name'));
     nameSubject.subscribe(
-      new InputChangedEventToApiQuery(inputState, servicesBundle.requestService, 'name', 'http://example.com')
+      new InputChangedEventToApiQuery(
+        inputState,
+        servicesBundle.requestService,
+        'name',
+        endpointMap.BUSINESS_NAME(businessId)
+      )
     );
+    servicesBundle.eventRequester
+      .onSubject(nameSubject)
+      .withPayloadType(String)
+      .request(endpointMap.BUSINESS_NAME(businessId));
 
     return nameSubject;
   });

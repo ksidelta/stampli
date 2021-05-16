@@ -9,9 +9,7 @@ export const BusinessSettingsPage = () => (
   <MobilePage>
     <Header title={'Ustawienia Twojego starego'} />
     <Content>
-      <StatedBusinessPreCreation>
-        <StatedBusinessSettingsForm />
-      </StatedBusinessPreCreation>
+      <StatedBusinessPreCreation>{id => <StatedBusinessSettingsForm businessId={id} />}</StatedBusinessPreCreation>
     </Content>
   </MobilePage>
 );

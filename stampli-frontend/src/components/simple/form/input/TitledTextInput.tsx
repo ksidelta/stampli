@@ -2,7 +2,7 @@ import React from 'react';
 import { EventDrivenTextInput } from './EventDrivenTextInput';
 import { TitledInputComponent } from './TitledInputComponent';
 import { Subject } from 'rxjs';
-import { InputEvent } from '../../../../events/events/form/input/InputEvent';
+import { InputEvent } from '../../../../events/producers/input/InputEvent';
 import { StateForTextInput } from './StateForTextInput';
 import { InputState } from '../../../../state/form/input/InputState';
 

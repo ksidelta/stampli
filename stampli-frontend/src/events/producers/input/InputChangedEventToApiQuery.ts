@@ -1,8 +1,8 @@
-import { RequestService } from '../../../../services/request/RequestService';
+import { RequestService } from '../../../services/request/RequestService';
 import { Observer, Subject } from 'rxjs';
-import { InputEvent } from '../../../events/form/input/InputEvent';
-import { InputState } from '../../../../state/form/input/InputState';
-import { InputChangedEvent } from '../../../events/form/input/InputChangedEvent';
+import { InputEvent } from './InputEvent';
+import { InputState } from '../../../state/form/input/InputState';
+import { InputChangedEvent } from './InputChangedEvent';
 import { debounceTime, map, mergeMap, tap } from 'rxjs/operators';
 
 export class InputChangedEventToApiQuery<T> implements Observer<InputEvent<T>> {
@@ -19,7 +19,12 @@ export class InputChangedEventToApiQuery<T> implements Observer<InputEvent<T>> {
         debounceTime(1000),
         tap(() => this.inputState.loadingState.load()),
         map(payload =>
-          this.requestService.query(this.url, 'post', { 'content-type': 'text/plain' }, payload.changedValue)
+          this.requestService.query(
+            this.url,
+            'put',
+            { 'content-type': 'text/plain;charset=UTF-8' },
+            payload.changedValue
+          )
         ),
         mergeMap(promise => promise),
         tap(() => this.inputState.loadingState.finish())
