@@ -4,8 +4,6 @@ import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
 import com.example.service.business.service.profile.BusinessProfileService;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.image.BufferedImage;
-
 @RestController
 @RequestMapping("/api/business/{id}")
 public class BusinessProfileController {

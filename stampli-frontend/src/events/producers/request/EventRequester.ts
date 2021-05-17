@@ -10,25 +10,23 @@ export class EventRequester {
     const requestService = this.requestService;
 
     return {
-      withPayloadType(ctor: { new (): T }) {
+      withPayloadType(ctor: { new (): T }, accept: string = 'application/json') {
         return {
           request(url: string) {
             requestService
-              .query(url, 'get', {})
-              .then(response => subject.next(new RequestResolvedEvent<T>(response.asType(ctor))))
-              .catch(x => console.log('O CIE CHUJ'));
+              .query(url, 'get', { accept })
+              .then(response => subject.next(new RequestResolvedEvent<T>(response.asType(ctor))));
             // TODO: change catch semantics for request service
           }
         };
       },
 
-      withConversion(conversion: (payload: any) => T) {
+      withConversion(conversion: (payload: any) => T, accept: string = 'application/json') {
         return {
           request(url: string) {
             requestService
-              .query(url, 'get', { accept: 'image/png' })
+              .query(url, 'get', { accept })
               .then(response => subject.next(new RequestResolvedEvent<T>(response.withConversion(conversion))));
-            // TODO: change catch semantics for request service
           }
         };
       }

@@ -14,15 +14,21 @@ export class BasicRequestService implements RequestService {
     headers: Record<string, string> = {},
     payload?: PAYLOAD
   ): Promise<RequestResponse<RESPONSE>> {
-    return axios[method](`${this.config.baseUrl}${path}`, payload, {
-      responseType: detectDataTypeByHeader(headers),
-      headers: { ...this.defaultHeaders(), ...headers }
-    })
+    return axios
+      .request({
+        method: method,
+        baseURL: this.config.baseUrl,
+        url: path,
+        data: payload,
+        headers,
+        responseType: detectDataTypeByHeader(headers)
+      })
       .catch(error => {
         if (error.response) {
           return this.toRequestResponse(error.response as AxiosResponse<RESPONSE>);
         }
-        return Promise.reject();
+
+        return Promise.reject(error);
       })
       .then(x => {
         Logger.debug(`query headers: ${JSON.stringify(x.headers, undefined, 2)}`);
@@ -44,8 +50,12 @@ export class BasicRequestService implements RequestService {
 
 function detectDataTypeByHeader(headers: Record<string, string>): ResponseType {
   if (/image\/.*/.test(headers['accept'])) {
-    return 'blob';
+    return 'arraybuffer';
   }
 
-  return 'blob';
+  if (/plain\/text/.test(headers['accept'])) {
+    return 'text';
+  }
+
+  return 'json';
 }

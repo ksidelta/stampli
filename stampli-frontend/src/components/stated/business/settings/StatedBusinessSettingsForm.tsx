@@ -30,9 +30,10 @@ export const StatedBusinessSettingsForm = ({ businessId }: { businessId: number 
         endpointMap.BUSINESS_NAME(businessId)
       )
     );
+
     servicesBundle.eventRequester
       .onSubject(nameSubject)
-      .withPayloadType(String)
+      .withPayloadType(String, 'plain/text')
       .request(endpointMap.BUSINESS_NAME(businessId));
 
     return nameSubject;
@@ -54,9 +55,9 @@ export const StatedBusinessSettingsForm = ({ businessId }: { businessId: number 
 
     servicesBundle.eventRequester
       .onSubject(imageSubject)
-      .withConversion((binary: Buffer) => {
-        return new ImageValue(binary, URL.createObjectURL(binary));
-      })
+      .withConversion((binary: ArrayBuffer) => {
+        return new ImageValue(Buffer.from(binary), URL.createObjectURL(new Blob([Buffer.from(binary)])));
+      }, 'image/png')
       .request(endpointMap.BUSINESS_LOGO(businessId));
 
     return imageSubject;
