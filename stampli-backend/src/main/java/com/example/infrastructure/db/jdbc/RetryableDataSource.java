@@ -9,7 +9,6 @@ import java.io.PrintWriter;
 import java.sql.*;
 import java.util.logging.Logger;
 
-@Component
 public class RetryableDataSource implements DataSource {
     protected final DataSource parent;
 

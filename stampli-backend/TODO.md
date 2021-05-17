@@ -10,6 +10,5 @@ Create separate configurations for each:
 
 ### refactor catalog structure
 
-- Should JWT be in model?
-- some services to infrastructure?
 - isolate only infrastructure test? (aka create Controller in place?)
+- should I merge infra with bootstrap?

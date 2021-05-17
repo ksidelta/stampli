@@ -1,13 +1,12 @@
 package com.example.infrastructure.jwt;
 
-import com.example.domain.authentication.token.TokenGenerator;
+import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.service.authentication.token.TokenGeneratorImpl;
-import com.example.service.authentication.token.sign.InMemoryAlgorithmHolder;
+import com.example.infrastructure.jwt.generator.TokenGeneratorImpl;
+import com.example.infrastructure.jwt.sign.InMemoryAlgorithmHolder;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.Arrays;
 

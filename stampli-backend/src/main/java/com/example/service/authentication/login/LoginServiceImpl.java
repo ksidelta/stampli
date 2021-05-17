@@ -1,6 +1,6 @@
 package com.example.service.authentication.login;
 
-import com.example.domain.authentication.token.TokenGenerator;
+import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.domain.authentication.user.repository.UserRepository;
 import org.springframework.stereotype.Component;
 

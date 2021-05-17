@@ -3,7 +3,7 @@ package com.example.infrastructure.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.example.service.authentication.token.sign.AlgorithmHolder;
+import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;

@@ -1,14 +1,11 @@
 package com.example.controller.authentication.register;
 
-import com.auth0.jwt.JWT;
 import com.example.BaseTestConfiguration;
-import com.example.controller.authentication.login.LoginController;
 import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.authentication.user.entity.UserEntity;
 import com.example.domain.authentication.user.repository.UserRepository;
 import com.example.domain.authentication.user.repository.create.UserCreationDto;
-import com.example.service.authentication.token.sign.AlgorithmHolder;
-import org.hamcrest.Matchers;
+import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -16,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;

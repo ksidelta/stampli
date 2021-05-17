@@ -1,9 +1,8 @@
-package com.example.service.authentication.token;
+package com.example.infrastructure.jwt.generator;
 
 import com.auth0.jwt.JWT;
-import com.example.domain.authentication.token.TokenGenerator;
 import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.service.authentication.token.sign.AlgorithmHolder;
+import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -14,10 +13,10 @@ import java.util.Date;
 
 @Component
 @Scope(scopeName = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class TokenVerificatorImpl implements TokenGenerator {
+public class TokenGeneratorImpl implements TokenGenerator {
     protected AlgorithmHolder algorithmHolder;
 
-    public TokenVerificatorImpl(AlgorithmHolder algorithmHolder) {
+    public TokenGeneratorImpl(AlgorithmHolder algorithmHolder) {
         this.algorithmHolder = algorithmHolder;
     }
 
