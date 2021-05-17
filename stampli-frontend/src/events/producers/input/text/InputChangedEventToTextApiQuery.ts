@@ -22,7 +22,7 @@ export class InputChangedEventToTextApiQuery implements Observer<InputEvent<Stri
           this.requestService.query(
             this.url,
             'put',
-            { 'content-type': 'text/plain;charset=UTF-8' },
+            { 'content-type': 'plain/text;charset=UTF-8' },
             payload.changedValue
           )
         ),

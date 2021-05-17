@@ -9,4 +9,6 @@ export interface RequestResponse<P> {
   isDuplicate(): boolean;
 
   asType<T>(ctor: { new (): T }): RequestResponse<T>;
+
+  withConversion<T>(conversion: (payload: any) => T): RequestResponse<T>;
 }

@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/main.tsx',
   devtool: 'eval-source-map',
   mode: 'development',
-  target: 'node',
+  target: 'web',
   output: {
     path: path.join(__dirname, '/public/script'),
     filename: 'bundle.js',

@@ -20,6 +20,17 @@ export class EventRequester {
             // TODO: change catch semantics for request service
           }
         };
+      },
+
+      withConversion(conversion: (payload: any) => T) {
+        return {
+          request(url: string) {
+            requestService
+              .query(url, 'get', { accept: 'image/png' })
+              .then(response => subject.next(new RequestResolvedEvent<T>(response.withConversion(conversion))));
+            // TODO: change catch semantics for request service
+          }
+        };
       }
     };
   }

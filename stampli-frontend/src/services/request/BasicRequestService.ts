@@ -1,12 +1,12 @@
-import { Configuration } from '../config/Configuration';
 import { RequestService } from './RequestService';
 import { RequestResponse } from './response/RequestResponse';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, ResponseType } from 'axios';
 import { BasicRequestResponse } from './response/BasicRequestResponse';
 import Logger from 'js-logger';
+import { Configuration } from '../config/Configuration';
 
 export class BasicRequestService implements RequestService {
-  constructor(protected config: Configuration) {}
+  constructor(protected config: Pick<Configuration, 'baseUrl'>) {}
 
   query<PAYLOAD, RESPONSE>(
     path: string,
@@ -15,6 +15,7 @@ export class BasicRequestService implements RequestService {
     payload?: PAYLOAD
   ): Promise<RequestResponse<RESPONSE>> {
     return axios[method](`${this.config.baseUrl}${path}`, payload, {
+      responseType: detectDataTypeByHeader(headers),
       headers: { ...this.defaultHeaders(), ...headers }
     })
       .catch(error => {
@@ -39,4 +40,12 @@ export class BasicRequestService implements RequestService {
       accept: 'application/json'
     };
   }
+}
+
+function detectDataTypeByHeader(headers: Record<string, string>): ResponseType {
+  if (/image\/.*/.test(headers['accept'])) {
+    return 'blob';
+  }
+
+  return 'blob';
 }

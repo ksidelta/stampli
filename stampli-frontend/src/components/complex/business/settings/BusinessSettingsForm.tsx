@@ -1,6 +1,6 @@
 import React from 'react';
-import { ImageUpload } from '../../../simple/upload/img/ImageUpload';
 import { TitledInputComponent } from '../../../simple/form/input/TitledInputComponent';
+import { ImageUploadComponent } from '../../../simple/form/img/ImageUploadComponent';
 
 export const BusinessSettingsForm = ({
   businessName,
@@ -11,10 +11,10 @@ export const BusinessSettingsForm = ({
   businessName: string;
   businessNameOnChange: (value: string) => void;
   imageUrl: string | undefined;
-  imageOnChange: (file: File, url: string) => void;
+  imageOnChange: (file: ArrayBuffer, url: string) => void;
 }) => (
   <>
     <TitledInputComponent title={'Nazwa Biznesu'} type={'text'} onChange={businessNameOnChange} value={businessName} />
-    <ImageUpload onUpload={imageOnChange} imageUrl={imageUrl} />
+    <ImageUploadComponent onUpload={imageOnChange} imageUrl={imageUrl} />
   </>
 );

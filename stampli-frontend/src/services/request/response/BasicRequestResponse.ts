@@ -23,4 +23,12 @@ export class BasicRequestResponse<PAYLOAD> implements RequestResponse<PAYLOAD> {
 
     return toDecorate;
   }
+
+  withConversion<T>(conversion: (payload: any) => T): RequestResponse<T> {
+    const toDecorate: RequestResponse<T> = Object.create(this);
+
+    toDecorate.payload = conversion(this.payload);
+
+    return toDecorate;
+  }
 }
