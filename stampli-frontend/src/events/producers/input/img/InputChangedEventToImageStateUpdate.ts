@@ -19,8 +19,11 @@ export class InputChangedEventToImageStateUpdate<T> implements Observer<InputEve
     }
 
     if (inputEvent instanceof RequestResolvedEvent) {
-      this.inputState.valueState.value = (inputEvent as RequestResolvedEvent<ImageValue>).requestResponse
-        .payload as ImageValue;
+      action(
+        () =>
+          (this.inputState.valueState.value = (inputEvent as RequestResolvedEvent<ImageValue>).requestResponse
+            .payload as ImageValue)
+      )();
     }
   }
 }

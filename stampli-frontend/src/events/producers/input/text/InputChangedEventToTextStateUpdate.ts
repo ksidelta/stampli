@@ -14,11 +14,11 @@ export class InputChangedEventToTextStateUpdate<T> implements Observer<InputEven
 
   next(inputEvent: InputEvent<T>): void {
     if (inputEvent instanceof InputChangedEvent) {
-      action(() => (this.inputState.valueState.value = inputEvent.changedValue.value))();
+      action(() => (this.inputState.valueState.value = inputEvent.changedValue))();
     }
 
     if (inputEvent instanceof RequestResolvedEvent) {
-      this.inputState.valueState.value = inputEvent.requestResponse.payload;
+      action(() => (this.inputState.valueState.value = inputEvent.requestResponse.payload))();
     }
   }
 }
