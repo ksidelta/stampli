@@ -1,7 +1,7 @@
 package com.example.translation.business.owner;
 
-import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.domain.business.entity.owner.Owner;
+import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.business.entity.owner.Owner;
 import org.springframework.stereotype.Service;
 
 @Service

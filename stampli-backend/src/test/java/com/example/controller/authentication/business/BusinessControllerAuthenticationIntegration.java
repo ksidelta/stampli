@@ -3,7 +3,7 @@ package com.example.controller.authentication.business;
 import com.example.BaseTestConfiguration;
 import com.example.controller.business.BusinessController;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserEntity;
 import com.example.service.business.service.BusinessService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,8 +1,8 @@
 package com.example.controller.authentication.business.profile;
 
 import com.example.controller.business.settings.BusinessProfileController;
-import com.example.domain.business.entity.business.BusinessAggregate;
-import com.example.domain.business.entity.business.profile.BusinessName;
+import com.example.domain.context.business.entity.business.BusinessAggregate;
+import com.example.domain.context.business.entity.business.profile.BusinessName;
 import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
 import com.example.service.business.service.profile.BusinessProfileService;
 import org.junit.jupiter.api.BeforeEach;

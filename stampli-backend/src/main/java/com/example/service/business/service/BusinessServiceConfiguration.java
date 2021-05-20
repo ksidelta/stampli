@@ -1,6 +1,6 @@
 package com.example.service.business.service;
 
-import com.example.domain.business.repository.BusinessRepository;
+import com.example.domain.context.business.repository.BusinessRepository;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;

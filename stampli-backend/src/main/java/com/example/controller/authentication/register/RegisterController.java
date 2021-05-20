@@ -1,9 +1,8 @@
 package com.example.controller.authentication.register;
 
 import com.example.controller.authentication.common.EmailAndPasswordDto;
-import com.example.domain.authentication.user.repository.create.UserDuplicationException;
+import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
 import com.example.service.authentication.register.RegisterService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,12 +1,11 @@
 package com.example.service.authentication.register;
 
-import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.roles.UserRoles;
-import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.domain.authentication.user.repository.UserRepository;
-import com.example.domain.authentication.user.repository.create.UserCreationDto;
-import com.example.domain.authentication.user.repository.create.UserDuplicationException;
-import org.springframework.stereotype.Repository;
+import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.context.authentication.roles.UserRoles;
+import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.repository.UserRepository;
+import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
+import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;

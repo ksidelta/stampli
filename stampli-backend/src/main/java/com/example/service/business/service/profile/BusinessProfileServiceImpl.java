@@ -1,6 +1,6 @@
 package com.example.service.business.service.profile;
 
-import com.example.domain.business.entity.business.profile.BusinessName;
+import com.example.domain.context.business.entity.business.profile.BusinessName;
 import com.example.service.business.service.profile.image.BusinessProfileLogoService;
 import com.example.service.business.service.profile.name.BusinessProfileNameService;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
 package com.example.infrastructure.jwt.generator;
 
-import com.example.domain.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserEntity;
 
 public interface TokenGenerator {
     String createToken(UserEntity user);

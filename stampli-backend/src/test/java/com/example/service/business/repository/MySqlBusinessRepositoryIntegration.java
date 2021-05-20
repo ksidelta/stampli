@@ -1,10 +1,10 @@
 package com.example.service.business.repository;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.business.entity.business.BusinessAggregate;
-import com.example.domain.business.entity.owner.Owner;
-import com.example.domain.business.repository.BusinessRepository;
-import com.example.domain.business.repository.DuplicatedOwnerException;
+import com.example.domain.context.business.entity.business.BusinessAggregate;
+import com.example.domain.context.business.entity.owner.Owner;
+import com.example.domain.context.business.repository.BusinessRepository;
+import com.example.domain.context.business.repository.DuplicatedOwnerException;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

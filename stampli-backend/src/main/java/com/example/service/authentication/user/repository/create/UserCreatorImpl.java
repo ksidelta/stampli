@@ -1,8 +1,8 @@
 package com.example.service.authentication.user.repository.create;
 
-import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.domain.authentication.user.repository.create.UserCreator;
-import com.example.domain.authentication.user.repository.create.UserDuplicationException;
+import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.repository.create.UserCreator;
+import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;

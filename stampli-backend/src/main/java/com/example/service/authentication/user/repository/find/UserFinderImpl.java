@@ -1,8 +1,8 @@
 package com.example.service.authentication.user.repository.find;
 
-import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.domain.authentication.user.repository.find.UserFinder;
-import com.example.domain.authentication.user.entity.UserAuthenticationPasswordEntity;
+import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.repository.find.UserFinder;
+import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

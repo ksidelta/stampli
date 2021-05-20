@@ -1,6 +1,6 @@
 package com.example.service.authentication.roles;
 
-import com.example.domain.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserEntity;
 
 import javax.persistence.*;
 import java.io.Serializable;

@@ -1,11 +1,11 @@
 package com.example.service.authentication.user.repository.find;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.authentication.user.entity.UserEntity;
-import com.example.domain.authentication.user.repository.create.UserCreationDto;
-import com.example.domain.authentication.user.repository.create.UserCreator;
-import com.example.domain.authentication.user.repository.find.UserFinder;
+import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
+import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
+import com.example.domain.context.authentication.user.repository.create.UserCreator;
+import com.example.domain.context.authentication.user.repository.find.UserFinder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;

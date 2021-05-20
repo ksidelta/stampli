@@ -1,11 +1,10 @@
 package com.example.service.business.repository;
 
-import com.example.domain.business.entity.business.BusinessAggregate;
-import com.example.domain.business.repository.BusinessRepository;
-import com.example.domain.business.repository.DuplicatedOwnerException;
+import com.example.domain.context.business.entity.business.BusinessAggregate;
+import com.example.domain.context.business.repository.BusinessRepository;
+import com.example.domain.context.business.repository.DuplicatedOwnerException;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
-import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;

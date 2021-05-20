@@ -1,7 +1,6 @@
 package com.example.service.business.service.profile;
 
-import com.example.domain.business.entity.business.profile.BusinessLogo;
-import com.example.domain.business.entity.business.profile.BusinessName;
+import com.example.domain.context.business.entity.business.profile.BusinessName;
 
 import java.awt.image.BufferedImage;
 

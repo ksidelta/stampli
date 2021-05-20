@@ -1,7 +1,7 @@
 package com.example.infrastructure.jwt;
 
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserEntity;
 import com.example.infrastructure.jwt.generator.TokenGeneratorImpl;
 import com.example.infrastructure.jwt.sign.InMemoryAlgorithmHolder;
 import org.hamcrest.MatcherAssert;
