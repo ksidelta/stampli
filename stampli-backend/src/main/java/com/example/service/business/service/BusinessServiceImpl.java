@@ -3,7 +3,8 @@ package com.example.service.business.service;
 import com.example.domain.business.entity.business.BusinessAggregate;
 import com.example.domain.business.entity.owner.Owner;
 import com.example.domain.business.repository.BusinessRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.service.business.service.events.CreatedBusinessEvent;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -17,9 +18,11 @@ public class BusinessServiceImpl implements BusinessService {
     }
 
     @Override
-    public void createBusiness(Integer userId) {
+    public Integer createBusiness(Integer userId) {
         BusinessAggregate businessAggregate = BusinessAggregate.createBusinessAggregate(new Owner(userId));
         this.businessRepository.save(businessAggregate);
+
+        return businessAggregate.getId();
     }
 
     @Override

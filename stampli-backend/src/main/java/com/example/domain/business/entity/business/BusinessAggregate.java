@@ -3,6 +3,8 @@ package com.example.domain.business.entity.business;
 import com.example.domain.business.entity.business.profile.BusinessLogo;
 import com.example.domain.business.entity.business.profile.BusinessName;
 import com.example.domain.business.entity.owner.Owner;
+import com.example.infrastructure.domain.events.AbstractEventedAggregate;
+import org.springframework.data.domain.AbstractAggregateRoot;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -12,7 +14,7 @@ import java.util.Objects;
 
 @Entity(name = "BusinessAggregate")
 @Table(name = "business")
-public class BusinessAggregate {
+public class BusinessAggregate extends AbstractEventedAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -41,6 +43,10 @@ public class BusinessAggregate {
         businessAggregate.owner = owner;
 
         return businessAggregate;
+    }
+
+    public Owner owner() {
+        return owner;
     }
 
     public Integer getId() {

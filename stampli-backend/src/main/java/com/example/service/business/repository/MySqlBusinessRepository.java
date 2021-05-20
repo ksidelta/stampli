@@ -5,6 +5,7 @@ import com.example.domain.business.repository.BusinessRepository;
 import com.example.domain.business.repository.DuplicatedOwnerException;
 import org.hibernate.SessionFactory;
 import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.data.domain.AbstractAggregateRoot;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
