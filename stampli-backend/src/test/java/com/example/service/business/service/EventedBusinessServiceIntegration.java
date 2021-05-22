@@ -1,6 +1,7 @@
 package com.example.service.business.service;
 
 import com.example.BaseTestConfiguration;
+import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.challenge.ChallengeRepository;
 import com.example.service.stamps.challenge.service.ChallengeService;
 import org.hamcrest.CoreMatchers;
@@ -18,7 +19,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @Transactional
-public class EventedBusinessServiceIntegration {
+public class EventedBusinessServiceIntegration extends AbstractDatabaseTest {
 
     @Autowired
     BusinessService businessService;

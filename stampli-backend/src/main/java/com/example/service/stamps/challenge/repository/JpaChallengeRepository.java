@@ -8,9 +8,11 @@ import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Repository
 public class JpaChallengeRepository implements ChallengeRepository {
+    static final Logger logger = Logger.getLogger(JpaChallengeRepository.class.getCanonicalName());
 
     SessionFactory sessionFactory;
 
@@ -21,6 +23,7 @@ public class JpaChallengeRepository implements ChallengeRepository {
     @Override
     @Transactional
     public void save(ChallengeOwnerAggregate challengeOwnerAggregate) {
+        logger.warning("JpaChallengeRepository.save");
         sessionFactory.getCurrentSession().save(challengeOwnerAggregate);
     }
 

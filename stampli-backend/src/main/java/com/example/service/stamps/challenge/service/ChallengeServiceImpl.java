@@ -5,8 +5,10 @@ import com.example.domain.context.challenge.ChallengeRepository;
 import com.example.domain.context.challenge.ClaimProof;
 import org.springframework.stereotype.Component;
 
+import javax.transaction.Transactional;
 import java.security.SecureRandom;
 
+@Transactional
 public class ChallengeServiceImpl implements ChallengeService {
     final ChallengeRepository challengeRepository;
     final SecureRandom secureRandom;

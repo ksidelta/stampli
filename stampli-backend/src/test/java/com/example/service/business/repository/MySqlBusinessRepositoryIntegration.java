@@ -1,6 +1,7 @@
 package com.example.service.business.repository;
 
 import com.example.BaseTestConfiguration;
+import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.business.entity.business.BusinessAggregate;
 import com.example.domain.context.business.entity.owner.Owner;
 import com.example.domain.context.business.repository.BusinessRepository;
@@ -12,13 +13,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
+import javax.transaction.Transactional;
+
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-public class MySqlBusinessRepositoryIntegration {
+@Transactional
+public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
     @Autowired
     BusinessRepository mySqlBusinessRepository;
 
@@ -28,11 +32,8 @@ public class MySqlBusinessRepositoryIntegration {
     @Test
     public void whenBusinessAggregateIsSavedThenItSucceeds() {
         final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
-        try {
-            mySqlBusinessRepository.save(aggregate);
-        } finally {
-            mySqlBusinessRepository.remove(aggregate);
-        }
+
+        mySqlBusinessRepository.save(aggregate);
     }
 
     @Test
@@ -40,25 +41,18 @@ public class MySqlBusinessRepositoryIntegration {
         final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
         final var anotherAggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
 
-        try {
-            mySqlBusinessRepository.save(aggregate);
-            assertThrows(DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
-        } finally {
-            mySqlBusinessRepository.remove(aggregate);
-        }
+        mySqlBusinessRepository.save(aggregate);
+        assertThrows(DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
     }
 
     @Test
     public void givenSavedBusinessWhenFoundByIdThenReturned() {
         final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
-        try {
-            mySqlBusinessRepository.save(aggregate);
 
-            final var entity = mySqlBusinessRepository.findById(aggregate.getId());
-            assertThat(entity, equalTo(aggregate));
-        } finally {
-            mySqlBusinessRepository.remove(aggregate);
-        }
+        mySqlBusinessRepository.save(aggregate);
+
+        final var entity = mySqlBusinessRepository.findById(aggregate.getId());
+        assertThat(entity, equalTo(aggregate));
     }
 
     @Test
@@ -74,16 +68,13 @@ public class MySqlBusinessRepositoryIntegration {
     @Test
     public void givenSavedBusinessWhenFoundByIdThenDefaultImageIsReadable() {
         final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
-        try {
-            mySqlBusinessRepository.save(aggregate);
 
-            final var entity = mySqlBusinessRepository.findById(aggregate.getId());
+        mySqlBusinessRepository.save(aggregate);
 
-            assertThat(entity.usingBusinessProfile().getBusinessLogo().getImage().getHeight(), equalTo(512));
-            assertThat(entity.usingBusinessProfile().getBusinessLogo().getImage().getHeight(), equalTo(512));
-        } finally {
-            mySqlBusinessRepository.remove(aggregate);
-        }
+        final var entity = mySqlBusinessRepository.findById(aggregate.getId());
+
+        assertThat(entity.usingBusinessProfile().getBusinessLogo().getImage().getHeight(), equalTo(512));
+        assertThat(entity.usingBusinessProfile().getBusinessLogo().getImage().getHeight(), equalTo(512));
     }
 
 

@@ -3,6 +3,9 @@ package com.example.service.stamps.challenge.service;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.challenge.ChallengeRepository;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +39,11 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
 
     @Test
     public void givenCreatedAggregateWhenChallengeClaimedThenFails() {
-        challengeService.createChallengeAggregate(1, 2);
+        challengeService.createChallengeAggregate(1, 3);
 
         assertThrows(
                 IllegalStateException.class,
-                () -> challengeService.claimToken(new ChallengingTokenDTO(1, 2, 0, 0))
+                () -> challengeService.claimToken(new ChallengingTokenDTO(1, 3, 0, 0))
         );
     }
 
