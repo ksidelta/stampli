@@ -23,6 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @Transactional
 public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
+    public static final int ISSUER_ID = 6;
+    public static final int BUSINESS_ID = 9;
 
     @Autowired
     ChallengeService challengeService;
@@ -32,45 +34,45 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
 
     @Test
     public void whenChallengeIsCreatedThenSucceeds() {
-        challengeService.createChallengeAggregate(1, 2);
+        challengeService.createChallengeAggregate(ISSUER_ID, BUSINESS_ID);
 
-        assertThat(challengeRepository.findByIssuerAndBusiness(1, 2), is(not(Optional.empty())));
+        assertThat(challengeRepository.findByIssuerAndBusiness(ISSUER_ID, BUSINESS_ID), is(not(Optional.empty())));
     }
 
     @Test
     public void givenCreatedAggregateWhenChallengeClaimedThenFails() {
-        challengeService.createChallengeAggregate(1, 3);
+        challengeService.createChallengeAggregate(ISSUER_ID, 3);
 
         assertThrows(
                 IllegalStateException.class,
-                () -> challengeService.claimToken(new ChallengingTokenDTO(1, 3, 0, 0))
+                () -> challengeService.claimToken(new ChallengingTokenDTO(ISSUER_ID, 3, 0, 0))
         );
     }
 
     @Test
     public void givenCreatedAggregateWithChallengeWhenChallengeClaimedThenItReturnsProof() {
-        challengeService.createChallengeAggregate(1, 2);
-        final var token = challengeService.acquireToken(1, 2);
+        challengeService.createChallengeAggregate(ISSUER_ID, BUSINESS_ID);
+        final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
 
         final var proof = challengeService.claimToken(
-                new ChallengingTokenDTO(1, 2, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
         );
 
-        assertThat(proof.getIssuerId(), equalTo(1));
-        assertThat(proof.getBusinessId(), equalTo(2));
+        assertThat(proof.getIssuerId(), equalTo(ISSUER_ID));
+        assertThat(proof.getBusinessId(), equalTo(BUSINESS_ID));
         assertThat(proof.getClaimerId(), equalTo(3));
     }
 
     @Test
     public void givenClaimedChallengeWhenChallengeClaimedThenItFails() {
-        challengeService.createChallengeAggregate(1, 2);
-        final var token = challengeService.acquireToken(1, 2);
+        challengeService.createChallengeAggregate(ISSUER_ID, BUSINESS_ID);
+        final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
         challengeService.claimToken(
-                new ChallengingTokenDTO(1, 2, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
         );
 
         assertThrows(IllegalStateException.class, () -> challengeService.claimToken(
-                new ChallengingTokenDTO(1, 2, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
         ));
     }
 }
