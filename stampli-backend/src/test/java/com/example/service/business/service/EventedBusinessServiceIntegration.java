@@ -3,8 +3,6 @@ package com.example.service.business.service;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.challenge.ChallengeRepository;
-import com.example.service.stamps.challenge.service.ChallengeService;
-import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

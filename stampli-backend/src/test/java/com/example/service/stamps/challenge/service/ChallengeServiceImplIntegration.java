@@ -23,8 +23,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @Transactional
 public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
-    public static final int ISSUER_ID = 6;
-    public static final int BUSINESS_ID = 9;
+    public static final int ISSUER_ID = 1;
+    public static final int BUSINESS_ID = 2;
 
     @Autowired
     ChallengeService challengeService;

@@ -3,6 +3,7 @@ package com.example.service.business.service;
 import com.example.service.business.service.events.CreatedBusinessEvent;
 import org.springframework.context.ApplicationEventPublisher;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 public class EventedBusinessService implements BusinessService {
@@ -15,6 +16,7 @@ public class EventedBusinessService implements BusinessService {
     }
 
     @Override
+    @Transactional
     public Integer createBusiness(Integer userId) {
         final var businessId = this.businessService.createBusiness(userId);
 
