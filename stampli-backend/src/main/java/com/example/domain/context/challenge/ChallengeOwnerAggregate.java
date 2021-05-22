@@ -2,39 +2,48 @@ package com.example.domain.context.challenge;
 
 import com.example.infrastructure.domain.events.AbstractEventedAggregate;
 
+import javax.persistence.*;
 import java.security.SecureRandom;
+import java.util.function.Supplier;
 
+@Entity
+@Table(name = "challenge")
 public class ChallengeOwnerAggregate extends AbstractEventedAggregate {
-    Integer businessId;
+    @EmbeddedId
+    ChallengeId challengeId;
 
-    Integer issuerId;
-
+    @Column(name = "in_progress")
     boolean isChallengeInProgress;
 
+    @Embedded
     CurrentChallenge currentChallenge;
 
+    protected ChallengeOwnerAggregate() {
+    }
+
     protected ChallengeOwnerAggregate(Integer businessId, Integer issuerId) {
-        this.businessId = businessId;
-        this.issuerId = issuerId;
+        this.challengeId = new ChallengeId(businessId, issuerId);
         this.isChallengeInProgress = false;
         this.currentChallenge = CurrentChallenge.emptyChallenge;
     }
 
-    public void claimBy(Integer claimerId, Integer challengeNonce) {
+    public ClaimProof claimBy(Integer claimerId, Integer challengeNonce) {
         assertCorrectClaim(claimerId, challengeNonce);
+
         this.isChallengeInProgress = false;
         this.currentChallenge = CurrentChallenge.emptyChallenge;
 
-        this.registerEvent(new ChallengeClaimedEvent(claimerId, issuerId, businessId));
+        this.registerEvent(new ChallengeClaimedEvent(claimerId, this.challengeId.issuerId, this.challengeId.businessId));
+        return new ClaimProof(claimerId, challengeId.issuerId, challengeId.businessId);
     }
 
-    public CurrentChallenge acquireChallenge(SecureRandom secureRandom) {
-        this.currentChallenge = new CurrentChallenge(secureRandom.nextInt());
+    public CurrentChallenge acquireChallenge(Supplier<Integer> secureRandom) {
+        this.currentChallenge = new CurrentChallenge(secureRandom.get());
         this.isChallengeInProgress = true;
         return this.currentChallenge;
     }
 
-    public static ChallengeOwnerAggregate createChallengeEntity(Integer businessId, Integer issuerId, Integer randomNonce) {
+    public static ChallengeOwnerAggregate createChallengeEntity(Integer businessId, Integer issuerId) {
         return new ChallengeOwnerAggregate(businessId, issuerId);
     }
 
@@ -48,4 +57,7 @@ public class ChallengeOwnerAggregate extends AbstractEventedAggregate {
         }
     }
 
+    public ChallengeId challengeId() {
+        return challengeId;
+    }
 }

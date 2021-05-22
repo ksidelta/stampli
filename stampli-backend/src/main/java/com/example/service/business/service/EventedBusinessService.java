@@ -25,6 +25,6 @@ public class EventedBusinessService implements BusinessService {
 
     @Override
     public Optional<BusinessDto> findBusinessByUserId(Integer userId) {
-        return this.findBusinessByUserId(userId);
+        return businessService.findBusinessByUserId(userId);
     }
 }

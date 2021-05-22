@@ -1,14 +1,22 @@
 package com.example.domain.context.challenge;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class CurrentChallenge {
-    final Integer randomNonce;
+    @Column(name = "random_nonce")
+    Integer randomNonce;
+
+    protected CurrentChallenge() {
+    }
 
     public CurrentChallenge(Integer randomNonce) {
         this.randomNonce = randomNonce;
     }
 
-    public Integer getRandomNonce() {
-        return this.randomNonce;
+    public Integer nonce() {
+        return randomNonce;
     }
 
     static CurrentChallenge emptyChallenge = new CurrentChallenge(0);

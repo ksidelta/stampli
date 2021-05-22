@@ -13,8 +13,6 @@ import javax.sql.DataSource;
 public class FlywayConfiguration {
     @Bean(initMethod = "migrate")
     Flyway flyway(DataSource dataSource) {
-        System.out.println("==================================================================");
-
         return Flyway
                 .configure()
                 .baselineOnMigrate(true)

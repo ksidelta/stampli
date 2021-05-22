@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
 public class BusinessServiceImpl implements BusinessService {
     BusinessRepository businessRepository;
 
@@ -18,6 +17,7 @@ public class BusinessServiceImpl implements BusinessService {
     @Override
     public Integer createBusiness(Integer userId) {
         BusinessAggregate businessAggregate = BusinessAggregate.createBusinessAggregate(new Owner(userId));
+
         this.businessRepository.save(businessAggregate);
 
         return businessAggregate.getId();
