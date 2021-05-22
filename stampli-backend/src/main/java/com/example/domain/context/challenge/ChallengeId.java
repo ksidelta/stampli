@@ -42,4 +42,9 @@ public class ChallengeId implements Serializable {
     public int hashCode() {
         return Objects.hash(businessId, issuerId);
     }
+
+    @Override
+    public String toString() {
+        return businessId + "-" + issuerId;
+    }
 }

@@ -23,7 +23,7 @@ public class JpaChallengeRepository implements ChallengeRepository {
     @Override
     @Transactional
     public void save(ChallengeOwnerAggregate challengeOwnerAggregate) {
-        logger.warning("JpaChallengeRepository.save");
+        logger.warning("JpaChallengeRepository.save "+ challengeOwnerAggregate.challengeId());
         sessionFactory.getCurrentSession().save(challengeOwnerAggregate);
     }
 
