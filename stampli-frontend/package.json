@@ -68,6 +68,7 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
     "axios": "^0.21.1",
+    "chokidar": "^3.5.1",
     "class-transformer": "^0.4.0",
     "core-js": "^3.10.1",
     "cypress": "^6.0.1",
