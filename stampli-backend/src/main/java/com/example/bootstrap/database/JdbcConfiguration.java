@@ -31,7 +31,7 @@ public class JdbcConfiguration {
 
     @Primary
     @Bean
-    public DataSource dataSource(StandardEnvironment env) {
+    public DataSource dataSource() {
         final var source = new DriverManagerDataSource();
         source.setUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&enablePacketDebug=true");
         source.setDriverClassName(Driver.class.getName());

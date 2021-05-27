@@ -14,8 +14,8 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class BasicJwtAuthenticationProviderTest {
     InMemoryAlgorithmHolder inMemoryAlgorithmHolder = new InMemoryAlgorithmHolder("XD");
-
     TokenGenerator tokenGenerator = new TokenGeneratorImpl(inMemoryAlgorithmHolder);
+
     BasicJwtAuthenticationProvider basicJwtAuthenticationProvider = new BasicJwtAuthenticationProvider(inMemoryAlgorithmHolder);
 
     @Test

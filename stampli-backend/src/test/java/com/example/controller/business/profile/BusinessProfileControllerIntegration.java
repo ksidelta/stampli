@@ -1,4 +1,4 @@
-package com.example.controller.authentication.business.profile;
+package com.example.controller.business.profile;
 
 import com.example.controller.business.settings.BusinessProfileController;
 import com.example.domain.context.business.entity.business.BusinessAggregate;
@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @ExtendWith(MockitoExtension.class)
-public class BusinessProfileControllerTest {
+public class BusinessProfileControllerIntegration {
     MockMvc mockMvc;
 
     BusinessProfileController businessController;
