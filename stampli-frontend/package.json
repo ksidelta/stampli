@@ -81,6 +81,7 @@
     "js-logger": "^1.6.1",
     "mobx": "^6.0.4",
     "mobx-react": "^6.3.0",
+    "qrcode.react": "^1.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-google-login": "^5.2.2",
