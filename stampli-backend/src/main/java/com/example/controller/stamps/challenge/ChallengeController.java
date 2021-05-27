@@ -38,6 +38,6 @@ public class ChallengeController {
                 body.getNonce()
         ));
 
-        return new ClaimProofDto(claimProof.getClaimerId(), claimProof.getIssuerId(), claimProof.getBusinessId());
+        return new ClaimProofDto(claimProof.getIssuerId(), claimProof.getBusinessId(), claimProof.getClaimerId());
     }
 }
