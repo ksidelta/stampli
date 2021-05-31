@@ -7,6 +7,7 @@ import { CenterMiddle } from '../components/simple/container/layout/CenterMiddle
 import { InjectionContext } from '../components/stated/context/InjectionContext';
 import { InputState } from '../state/form/input/InputState';
 import { ChallengeQRCode } from '../components/simple/qr/ChallengeQRCode';
+import { Routes } from '../router/routes/Routes';
 
 export const QRBusinessDisplayPage = () => {
   const servicesBundle = useContext(InjectionContext);
@@ -16,7 +17,12 @@ export const QRBusinessDisplayPage = () => {
   const businessName = useEffect(
     () => (
       servicesBundle.businessChallengeService.getChallenge().then(x => {
-        qrState.valueState.value = `TWOJ STARY: ${x.businessId} ${x.issuerId} ${x.nonce}`;
+        qrState.valueState.value = Routes.challenge.claim(
+          servicesBundle.config.baseUrl,
+          x.businessId,
+          x.issuerId,
+          x.nonce
+        );
       }),
       undefined
     ),
