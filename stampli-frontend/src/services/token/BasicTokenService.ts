@@ -1,6 +1,6 @@
 import { TokenService } from './TokenService';
 import Logger from 'js-logger';
-import { makeAutoObservable } from 'mobx';
+import JWT from 'jsonwebtoken';
 
 export class BasicTokenService implements TokenService {
   token: string | undefined = undefined;
@@ -21,5 +21,18 @@ export class BasicTokenService implements TokenService {
   unsetToken(): void {
     Logger.debug(`invalidated token`);
     this.token = undefined;
+  }
+
+  getUserId(): number | undefined {
+    if (!this.token) {
+      return undefined;
+    }
+    const decodedToken = JWT.decode(this.token);
+
+    if (typeof decodedToken != 'object' || !decodedToken) {
+      return undefined;
+    }
+
+    return 'sub' in decodedToken ? decodedToken?.sub - 0 : undefined;
   }
 }

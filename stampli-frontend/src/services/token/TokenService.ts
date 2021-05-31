@@ -6,6 +6,8 @@ export interface TokenService {
   getToken(): Token | undefined;
 
   isAuthenticated(): boolean;
+
+  getUserId(): number | undefined;
 }
 
 export type Token = string;

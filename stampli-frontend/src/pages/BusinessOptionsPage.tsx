@@ -9,7 +9,11 @@ export const BusinessOptionsPage = () => (
   <MobilePage>
     <Header title={'Wybierz akcje dla biznesu'} />
     <Content>
-      <IconButton text={'Przenieś mnie do rozdawania pieczątek'} icon={faArrowRight} />
+      <IconButton
+        text={'Przenieś mnie do rozdawania pieczątek'}
+        icon={faArrowRight}
+        onClick={history => history.goToBusinessQRCode()}
+      />
       <IconButton
         text={'Skonfiguruj dane biznesu!'}
         icon={faArrowRight}

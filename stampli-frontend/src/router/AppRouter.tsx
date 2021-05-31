@@ -10,8 +10,8 @@ import { AuthenticatedCondition } from '../components/stated/condition/authentic
 import { BusinessOptionsPage } from '../pages/BusinessOptionsPage';
 import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
-import { TestPage } from '../pages/TestPage';
 import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
+import { QRBusinessDisplayPage } from '../pages/QRBusinessDisplayPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -46,8 +46,11 @@ export const AppRouter = () => {
                 <Route path={Routes.business.root} exact={true}>
                   <BusinessOptionsPage />
                 </Route>
-                <Route path={Routes.business.settings}>
+                <Route path={Routes.business.settings} exact={true}>
                   <BusinessSettingsPage />
+                </Route>
+                <Route path={Routes.business.qrCode} exact={true}>
+                  <QRBusinessDisplayPage />
                 </Route>
               </AuthenticatedCondition>
             </Route>

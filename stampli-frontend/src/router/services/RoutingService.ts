@@ -11,6 +11,10 @@ export class RoutingService {
   goToBusinessSettingsPage() {
     this.history.push(Routes.business.settings);
   }
+
+  goToBusinessQRCode() {
+    this.history.push(Routes.business.qrCode);
+  }
 }
 
 export const RoutingServiceInstance = new RoutingService(createBrowserHistory());

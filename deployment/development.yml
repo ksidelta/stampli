@@ -7,6 +7,9 @@ services:
       - type: bind
         source: ./stampli-backend/target/stampli-output/
         target: /usr/local/stampli/stampli/
+  db:
+    ports:
+      - 3306:3306
   nginx:
     build: './nginx'
     networks:

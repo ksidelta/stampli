@@ -5,6 +5,8 @@ import { LoginService } from './login/LoginService';
 import { RegisterService } from './register/RegisterService';
 import { BusinessSettings } from './business/settings/BusinessSettings';
 import { EventRequester } from '../events/producers/request/EventRequester';
+import { BusinessProfileService } from './business/profile/BusinessProfileService';
+import { BusinessChallengeService } from './business/challenge/BusinessChallengeService';
 
 export interface ServicesBundle {
   loginService: LoginService;
@@ -14,4 +16,6 @@ export interface ServicesBundle {
   config: Configuration;
   businessSettings: BusinessSettings;
   eventRequester: EventRequester;
+  businessProfileService: BusinessProfileService;
+  businessChallengeService: BusinessChallengeService;
 }

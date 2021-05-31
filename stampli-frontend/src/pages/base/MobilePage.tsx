@@ -16,6 +16,9 @@ const Inner = styled.div`
 
   min-height: 100vh;
   background-color: var(--bg-color);
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const MobilePage: React.FunctionComponent = ({ children }: { children?: ReactNode }) => (

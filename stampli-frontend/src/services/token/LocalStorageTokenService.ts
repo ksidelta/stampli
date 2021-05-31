@@ -33,4 +33,8 @@ export class LocalStorageTokenService implements TokenService {
     const token = localStorage.getItem(LOCALSTORAGE_TOKEN);
     token ? this.setToken(token) : this.unsetToken();
   }
+
+  getUserId(): number | undefined {
+    return this.tokenService.getUserId();
+  }
 }

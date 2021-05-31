@@ -25,6 +25,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
+    @Transactional
     public ChallengeTokenDTO acquireToken(Integer issuerId, Integer businessId) {
         final var entity = challengeRepository
                 .findByIssuerAndBusiness(issuerId, businessId)

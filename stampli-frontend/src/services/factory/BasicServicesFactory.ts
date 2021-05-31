@@ -13,6 +13,8 @@ import Logger from 'js-logger';
 import { LocalStorageTokenService } from '../token/LocalStorageTokenService';
 import { BasicBusinessSettings } from '../business/settings/BasicBusinessSettings';
 import { EventRequester } from '../../events/producers/request/EventRequester';
+import { BasicBusinessProfileService } from '../business/profile/BasicBusinessProfileService';
+import { BasicBusinessChallengeService } from '../business/challenge/BasicBusinessChallengeService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -32,8 +34,24 @@ export class BasicServicesFactory implements ServicesFactory {
     const registerService = new BasicRegisterService(requestService);
     const businessSettings = makeAutoObservable(new BasicBusinessSettings('', undefined));
     const eventRequester = new EventRequester(requestService);
+    const businessProfileService = new BasicBusinessProfileService(requestService);
+    const businessChallengeService = new BasicBusinessChallengeService(
+      requestService,
+      tokenService,
+      businessProfileService
+    );
 
-    return { config, tokenService, requestService, loginService, registerService, businessSettings, eventRequester };
+    return {
+      config,
+      tokenService,
+      requestService,
+      loginService,
+      registerService,
+      businessSettings,
+      eventRequester,
+      businessProfileService,
+      businessChallengeService
+    };
   }
 
   async fetchConfiguration(): Promise<Configuration> {
