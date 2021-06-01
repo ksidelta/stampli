@@ -12,6 +12,7 @@ import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
 import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
 import { QRBusinessDisplayPage } from '../pages/QRBusinessDisplayPage';
+import { QRClaimPage } from '../pages/QRClaimPage';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -36,6 +37,14 @@ export const AppRouter = () => {
             </Route>
             <Route path={'/home'} exact={true}>
               <EntryPage />
+            </Route>
+            <Route path={Routes.challenge.claim(undefined, ':businessId', ':issuerId', ':nonce')}>
+              <UnauthenticatedCondition>
+                <BusinessLoginPage />
+              </UnauthenticatedCondition>
+              <AuthenticatedCondition>
+                <QRClaimPage />
+              </AuthenticatedCondition>
             </Route>
             <Route path={Routes.business.root}>
               <UnauthenticatedCondition>

@@ -6,10 +6,10 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="org.hibernate" level="trace" additivity="false">
+        <Logger name="org.hibernate" level="error" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
-        <Logger name="org.springframework.web" level="warning" additivity="false">
+        <Logger name="org.springframework.web" level="error" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <!--        <Logger name="org.springframework.security.oauth2" level="trace" additivity="false">-->
