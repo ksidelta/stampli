@@ -8,7 +8,7 @@ steps:
   image: maven:3-jdk-11
   commands:
   - cd stampli-backend
-  - mvn verify -DnoTestDB -Dtest.mysql.host=testDB
+  - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
 
 - name: node-test
   image: node:15.12.0

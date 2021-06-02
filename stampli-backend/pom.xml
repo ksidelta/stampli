@@ -21,6 +21,7 @@
         <mysql.password>${test.mysql.password}</mysql.password>
         <mysql.port>${test.mysql.port}</mysql.port>
         <mysql.db>${test.mysql.db}</mysql.db>
+        <rabbitmq.host>${test.rabbitmq.host}</rabbitmq.host>
 
         <runTest/>
 
@@ -30,6 +31,9 @@
         <test.mysql.password>password</test.mysql.password>
         <test.mysql.port>3306</test.mysql.port>
         <test.mysql.db>baza</test.mysql.db>
+        <test.rabbitmq.host>localhost</test.rabbitmq.host>
+
+
         <kotlin.version>1.5.0</kotlin.version>
     </properties>
 
@@ -62,12 +66,12 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!-- Spring Boot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.5.0</version>
-        </dependency>
+<!--        &lt;!&ndash; Spring Boot &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--            <version>2.5.0</version>-->
+<!--        </dependency>-->
 
 
         <!-- Utils -->
@@ -76,11 +80,11 @@
             <artifactId>java-jwt</artifactId>
             <version>3.3.0</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.14.1</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.logging.log4j</groupId>-->
+<!--            <artifactId>log4j-core</artifactId>-->
+<!--            <version>2.14.1</version>-->
+<!--        </dependency>-->
 
 
         <!-- Spring -->
@@ -321,6 +325,7 @@
                         <mysql.port>${mysql.port}</mysql.port>
                         <mysql.db>${mysql.db}</mysql.db>
                         <mysql.host>${mysql.host}</mysql.host>
+                        <rabbitmq.host>${rabbitmq.host}</rabbitmq.host>
                     </systemPropertyVariables>
                 </configuration>
                 <executions>
