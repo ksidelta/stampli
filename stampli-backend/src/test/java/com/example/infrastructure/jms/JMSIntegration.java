@@ -4,6 +4,7 @@ import com.example.BaseTestConfiguration;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -20,6 +21,7 @@ import javax.jms.TextMessage;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
+@Disabled
 public class JMSIntegration {
     @Autowired
     JmsTemplate jmsTemplate;
