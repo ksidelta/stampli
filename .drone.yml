@@ -44,10 +44,12 @@ steps:
       - docker-compose -f docker-compose.yml -f deployment/production.yml up --detach 
 
 services:
-  - name: testDB
+  - name: db
     image: mariadb:10.5.9
     environment:
       MYSQL_DATABASE: baza
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
       MYSQL_ROOT_PASSWORD: password
+  - name: queue
+    image: rabbitmq:3.8

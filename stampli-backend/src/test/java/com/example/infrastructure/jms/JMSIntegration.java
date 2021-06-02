@@ -21,7 +21,6 @@ import javax.jms.TextMessage;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Disabled
 public class JMSIntegration {
     @Autowired
     JmsTemplate jmsTemplate;
