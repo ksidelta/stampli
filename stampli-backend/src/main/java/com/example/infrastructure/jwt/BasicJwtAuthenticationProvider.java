@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collections;
 
-@Component
 public class BasicJwtAuthenticationProvider implements AuthenticationProvider {
     AlgorithmHolder algorithmHolder;
 
