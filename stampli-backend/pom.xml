@@ -265,6 +265,14 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- This is a hack for testing websockets!!! -->
+        <!-- It is still not possible to test them, however we won't get exceptions -->
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-websocket</artifactId>
+            <version>7.0.52</version>
+            <scope>test</scope>
+        </dependency>
 
 
         <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
