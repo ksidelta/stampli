@@ -7,7 +7,9 @@ export class SocketFactory {
   public createSocket(): RxStomp {
     const stomp = new RxStomp();
 
-    const brokerURL = new URL('/socket', this.configuration.baseUrl.replace(/http(s?):/, 'wss:')).href;
+    const url = /http(s?):\/\/(.*)/.exec(this.configuration.baseUrl) || ['', '', 'localhost'];
+
+    const brokerURL = new URL('/socket', `ws${url[1]}://${url[2]}`).href;
 
     stomp.configure({ brokerURL, debug: console.warn });
     stomp.activate();
