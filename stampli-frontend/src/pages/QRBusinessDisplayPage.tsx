@@ -15,18 +15,23 @@ export const QRBusinessDisplayPage = () => {
 
   const [qrState] = useState(() => InputState.createStringInputState());
 
+  useEffect(() => {}, []);
+
   const businessName = useEffect(
     () => (
       servicesBundle.businessChallengeService.getChallenge().then(x => {
-        action(
-          () =>
-            (qrState.valueState.value = Routes.challenge.claim(
-              servicesBundle.config.baseUrl,
-              x.businessId,
-              x.issuerId,
-              x.nonce
-            ))
-        )();
+        action(() => {
+          servicesBundle.socket
+            .watch(`/api/business/challenge/${x.businessId}/${x.issuerId}`)
+            .subscribe(x => console.log(x.body));
+
+          qrState.valueState.value = Routes.challenge.claim(
+            servicesBundle.config.baseUrl,
+            x.businessId,
+            x.issuerId,
+            x.nonce
+          );
+        })();
       }),
       undefined
     ),

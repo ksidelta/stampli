@@ -30,11 +30,12 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                 .authorizeRequests(authorize -> authorize
                         .mvcMatchers("/api/authentication/**").permitAll()
                         .mvcMatchers("/api/test/string").permitAll()
+                        //.mvcMatchers("/api/socket").permitAll()
                         .mvcMatchers(HttpMethod.POST, "/api/business/**").authenticated()
                         .mvcMatchers(HttpMethod.PUT, "/api/business/**").authenticated()
                         .mvcMatchers(HttpMethod.GET, "/api/business/**").permitAll()
                         .mvcMatchers(HttpMethod.GET, "/api/business/").authenticated() // it gets business for current user
-                        .anyRequest().denyAll()
+                        .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .authenticationProvider(basicJwtAuthenticationProvider)

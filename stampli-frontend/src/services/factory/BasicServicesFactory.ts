@@ -15,6 +15,7 @@ import { BasicBusinessSettings } from '../business/settings/BasicBusinessSetting
 import { EventRequester } from '../../events/producers/request/EventRequester';
 import { BasicBusinessProfileService } from '../business/profile/BasicBusinessProfileService';
 import { BasicBusinessChallengeService } from '../business/challenge/BasicBusinessChallengeService';
+import { SocketFactory } from './socket/SocketFactory';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -40,6 +41,7 @@ export class BasicServicesFactory implements ServicesFactory {
       tokenService,
       businessProfileService
     );
+    const socket = new SocketFactory(config).createSocket();
 
     return {
       config,
@@ -50,7 +52,8 @@ export class BasicServicesFactory implements ServicesFactory {
       businessSettings,
       eventRequester,
       businessProfileService,
-      businessChallengeService
+      businessChallengeService,
+      socket
     };
   }
 
