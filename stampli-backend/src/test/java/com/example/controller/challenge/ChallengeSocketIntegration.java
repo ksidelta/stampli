@@ -1,4 +1,4 @@
-package com.example.controller.stamps.challenge;
+package com.example.controller.challenge;
 
 
 public class ChallengeSocketIntegration {

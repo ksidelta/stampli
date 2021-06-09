@@ -1,4 +1,4 @@
-package com.example.controller.stamps.challenge;
+package com.example.controller.challenge;
 
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.messaging.handler.annotation.DestinationVariable;

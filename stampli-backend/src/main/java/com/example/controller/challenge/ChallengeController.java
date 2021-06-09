@@ -1,4 +1,4 @@
-package com.example.controller.stamps.challenge;
+package com.example.controller.challenge;
 
 import com.example.service.challenge.service.ChallengeService;
 import com.example.service.challenge.service.ChallengingTokenDTO;

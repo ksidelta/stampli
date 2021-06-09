@@ -1,4 +1,4 @@
-package com.example.controller.stamps.challenge;
+package com.example.controller.challenge;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.context.authentication.user.entity.UserEntity;
