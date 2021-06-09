@@ -2,6 +2,7 @@ package com.example.domain.context.authentication.user.entity;
 
 import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
 import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
+import com.example.infrastructure.domain.events.AbstractEventedAggregate;
 import com.example.service.authentication.roles.UserRoleEntity;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class UserEntity {
+public class UserEntity extends AbstractEventedAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;

@@ -47,4 +47,16 @@ public class StampServiceIntegration extends AbstractDatabaseTest {
 
         MatcherAssert.assertThat(service.getNumberOfStamps(1, 2), equalTo(0));
     }
+
+    @Test
+    public void whenTwoBusinessesAreCreatedThenTheyHoldTheirStamps() {
+        service.createStampsAggregateForClient(1);
+        service.addStamp(1, 2);
+        service.addStamp(1, 2);
+        service.addStamp(1, 3);
+
+        MatcherAssert.assertThat(service.getNumberOfStamps(1, 2), equalTo(2));
+        MatcherAssert.assertThat(service.getNumberOfStamps(1, 3), equalTo(1));
+
+    }
 }

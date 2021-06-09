@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 
-@Service
 public class RegisterServiceImpl implements RegisterService {
     protected final UserRepository userRepository;
 
@@ -19,9 +18,10 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
-    public void registerUser(String email, String password) throws UserDuplicationException {
+    public Integer registerUser(String email, String password) throws UserDuplicationException {
         var user = UserEntity.createUser(new UserCreationDto(email, Arrays.asList(UserRoles.USER.toString())));
         user.addPasswordAuthentication(new UserPasswordAuthenticationDto(password));
         userRepository.saveUser(user);
+        return user.getId();
     }
 }
