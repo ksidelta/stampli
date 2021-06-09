@@ -7,7 +7,10 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="org.springframework.web.socket" level="trace" additivity="false">
+        <Logger name="org.hibernate" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.springframework.messaging" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <!--        <Logger name="org.springframework.web" level="error" additivity="false">-->

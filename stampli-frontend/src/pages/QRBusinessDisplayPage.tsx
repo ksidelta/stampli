@@ -9,6 +9,7 @@ import { InputState } from '../state/form/input/InputState';
 import { ChallengeQRCode } from '../components/simple/qr/ChallengeQRCode';
 import { Routes } from '../router/routes/Routes';
 import { action } from 'mobx';
+import { map } from 'rxjs/operators';
 
 export const QRBusinessDisplayPage = () => {
   const servicesBundle = useContext(InjectionContext);
@@ -22,8 +23,12 @@ export const QRBusinessDisplayPage = () => {
       servicesBundle.businessChallengeService.getChallenge().then(x => {
         action(() => {
           servicesBundle.socket
-            .watch(`/api/business/challenge/${x.businessId}/${x.issuerId}`)
-            .subscribe(x => console.log(x.body));
+            .watch(`/business/challenge/${x.businessId}/${x.issuerId}`)
+            .pipe(
+              map(content => content.body),
+              map(body => JSON.parse(body))
+            )
+            .subscribe(x => console.log(x));
 
           qrState.valueState.value = Routes.challenge.claim(
             servicesBundle.config.baseUrl,

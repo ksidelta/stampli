@@ -1,9 +1,8 @@
 package com.example.controller.stamps.challenge;
 
-import com.example.service.stamps.challenge.service.ChallengeService;
-import com.example.service.stamps.challenge.service.ChallengingTokenDTO;
+import com.example.service.challenge.service.ChallengeService;
+import com.example.service.challenge.service.ChallengingTokenDTO;
 import org.springframework.http.HttpStatus;
-import org.springframework.messaging.simp.annotation.SubscribeMapping;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
