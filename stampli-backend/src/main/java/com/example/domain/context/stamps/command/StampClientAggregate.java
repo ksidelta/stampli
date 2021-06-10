@@ -11,17 +11,21 @@ public class StampClientAggregate {
     @Id
     Integer clientId;
 
-    @OneToMany
-    Map<ClientBusinessId, StampBusinessEntity> businesses;
+    @OneToMany(mappedBy = "id.clientId")
+    List<StampBusinessEntity> businesses; // TODO: Change it to map later, but fuck it is hard, how to do it!?
 
     public void addStampToBusiness(Integer businessId) {
-        final var clientBusinessId = new ClientBusinessId(clientId, businessId);
-        businesses.computeIfAbsent(clientBusinessId, (key) -> StampBusinessEntity.create(clientId, businessId));
-        businesses.computeIfPresent(clientBusinessId, (key, entity) -> entity.addStamp());
+        final var clientBusinessId = new StampBusinessId(this, businessId);
+
+        businesses.stream().filter(x -> x.id.businessId.equals(businessId)).findAny()
+                .ifPresentOrElse(
+                        StampBusinessEntity::addStamp,
+                        () -> businesses.add(StampBusinessEntity.create(this, businessId).addStamp())
+                );
     }
 
     public Integer getStampsQuantity(Integer businessId) {
-        return Optional.ofNullable(businesses.get(new ClientBusinessId(clientId, businessId)))
+        return businesses.stream().filter(x -> x.id.businessId.equals(businessId)).findAny()
                 .map(StampBusinessEntity::currentAmountOfStamps)
                 .orElse(0);
     }
@@ -29,7 +33,21 @@ public class StampClientAggregate {
     public static StampClientAggregate create(Integer clientId) {
         final var aggr = new StampClientAggregate();
         aggr.clientId = clientId;
-        aggr.businesses = new HashMap<>();
+        aggr.businesses = new LinkedList<>();
         return aggr;
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StampClientAggregate that = (StampClientAggregate) o;
+        return Objects.equals(clientId, that.clientId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(clientId);
     }
 }

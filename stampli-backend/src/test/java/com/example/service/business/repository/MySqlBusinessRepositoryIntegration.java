@@ -43,6 +43,8 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
         mySqlBusinessRepository.save(aggregate);
         assertThrows(DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
+
+        sessionFactory.getCurrentSession().clear();
     }
 
     @Test

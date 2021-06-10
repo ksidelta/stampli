@@ -29,7 +29,7 @@ public class StampServiceImpl implements StampService {
 
         aggregate.addStampToBusiness(businessId);
 
-        repository.save(aggregate);
+        repository.update(aggregate);
     }
 
     @Transactional

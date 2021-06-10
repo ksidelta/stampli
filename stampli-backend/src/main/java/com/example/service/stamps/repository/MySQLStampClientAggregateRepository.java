@@ -28,6 +28,11 @@ public class MySQLStampClientAggregateRepository implements StampClientAggregate
 
     @Override
     public void save(StampClientAggregate toSave) {
-        sessionFactory.getCurrentSession().saveOrUpdate(toSave);
+        sessionFactory.getCurrentSession().save(toSave);
+    }
+
+    @Override
+    public void update(StampClientAggregate toSave) {
+        sessionFactory.getCurrentSession().update(toSave);
     }
 }

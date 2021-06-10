@@ -6,4 +6,6 @@ public interface StampClientAggregateRepository {
     Optional<StampClientAggregate> findByUserId(Integer id);
 
     void save(StampClientAggregate toSave);
+
+    void update(StampClientAggregate toUpdate);
 }

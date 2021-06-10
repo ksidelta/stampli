@@ -3,6 +3,9 @@ package com.example.service.challenge.service;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.service.stamps.service.StampService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +25,21 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
     public static final int ISSUER_ID = 1;
     public static final int BUSINESS_ID = 2;
+    public static final int CLAIMER_ID = 3;
 
     @Autowired
     ChallengeService challengeService;
 
     @Autowired
     ChallengeRepository challengeRepository;
+
+    @Autowired
+    StampService stampService;
+
+    @BeforeEach
+    public void create(){
+        stampService.createStampsAggregateForClient(CLAIMER_ID);
+    }
 
     @Test
     public void whenChallengeIsCreatedThenSucceeds() {
@@ -52,12 +64,12 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
         final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
 
         final var proof = challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
         );
 
         assertThat(proof.getIssuerId(), equalTo(ISSUER_ID));
         assertThat(proof.getBusinessId(), equalTo(BUSINESS_ID));
-        assertThat(proof.getClaimerId(), equalTo(3));
+        assertThat(proof.getClaimerId(), equalTo(CLAIMER_ID));
     }
 
     @Test
@@ -65,11 +77,11 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
         challengeService.createChallengeAggregate(ISSUER_ID, BUSINESS_ID);
         final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
         challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
         );
 
         assertThrows(IllegalStateException.class, () -> challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, 3, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
         ));
     }
 }

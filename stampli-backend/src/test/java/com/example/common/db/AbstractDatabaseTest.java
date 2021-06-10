@@ -15,8 +15,8 @@ public abstract class AbstractDatabaseTest {
     SessionFactory sessionFactory;
 
     @AfterEach
-    public void removeUsers() {
-        logger.warning("ROLLBACK");
+    public void flushAndRollback() {
+        sessionFactory.getCurrentSession().flush();
         sessionFactory.getCurrentSession().getTransaction().rollback();
     }
 }

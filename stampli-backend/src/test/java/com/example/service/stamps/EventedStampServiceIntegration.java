@@ -6,7 +6,6 @@ import com.example.domain.context.stamps.command.StampClientAggregateRepository;
 import com.example.service.authentication.register.RegisterService;
 import com.example.service.business.service.BusinessService;
 import com.example.service.challenge.service.ChallengeService;
-import com.example.service.challenge.service.ChallengeTokenDTO;
 import com.example.service.challenge.service.ChallengingTokenDTO;
 import com.example.service.stamps.service.StampService;
 import org.hamcrest.MatcherAssert;
