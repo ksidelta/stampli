@@ -16,6 +16,7 @@ import { EventRequester } from '../../events/producers/request/EventRequester';
 import { BasicBusinessProfileService } from '../business/profile/BasicBusinessProfileService';
 import { BasicBusinessChallengeService } from '../business/challenge/BasicBusinessChallengeService';
 import { SocketFactory } from './socket/SocketFactory';
+import { StampServiceImpl } from '../business/stamps/StampServiceImpl';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -42,6 +43,7 @@ export class BasicServicesFactory implements ServicesFactory {
       businessProfileService
     );
     const socket = new SocketFactory(config).createSocket();
+    const stampService = new StampServiceImpl(requestService);
 
     return {
       config,
@@ -53,7 +55,8 @@ export class BasicServicesFactory implements ServicesFactory {
       eventRequester,
       businessProfileService,
       businessChallengeService,
-      socket
+      socket,
+      stampService
     };
   }
 

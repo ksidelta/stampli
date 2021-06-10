@@ -8,6 +8,7 @@ import { EventRequester } from '../events/producers/request/EventRequester';
 import { BusinessProfileService } from './business/profile/BusinessProfileService';
 import { BusinessChallengeService } from './business/challenge/BusinessChallengeService';
 import { RxStomp } from '@stomp/rx-stomp';
+import { StampService } from './business/stamps/StampService';
 
 export interface ServicesBundle {
   loginService: LoginService;
@@ -20,4 +21,5 @@ export interface ServicesBundle {
   businessProfileService: BusinessProfileService;
   businessChallengeService: BusinessChallengeService;
   socket: RxStomp;
+  stampService: StampService;
 }

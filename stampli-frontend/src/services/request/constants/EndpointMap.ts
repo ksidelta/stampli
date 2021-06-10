@@ -7,5 +7,7 @@ export const endpointMap = {
 
   BUSINESS_QR_CHALLENGE: (businessId: number) => `/api/business/challenge/${businessId}`,
   CLAIM_BUSINESS_QR_CHALLENGE: (businessId: number, issuerId: number) =>
-    `/api/business/challenge/${businessId}/${issuerId}`
+    `/api/business/challenge/${businessId}/${issuerId}`,
+
+  BUSINESS_STAMP_INFO: (businessId: number) => `/api/stamps/${businessId}`
 };
