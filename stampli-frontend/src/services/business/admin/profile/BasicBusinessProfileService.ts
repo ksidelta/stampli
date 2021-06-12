@@ -1,6 +1,6 @@
 import { BusinessProfileService } from './BusinessProfileService';
-import { RequestService } from '../../request/RequestService';
-import { endpointMap } from '../../request/constants/EndpointMap';
+import { RequestService } from '../../../request/RequestService';
+import { endpointMap } from '../../../request/constants/EndpointMap';
 
 export class BasicBusinessProfileService implements BusinessProfileService {
   constructor(protected requestService: RequestService) {}

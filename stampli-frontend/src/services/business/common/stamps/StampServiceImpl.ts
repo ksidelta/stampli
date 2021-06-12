@@ -1,5 +1,5 @@
-import { RequestService } from '../../request/RequestService';
-import { endpointMap } from '../../request/constants/EndpointMap';
+import { RequestService } from '../../../request/RequestService';
+import { endpointMap } from '../../../request/constants/EndpointMap';
 import { StampService } from './StampService';
 
 export class StampServiceImpl implements StampService {

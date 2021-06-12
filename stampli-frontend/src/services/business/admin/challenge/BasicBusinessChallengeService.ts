@@ -1,8 +1,8 @@
 import { BusinessChallengeService, ChallengeDTO } from './BusinessChallengeService';
-import { TokenService } from '../../token/TokenService';
+import { TokenService } from '../../../token/TokenService';
 import { BusinessProfileService } from '../profile/BusinessProfileService';
-import { RequestService } from '../../request/RequestService';
-import { endpointMap } from '../../request/constants/EndpointMap';
+import { RequestService } from '../../../request/RequestService';
+import { endpointMap } from '../../../request/constants/EndpointMap';
 
 export class BasicBusinessChallengeService implements BusinessChallengeService {
   constructor(

@@ -11,12 +11,14 @@ import { BasicRegisterService } from '../register/BasicRegisterService';
 import axios from 'axios';
 import Logger from 'js-logger';
 import { LocalStorageTokenService } from '../token/LocalStorageTokenService';
-import { BasicBusinessSettings } from '../business/settings/BasicBusinessSettings';
+import { BasicBusinessSettings } from '../business/admin/settings/BasicBusinessSettings';
 import { EventRequester } from '../../events/producers/request/EventRequester';
-import { BasicBusinessProfileService } from '../business/profile/BasicBusinessProfileService';
-import { BasicBusinessChallengeService } from '../business/challenge/BasicBusinessChallengeService';
+import { BasicBusinessProfileService } from '../business/admin/profile/BasicBusinessProfileService';
+import { BasicBusinessChallengeService } from '../business/admin/challenge/BasicBusinessChallengeService';
 import { SocketFactory } from './socket/SocketFactory';
-import { StampServiceImpl } from '../business/stamps/StampServiceImpl';
+import { StampServiceImpl } from '../business/common/stamps/StampServiceImpl';
+import { PreloadingBusinessInfoService } from '../business/common/business/PreloadingBusinessInfoService';
+import { BasicBusinessInfoService } from '../business/common/business/BasicBusinessInfoService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -44,18 +46,23 @@ export class BasicServicesFactory implements ServicesFactory {
     );
     const socket = new SocketFactory(config).createSocket();
     const stampService = new StampServiceImpl(requestService);
+    const businessInfoService = new PreloadingBusinessInfoService(new BasicBusinessInfoService(requestService));
 
     return {
+      socket,
       config,
+      eventRequester,
+
       tokenService,
       requestService,
       loginService,
       registerService,
+
       businessSettings,
-      eventRequester,
       businessProfileService,
       businessChallengeService,
-      socket,
+      businessInfoService,
+
       stampService
     };
   }
