@@ -14,8 +14,10 @@ public class Stamp {
     @JoinColumn(name = "businessId", referencedColumnName = "businessId")
     StampBusinessEntity join;
 
-    public static Stamp create() {
-        return new Stamp();
+    public static Stamp create(StampBusinessEntity parent) {
+        final var stamp = new Stamp();
+        stamp.join = parent;
+        return stamp;
     }
 
     public Integer getId() {

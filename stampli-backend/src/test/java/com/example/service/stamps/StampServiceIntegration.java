@@ -2,8 +2,11 @@ package com.example.service.stamps;
 
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
+import com.example.domain.context.stamps.command.StampClientAggregate;
 import com.example.service.stamps.service.StampService;
 import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +19,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
 public class StampServiceIntegration extends AbstractDatabaseTest {
 
     @Autowired
@@ -57,6 +59,6 @@ public class StampServiceIntegration extends AbstractDatabaseTest {
 
         MatcherAssert.assertThat(service.getNumberOfStamps(1, 2), equalTo(2));
         MatcherAssert.assertThat(service.getNumberOfStamps(1, 3), equalTo(1));
-
     }
+
 }

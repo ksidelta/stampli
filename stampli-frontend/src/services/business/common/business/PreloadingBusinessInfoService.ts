@@ -9,7 +9,7 @@ export class PreloadingBusinessInfoService implements BusinessInfoService {
         new Promise((resolve, reject) => {
           const img = new Image();
           img.onload = () => resolve(url);
-          img.onerror = err => reject(err);
+          img.onerror = ev => reject(ev);
           img.src = url;
         })
     );

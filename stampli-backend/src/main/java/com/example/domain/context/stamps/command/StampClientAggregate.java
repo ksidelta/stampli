@@ -11,7 +11,7 @@ public class StampClientAggregate {
     @Id
     Integer clientId;
 
-    @OneToMany(mappedBy = "id.clientId")
+    @OneToMany(mappedBy = "id.clientId", cascade = CascadeType.ALL)
     List<StampBusinessEntity> businesses; // TODO: Change it to map later, but fuck it is hard, how to do it!?
 
     public void addStampToBusiness(Integer businessId) {

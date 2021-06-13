@@ -12,11 +12,11 @@ public class StampBusinessEntity {
     @EmbeddedId
     StampBusinessId id;
 
-    @OneToMany(mappedBy = "join")
+    @OneToMany(mappedBy = "join", cascade = CascadeType.ALL)
     List<Stamp> stamps;
 
     public StampBusinessEntity addStamp() {
-        stamps.add(Stamp.create());
+        stamps.add(Stamp.create(this));
         return this;
     }
 

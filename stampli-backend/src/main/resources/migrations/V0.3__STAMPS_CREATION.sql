@@ -16,8 +16,10 @@ CREATE TABLE stamp_business
 
 CREATE TABLE stamps
 (
+    id         INTEGER UNIQUE AUTO_INCREMENT,
+
     clientId   INTEGER,
     businessId INTEGER,
 
-    PRIMARY KEY (clientId, businessId)
+    PRIMARY KEY (id)
 );

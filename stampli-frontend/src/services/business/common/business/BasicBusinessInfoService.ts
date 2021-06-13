@@ -5,9 +5,7 @@ import { endpointMap } from '../../../request/constants/EndpointMap';
 export class BasicBusinessInfoService implements BusinessInfoService {
   constructor(public requestService: RequestService) {}
 
-  getLogoSrc(businessId: number): Promise<string> {
-    return this.requestService
-      .query(endpointMap.BUSINESS_LOGO(businessId), 'get')
-      .then(x => x.asType(String).payload as string);
+  async getLogoSrc(businessId: number): Promise<string> {
+    return endpointMap.BUSINESS_LOGO(businessId);
   }
 }

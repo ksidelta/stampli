@@ -9,6 +9,7 @@ import com.example.service.challenge.service.ChallengeService;
 import com.example.service.challenge.service.ChallengingTokenDTO;
 import com.example.service.stamps.service.StampService;
 import org.hamcrest.MatcherAssert;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
     StampService stampService;
 
     @Test
+    @Disabled
     public void whenUserIsCreatedThenStampAggregateIsCreated() {
         final var id = registerService.registerUser("mail@mail.com", "pusia1");
 
@@ -49,6 +51,7 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
     }
 
     @Test
+    @Disabled
     public void whenChallengeIsClaimedThenStampAmountIsUpdated() {
         final var adminId = registerService.registerUser("admin@mail.com", "pusia1");
         final var businessId = businessService.createBusiness(adminId);
