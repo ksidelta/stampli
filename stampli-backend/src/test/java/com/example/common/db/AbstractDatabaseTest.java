@@ -15,7 +15,7 @@ public abstract class AbstractDatabaseTest {
     @Autowired
     protected DbTestUtil dbTestUtil;
 
-    //@AfterEach
+    @AfterEach
     protected void removeAll() {
         dbTestUtil.removeAll();
     }
