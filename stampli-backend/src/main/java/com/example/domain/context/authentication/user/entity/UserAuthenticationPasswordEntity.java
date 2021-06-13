@@ -5,19 +5,19 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user_authentication_password")
-public class UserAuthenticationPasswordAggregate implements Serializable {
+public class UserAuthenticationPasswordEntity implements Serializable {
     @OneToOne(fetch = FetchType.EAGER)
     @Id
     @JoinColumn(name = "userId")
-    protected UserEntity user;
+    protected UserAggregate user;
 
     protected String password;
 
-    public UserEntity getUser() {
+    public UserAggregate getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserAggregate user) {
         this.user = user;
     }
 

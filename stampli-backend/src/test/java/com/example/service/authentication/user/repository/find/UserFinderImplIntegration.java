@@ -2,7 +2,7 @@ package com.example.service.authentication.user.repository.find;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
 import com.example.domain.context.authentication.user.repository.create.UserCreator;
 import com.example.domain.context.authentication.user.repository.find.UserFinder;
@@ -41,7 +41,7 @@ public class UserFinderImplIntegration {
         var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
         var authenticationDto = new UserPasswordAuthenticationDto("password");
 
-        var userToSave = UserEntity.createUser(user);
+        var userToSave = UserAggregate.createUser(user);
         userToSave.addPasswordAuthentication(authenticationDto);
 
         userCreator.saveUser(userToSave);
@@ -52,7 +52,7 @@ public class UserFinderImplIntegration {
         var user = new UserCreationDto("other@is.existent", Arrays.asList("USER"));
         var authenticationDto = new UserPasswordAuthenticationDto("other-password");
 
-        var userToSave = UserEntity.createUser(user);
+        var userToSave = UserAggregate.createUser(user);
         userToSave.addPasswordAuthentication(authenticationDto);
 
         userCreator.saveUser(userToSave);

@@ -1,8 +1,8 @@
 package com.example.service.authentication.user.repository.find;
 
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.domain.context.authentication.user.repository.find.UserFinder;
-import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordAggregate;
+import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,14 +24,14 @@ public class UserFinderImpl implements UserFinder {
     }
 
     @Override
-    public UserEntity findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
+    public UserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
         try {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(
-                            "SELECT AUTH FROM UserAuthenticationPasswordAggregate AUTH  "
-                                    + "LEFT JOIN UserEntity USER ON USER = AUTH.user "
+                            "SELECT AUTH FROM UserAuthenticationPasswordEntity AUTH  "
+                                    + "LEFT JOIN UserAggregate USER ON USER = AUTH.user "
                                     + "WHERE USER.email=:email AND AUTH.password=:password"
-                            , UserAuthenticationPasswordAggregate.class)
+                            , UserAuthenticationPasswordEntity.class)
                     .setParameter("email", username)
                     .setParameter("password", password)
                     .getSingleResult();

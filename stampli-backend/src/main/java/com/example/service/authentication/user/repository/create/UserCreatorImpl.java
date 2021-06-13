@@ -1,6 +1,6 @@
 package com.example.service.authentication.user.repository.create;
 
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.domain.context.authentication.user.repository.create.UserCreator;
 import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
 import org.hibernate.SessionFactory;
@@ -22,7 +22,7 @@ public class UserCreatorImpl implements UserCreator {
     }
 
     @Override
-    public void saveUser(UserEntity userToSave) {
+    public void saveUser(UserAggregate userToSave) {
         try {
             sessionFactory.getCurrentSession().save(userToSave);
         } catch (ConstraintViolationException constraintViolationException) {

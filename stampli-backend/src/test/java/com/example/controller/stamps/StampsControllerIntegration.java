@@ -1,13 +1,8 @@
 package com.example.controller.stamps;
 
 import com.example.BaseTestConfiguration;
-import com.example.controller.challenge.ChallengeController;
-import com.example.domain.context.authentication.user.entity.UserEntity;
-import com.example.domain.context.challenge.ClaimProof;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.service.challenge.service.ChallengeService;
-import com.example.service.challenge.service.ChallengeTokenDTO;
-import com.example.service.challenge.service.ChallengingTokenDTO;
 import com.example.service.stamps.service.StampService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -71,7 +66,7 @@ public class StampsControllerIntegration {
     }
 
     public String createToken() {
-        final var user = new UserEntity();
+        final var user = new UserAggregate();
         user.setRoles(Arrays.asList());
         user.setId(1);
         return tokenGenerator.createToken(user);

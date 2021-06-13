@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
 public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
     @Autowired
     BusinessRepository mySqlBusinessRepository;
@@ -43,8 +42,6 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
         mySqlBusinessRepository.save(aggregate);
         assertThrows(DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
-
-        sessionFactory.getCurrentSession().clear();
     }
 
     @Test

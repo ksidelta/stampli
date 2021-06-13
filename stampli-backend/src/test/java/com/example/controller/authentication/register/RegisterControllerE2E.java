@@ -2,7 +2,7 @@ package com.example.controller.authentication.register;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.domain.context.authentication.user.repository.UserRepository;
 import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
@@ -63,7 +63,7 @@ public class RegisterControllerE2E {
         var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
         var authenticationDto = new UserPasswordAuthenticationDto("password");
 
-        var savedUser = UserEntity.createUser(user);
+        var savedUser = UserAggregate.createUser(user);
         savedUser.addPasswordAuthentication(authenticationDto);
 
         userRepository.saveUser(savedUser);

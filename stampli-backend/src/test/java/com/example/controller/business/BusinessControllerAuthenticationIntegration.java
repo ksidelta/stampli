@@ -1,9 +1,8 @@
 package com.example.controller.business;
 
 import com.example.BaseTestConfiguration;
-import com.example.controller.business.BusinessController;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.service.business.service.BusinessService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -73,7 +72,7 @@ public class BusinessControllerAuthenticationIntegration {
     }
 
     public String createToken() {
-        final var user = new UserEntity();
+        final var user = new UserAggregate();
         user.setRoles(Arrays.asList());
         user.setId(1);
         return tokenGenerator.createToken(user);

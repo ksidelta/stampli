@@ -49,6 +49,7 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
     }
 
     @Test
+    @Disabled
     public void whenChallengeIsClaimedThenStampAmountIsUpdated() {
         final var adminId = registerService.registerUser("admin@mail.com", "pusia1");
         final var businessId = businessService.createBusiness(adminId);

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
-public class UserEntity extends AbstractEventedAggregate {
+public class UserAggregate extends AbstractEventedAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Integer id;
@@ -26,7 +26,7 @@ public class UserEntity extends AbstractEventedAggregate {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    protected UserAuthenticationPasswordAggregate password;
+    protected UserAuthenticationPasswordEntity password;
 
     public Integer getId() {
         return id;
@@ -38,7 +38,7 @@ public class UserEntity extends AbstractEventedAggregate {
                 .collect(Collectors.toList());
     }
 
-    public UserAuthenticationPasswordAggregate getPassword() {
+    public UserAuthenticationPasswordEntity getPassword() {
         return password;
     }
 
@@ -47,7 +47,7 @@ public class UserEntity extends AbstractEventedAggregate {
             throw new IllegalStateException("You can add PasswordAuthentication only once");
         }
 
-        password = new UserAuthenticationPasswordAggregate();
+        password = new UserAuthenticationPasswordEntity();
         password.setPassword(userPasswordAuthenticationDto.getPassword());
         password.setUser(this);
     }
@@ -69,8 +69,8 @@ public class UserEntity extends AbstractEventedAggregate {
         this.roles = roles;
     }
 
-    public static UserEntity createUser(UserCreationDto userCreationDto) {
-        var user = new UserEntity();
+    public static UserAggregate createUser(UserCreationDto userCreationDto) {
+        var user = new UserAggregate();
         user.setEmail(userCreationDto.getEmail());
         user.setRoles(userCreationDto.getRoles()
                 .stream().map(x -> new UserRoleEntity(user, x)).collect(Collectors.toList()));

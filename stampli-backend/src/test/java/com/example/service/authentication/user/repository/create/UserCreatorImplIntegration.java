@@ -2,7 +2,7 @@ package com.example.service.authentication.user.repository.create;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.context.authentication.user.entity.UserEntity;
+import com.example.domain.context.authentication.user.entity.UserAggregate;
 import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
 import com.example.domain.context.authentication.user.repository.create.UserCreator;
 import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
@@ -64,7 +64,7 @@ public class UserCreatorImplIntegration {
         var user = new UserCreationDto(email, Arrays.asList("USER"));
         var authenticationDto = new UserPasswordAuthenticationDto(password);
 
-        var savedUser = UserEntity.createUser(user);
+        var savedUser = UserAggregate.createUser(user);
         savedUser.addPasswordAuthentication(authenticationDto);
         userCreator.saveUser(savedUser);
     }
