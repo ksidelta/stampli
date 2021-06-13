@@ -26,7 +26,7 @@ public class UserEntity extends AbstractEventedAggregate {
             cascade = CascadeType.ALL,
             orphanRemoval = true,
             fetch = FetchType.LAZY)
-    protected UserAuthenticationPasswordEntity password;
+    protected UserAuthenticationPasswordAggregate password;
 
     public Integer getId() {
         return id;
@@ -38,7 +38,7 @@ public class UserEntity extends AbstractEventedAggregate {
                 .collect(Collectors.toList());
     }
 
-    public UserAuthenticationPasswordEntity getPassword() {
+    public UserAuthenticationPasswordAggregate getPassword() {
         return password;
     }
 
@@ -47,7 +47,7 @@ public class UserEntity extends AbstractEventedAggregate {
             throw new IllegalStateException("You can add PasswordAuthentication only once");
         }
 
-        password = new UserAuthenticationPasswordEntity();
+        password = new UserAuthenticationPasswordAggregate();
         password.setPassword(userPasswordAuthenticationDto.getPassword());
         password.setUser(this);
     }

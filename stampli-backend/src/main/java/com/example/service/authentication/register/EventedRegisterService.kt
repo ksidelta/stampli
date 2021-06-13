@@ -1,10 +1,12 @@
 package com.example.service.authentication.register
 
 import org.springframework.context.ApplicationEventPublisher
+import javax.transaction.Transactional
 
-class EventedRegisterService(val registerService: RegisterService, val eventPublisher: ApplicationEventPublisher) :
+open class EventedRegisterService(val registerService: RegisterService, val eventPublisher: ApplicationEventPublisher) :
     RegisterService by registerService {
 
+    @Transactional //
     override fun registerUser(email: String?, password: String?): Int {
         val userId = registerService.registerUser(email, password)
 

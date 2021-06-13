@@ -6,6 +6,7 @@ import com.example.service.challenge.repository.JpaChallengeRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -18,6 +19,7 @@ public class MySQLStampClientAggregateRepository implements StampClientAggregate
     }
 
     @Override
+    @Transactional
     public Optional<StampClientAggregate> findByUserId(Integer id) {
         return sessionFactory.getCurrentSession()
                 .createQuery("SELECT s FROM StampClientAggregate s WHERE s.clientId=:clientId", StampClientAggregate.class)
@@ -27,11 +29,13 @@ public class MySQLStampClientAggregateRepository implements StampClientAggregate
     }
 
     @Override
+    @Transactional
     public void save(StampClientAggregate toSave) {
         sessionFactory.getCurrentSession().save(toSave);
     }
 
     @Override
+    @Transactional
     public void update(StampClientAggregate toSave) {
         sessionFactory.getCurrentSession().update(toSave);
     }

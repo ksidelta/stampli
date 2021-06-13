@@ -18,6 +18,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
+    @Transactional
     public void createChallengeAggregate(Integer issuerId, Integer businessId) {
         final var entity = ChallengeOwnerAggregate.createChallengeEntity(businessId, issuerId);
         challengeRepository.save(entity);
@@ -38,6 +39,7 @@ public class ChallengeServiceImpl implements ChallengeService {
     }
 
     @Override
+    @Transactional
     public ClaimProof claimToken(ChallengingTokenDTO challengingToken) {
         final var challenge = challengeRepository.findByIssuerAndBusiness(
                 challengingToken.getIssuerId(),

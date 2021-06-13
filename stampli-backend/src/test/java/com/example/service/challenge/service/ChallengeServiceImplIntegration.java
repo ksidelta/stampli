@@ -21,7 +21,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
 public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
     public static final int ISSUER_ID = 1;
     public static final int BUSINESS_ID = 2;
@@ -37,7 +36,7 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
     StampService stampService;
 
     @BeforeEach
-    public void create(){
+    public void create() {
         stampService.createStampsAggregateForClient(CLAIMER_ID);
     }
 

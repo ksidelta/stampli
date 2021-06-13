@@ -16,7 +16,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
 public class EventedBusinessServiceIntegration extends AbstractDatabaseTest {
 
     @Autowired

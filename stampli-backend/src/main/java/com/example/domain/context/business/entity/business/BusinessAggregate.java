@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-@Entity(name = "BusinessAggregate")
+@Entity
 @Table(name = "business")
 public class BusinessAggregate extends AbstractEventedAggregate {
     @Id

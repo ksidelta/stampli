@@ -4,6 +4,7 @@ import com.example.infrastructure.domain.events.AbstractEventedAggregate;
 
 import javax.persistence.*;
 import java.security.SecureRandom;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 @Entity
@@ -59,5 +60,18 @@ public class ChallengeOwnerAggregate extends AbstractEventedAggregate {
 
     public ChallengeId challengeId() {
         return challengeId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ChallengeOwnerAggregate that = (ChallengeOwnerAggregate) o;
+        return Objects.equals(challengeId, that.challengeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(challengeId);
     }
 }

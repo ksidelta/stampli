@@ -2,7 +2,7 @@ package com.example.service.authentication.user.repository.find;
 
 import com.example.domain.context.authentication.user.entity.UserEntity;
 import com.example.domain.context.authentication.user.repository.find.UserFinder;
-import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordEntity;
+import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordAggregate;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,10 +28,10 @@ public class UserFinderImpl implements UserFinder {
         try {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(
-                            "SELECT AUTH FROM UserAuthenticationPasswordEntity AUTH  "
+                            "SELECT AUTH FROM UserAuthenticationPasswordAggregate AUTH  "
                                     + "LEFT JOIN UserEntity USER ON USER = AUTH.user "
                                     + "WHERE USER.email=:email AND AUTH.password=:password"
-                            , UserAuthenticationPasswordEntity.class)
+                            , UserAuthenticationPasswordAggregate.class)
                     .setParameter("email", username)
                     .setParameter("password", password)
                     .getSingleResult();

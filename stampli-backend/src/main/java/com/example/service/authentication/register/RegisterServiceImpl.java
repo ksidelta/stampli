@@ -8,6 +8,7 @@ import com.example.domain.context.authentication.user.repository.create.UserCrea
 import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Arrays;
 
 public class RegisterServiceImpl implements RegisterService {
@@ -18,6 +19,7 @@ public class RegisterServiceImpl implements RegisterService {
     }
 
     @Override
+    @Transactional
     public Integer registerUser(String email, String password) throws UserDuplicationException {
         var user = UserEntity.createUser(new UserCreationDto(email, Arrays.asList(UserRoles.USER.toString())));
         user.addPasswordAuthentication(new UserPasswordAuthenticationDto(password));

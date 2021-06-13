@@ -10,3 +10,7 @@
 
 1. speed up your development loop!
 1. refactor code and rethink it after finished task
+
+# Spring
+
+1. Do not create two beans of EventListener

@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "user_authentication_password")
-public class UserAuthenticationPasswordEntity implements Serializable {
+public class UserAuthenticationPasswordAggregate implements Serializable {
     @OneToOne(fetch = FetchType.EAGER)
     @Id
     @JoinColumn(name = "userId")

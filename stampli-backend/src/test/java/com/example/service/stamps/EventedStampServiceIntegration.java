@@ -24,7 +24,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
 public class EventedStampServiceIntegration extends AbstractDatabaseTest {
 
     @Autowired
@@ -43,7 +42,6 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
     StampService stampService;
 
     @Test
-    @Disabled
     public void whenUserIsCreatedThenStampAggregateIsCreated() {
         final var id = registerService.registerUser("mail@mail.com", "pusia1");
 
@@ -51,7 +49,6 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
     }
 
     @Test
-    @Disabled
     public void whenChallengeIsClaimedThenStampAmountIsUpdated() {
         final var adminId = registerService.registerUser("admin@mail.com", "pusia1");
         final var businessId = businessService.createBusiness(adminId);
