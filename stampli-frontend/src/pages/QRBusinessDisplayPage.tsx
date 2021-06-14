@@ -18,6 +18,10 @@ export const QRBusinessDisplayPage = () => {
 
   useEffect(() => {}, []);
 
+  const updateChallenge = () => {
+    qrState.valueState.value = Routes.challenge.claim(servicesBundle.config.baseUrl, x.businessId, x.issuerId, x.nonce);
+  };
+
   const businessName = useEffect(
     () => (
       servicesBundle.businessChallengeService.getChallenge().then(x => {
@@ -28,14 +32,9 @@ export const QRBusinessDisplayPage = () => {
               map(content => content.body),
               map(body => JSON.parse(body))
             )
-            .subscribe(x => console.log(x));
+            .subscribe(x => (console.log(x), updateChallenge()));
 
-          qrState.valueState.value = Routes.challenge.claim(
-            servicesBundle.config.baseUrl,
-            x.businessId,
-            x.issuerId,
-            x.nonce
-          );
+          updateChallenge();
         })();
       }),
       undefined
@@ -52,9 +51,16 @@ export const QRBusinessDisplayPage = () => {
       />
       <Content>
         <CenterMiddle>
-          <ChallengeQRCode state={qrState} />
+          <ChallengeQRCode state={qrState} onClick={updateChallenge} />
         </CenterMiddle>
       </Content>
     </MobilePage>
   );
+};
+
+type StampClaimedSocketDTO = {
+  issuerId: number;
+  businessId: number;
+  claimerId: number;
+  challengeNonce: number;
 };
