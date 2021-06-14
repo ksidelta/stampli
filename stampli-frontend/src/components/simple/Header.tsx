@@ -30,10 +30,10 @@ const InnerHeader = styled.div`
   }
 `;
 
-export const Header = ({ title, icon }: { title: string; icon?: IconDefinition }) => (
+export const Header = ({ title, icon, onClick }: { title: string; icon?: IconDefinition; onClick?: () => any }) => (
   <InnerHeader>
     <div className="manipulator">
-      <div>{icon && <FontAwesomeIcon className={'icon'} icon={icon} />}</div>
+      <div>{icon && <FontAwesomeIcon className={'icon'} icon={icon} onClick={onClick} />}</div>
     </div>
     <div className="text">{title}</div>
   </InnerHeader>

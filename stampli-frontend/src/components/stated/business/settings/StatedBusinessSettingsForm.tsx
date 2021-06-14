@@ -69,7 +69,7 @@ export const StatedBusinessSettingsForm = ({ businessId }: { businessId: number 
         <Observer>
           {() => (
             <>
-              <TitledTextInput subject={nameTopic} state={inputState} title={'testu`'} />
+              <TitledTextInput subject={nameTopic} state={inputState} title={'Nazwa dla biznesu'} />
               <ImageUpload topic={imageTopic} state={imageState} />
             </>
           )}

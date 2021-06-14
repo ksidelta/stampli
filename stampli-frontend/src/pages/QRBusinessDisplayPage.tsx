@@ -1,6 +1,5 @@
 import { MobilePage } from './base/MobilePage';
 import { Header } from '../components/simple/Header';
-import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { Content } from '../components/simple/container/layout/structure/Content';
 import React, { useContext, useEffect, useState } from 'react';
 import { CenterMiddle } from '../components/simple/container/layout/CenterMiddle';
@@ -10,6 +9,7 @@ import { ChallengeQRCode } from '../components/simple/qr/ChallengeQRCode';
 import { Routes } from '../router/routes/Routes';
 import { action } from 'mobx';
 import { map } from 'rxjs/operators';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 
 export const QRBusinessDisplayPage = () => {
   const servicesBundle = useContext(InjectionContext);
@@ -45,7 +45,11 @@ export const QRBusinessDisplayPage = () => {
 
   return (
     <MobilePage>
-      <Header title={'Przekaż kod'} icon={faCircle} />
+      <Header
+        title={'Przekaż kod'}
+        icon={faArrowLeft}
+        onClick={() => servicesBundle.routingService.goToBusinessOptionsPage()}
+      />
       <Content>
         <CenterMiddle>
           <ChallengeQRCode state={qrState} />

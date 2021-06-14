@@ -10,6 +10,7 @@ import { BusinessChallengeService } from './business/admin/challenge/BusinessCha
 import { RxStomp } from '@stomp/rx-stomp';
 import { StampService } from './business/common/stamps/StampService';
 import { BusinessInfoService } from './business/common/business/BusinessInfoService';
+import { RoutingService } from '../router/services/RoutingService';
 
 export interface ServicesBundle {
   socket: RxStomp;
@@ -27,4 +28,6 @@ export interface ServicesBundle {
 
   stampService: StampService;
   businessInfoService: BusinessInfoService;
+
+  routingService: RoutingService;
 }

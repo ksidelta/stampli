@@ -19,6 +19,7 @@ import { SocketFactory } from './socket/SocketFactory';
 import { StampServiceImpl } from '../business/common/stamps/StampServiceImpl';
 import { PreloadingBusinessInfoService } from '../business/common/business/PreloadingBusinessInfoService';
 import { BasicBusinessInfoService } from '../business/common/business/BasicBusinessInfoService';
+import { RoutingServiceInstance } from '../../router/services/RoutingService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -47,6 +48,7 @@ export class BasicServicesFactory implements ServicesFactory {
     const socket = new SocketFactory(config).createSocket();
     const stampService = new StampServiceImpl(requestService);
     const businessInfoService = new PreloadingBusinessInfoService(new BasicBusinessInfoService(requestService));
+    const routingService = RoutingServiceInstance;
 
     return {
       socket,
@@ -63,7 +65,9 @@ export class BasicServicesFactory implements ServicesFactory {
       businessChallengeService,
       businessInfoService,
 
-      stampService
+      stampService,
+
+      routingService
     };
   }
 
