@@ -15,6 +15,7 @@ steps:
   commands:
   - cd stampli-frontend
   - npm install
+  - npx tsc
   - npm test
 
 - name: deploy-copy
