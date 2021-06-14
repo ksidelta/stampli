@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { Stamp } from '../../../simple/stamp/Stamp';
 import Logger from 'js-logger';
+import { Delimeter } from '../../../simple/container/flex/Delimeter';
+import { SimpleButton } from '../../../simple/buttons/SimpleButton';
 
 const MAX_NUMBER_OF_STAMPS = 10;
 
@@ -10,19 +12,48 @@ export const BusinessStampsComponent = ({ logoSrc, stampsQuantity }: { logoSrc: 
 
   return (
     <StyledBusinessStampsView>
-      <div>
-        <img src={logoSrc} />
+      <div className={'logo'}>
+        <Stamp img={logoSrc} isOn={true} />
       </div>
-      // image
-      <div>
+      <Delimeter />
+      <div className={'stamps'}>
         {[...Array(MAX_NUMBER_OF_STAMPS).keys()].map(key => (
           <Stamp img={logoSrc} isOn={key < stampsQuantity} />
         ))}
       </div>
-      // matrix of stamps
-      <div></div> // button
+      <Delimeter />
+
+      <div>
+        <SimpleButton text={'OK'} />
+      </div>
     </StyledBusinessStampsView>
   );
 };
 
-const StyledBusinessStampsView = styled.div``;
+const StyledBusinessStampsView = styled.div`
+  width: 80%;
+  margin: auto;
+  flex-grow: 1;
+
+  & .logo {
+    width: 30%;
+    margin: auto;
+
+    & > img {
+      width: 100%;
+    }
+  }
+
+  & .stamps {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+
+    & > * {
+      width: 15%;
+      margin: 2% 7%;
+    }
+  }
+`;

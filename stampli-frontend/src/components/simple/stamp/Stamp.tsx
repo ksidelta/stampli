@@ -1,13 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import Rectangle from 'react-rectangle';
 
 export const Stamp = ({ img, isOn }: { img: string; isOn: boolean }) => (
-  <StyledStamp>{isOn && <img src={img} />}</StyledStamp>
+  <StyledStamp>
+    <Rectangle>{isOn && <img src={img} />}</Rectangle>
+  </StyledStamp>
 );
 
 const StyledStamp = styled.div`
-  width: 10rem;
-  height: 10rem;
-  border: 1rem solid black;
+  border: 0.2rem solid black;
   border-radius: 50%;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
 `;

@@ -3,11 +3,11 @@ import { Header } from '../components/simple/Header';
 import { faCircle } from '@fortawesome/free-solid-svg-icons/faCircle';
 import { Content } from '../components/simple/container/layout/structure/Content';
 import React, { useContext, useEffect, useState } from 'react';
-import { CenterMiddle } from '../components/simple/container/layout/CenterMiddle';
 import { InjectionContext } from '../components/stated/context/InjectionContext';
 import { useParams } from 'react-router-dom';
 import { endpointMap } from '../services/request/constants/EndpointMap';
 import { BusinessStampsStated } from '../components/complex/business/stamps/BusinessStampsStated';
+import { Center } from '../components/simple/container/layout/align/Center';
 
 export const QRClaimPage = () => {
   const servicesBundle = useContext(InjectionContext);
@@ -27,7 +27,7 @@ export const QRClaimPage = () => {
     <MobilePage>
       <Header title={'Twoje pieczątki'} icon={faCircle} />
       <Content>
-        <CenterMiddle>{qrClaimed && <BusinessStampsStated businessId={parseInt(businessId)} />}</CenterMiddle>
+        <Center>{qrClaimed && <BusinessStampsStated businessId={parseInt(businessId)} />}</Center>
       </Content>
     </MobilePage>
   );
