@@ -8,6 +8,8 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
+import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.server.resource.BearerTokenAuthenticationToken;
 import org.springframework.stereotype.Component;
 
@@ -48,7 +50,7 @@ public class BasicJwtAuthenticationProvider implements AuthenticationProvider {
 
             return authenticated;
         } catch (JWTVerificationException jwtVerificationException) {
-            return null;
+            throw new OAuth2AuthenticationException(new OAuth2Error("Could not verify"));
         }
     }
 

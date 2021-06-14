@@ -20,6 +20,12 @@ export class AuthenticationAwareRequestService implements RequestService {
           Logger.debug(`Found Set-Token in Headers`);
           await this.loginService.setToken(x.headers[headersMap.SET_TOKEN]);
         }
+
+        if (headersMap.WWW_AUTHENTICATE in x.headers) {
+          Logger.debug(`Found WWW-Authenticate in Headers`);
+          await this.loginService.unsetToken();
+        }
+
         return x;
       });
   }
