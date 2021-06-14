@@ -1,6 +1,8 @@
 package com.example.bootstrap.database;
 
 import com.example.infrastructure.db.jdbc.RetryableDataSource;
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.mariadb.jdbc.Driver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -29,13 +31,28 @@ public class JdbcConfiguration {
     @Value("#{systemProperties['mysql.port']}")
     protected String port;
 
-    @Primary
     @Bean
     public DataSource dataSource() {
+
         final var source = new DriverManagerDataSource();
         source.setUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&enablePacketDebug=true");
         source.setDriverClassName(Driver.class.getName());
+
+
         return new RetryableDataSource(source);
+    }
+
+    @Primary
+    @Bean
+    public DataSource pooledDataSource() {
+        final var config = new HikariConfig();
+        config.setJdbcUrl("jdbc:mariadb://" + host + ":" + port + "/" + database + "?user=" + username + "&password=" + password + "&enablePacketDebug=true");
+        config.setDriverClassName(Driver.class.getName());
+        config.addDataSourceProperty("cachePrepStmts", "true");
+        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        
+        return new HikariDataSource(config);
     }
 
 
