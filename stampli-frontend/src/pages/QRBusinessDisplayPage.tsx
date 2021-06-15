@@ -10,8 +10,9 @@ import { Routes } from '../router/routes/Routes';
 import { action } from 'mobx';
 import { map } from 'rxjs/operators';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
+import { observer } from 'mobx-react';
 
-export const QRBusinessDisplayPage = () => {
+export const QRBusinessDisplayPage = observer(() => {
   const servicesBundle = useContext(InjectionContext);
 
   const [qrState] = useState(() => InputState.createStringInputState());
@@ -19,28 +20,34 @@ export const QRBusinessDisplayPage = () => {
   useEffect(() => {}, []);
 
   const updateChallenge = () => {
-    qrState.valueState.value = Routes.challenge.claim(servicesBundle.config.baseUrl, x.businessId, x.issuerId, x.nonce);
+    servicesBundle.businessChallengeService.getChallenge().then(x => {
+      action(() => {
+        qrState.valueState.value = Routes.challenge.claim(
+          servicesBundle.config.baseUrl,
+          x.businessId,
+          x.issuerId,
+          x.nonce
+        );
+      })();
+    });
   };
 
-  const businessName = useEffect(
-    () => (
-      servicesBundle.businessChallengeService.getChallenge().then(x => {
-        action(() => {
-          servicesBundle.socket
-            .watch(`/business/challenge/${x.businessId}/${x.issuerId}`)
-            .pipe(
-              map(content => content.body),
-              map(body => JSON.parse(body))
-            )
-            .subscribe(x => (console.log(x), updateChallenge()));
+  useEffect(() => {
+    (async () => {
+      const businessId = await servicesBundle.businessProfileService.getCurrentBusinessId();
+      const issuerId = servicesBundle.tokenService.getUserId();
 
-          updateChallenge();
-        })();
-      }),
-      undefined
-    ),
-    []
-  );
+      servicesBundle.socket
+        .watch(`/business/challenge/${businessId}/${issuerId}`)
+        .pipe(
+          map(content => content.body),
+          map(body => JSON.parse(body))
+        )
+        .subscribe(x => (console.log(x), updateChallenge()));
+
+      updateChallenge();
+    })();
+  }, []);
 
   return (
     <MobilePage>
@@ -56,7 +63,7 @@ export const QRBusinessDisplayPage = () => {
       </Content>
     </MobilePage>
   );
-};
+});
 
 type StampClaimedSocketDTO = {
   issuerId: number;
