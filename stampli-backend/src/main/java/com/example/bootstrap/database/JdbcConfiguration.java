@@ -51,7 +51,7 @@ public class JdbcConfiguration {
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
 
-        return new HikariDataSource(config);
+        return new RetryableDataSource(new HikariDataSource(config));
     }
 
 
