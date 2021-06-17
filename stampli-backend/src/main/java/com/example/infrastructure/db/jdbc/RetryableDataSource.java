@@ -1,5 +1,6 @@
 package com.example.infrastructure.db.jdbc;
 
+import org.springframework.dao.NonTransientDataAccessException;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class RetryableDataSource implements DataSource {
     }
 
     @Override
-    @Retryable(include = SQLException.class, maxAttempts = 60, backoff = @Backoff(1000))
+    @Retryable(include = {SQLException.class, NonTransientDataAccessException.class}, maxAttempts = 60, backoff = @Backoff(1000))
     public Connection getConnection() throws SQLException {
         return parent.getConnection();
     }

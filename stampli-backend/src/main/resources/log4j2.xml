@@ -11,6 +11,10 @@
             <AppenderRef ref="Console"/>
         </Logger>
 
+        <Logger name="org.springframework.retry" level="TRACE" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
         <!--        <Logger name="org.springframework.web" level="error" additivity="false">-->
         <!--            <AppenderRef ref="Console"/>-->
         <!--        </Logger>-->
