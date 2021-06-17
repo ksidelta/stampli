@@ -30,7 +30,6 @@ public class JdbcConfiguration {
     @Value("#{systemProperties['mysql.port']}")
     protected String port;
 
-    @Bean
     public DataSource dataSource() {
 
         final var source = new DriverManagerDataSource();
