@@ -30,6 +30,7 @@ public class JdbcConfiguration {
     @Value("#{systemProperties['mysql.port']}")
     protected String port;
 
+    @Bean
     public DataSource dataSource() {
 
         final var source = new DriverManagerDataSource();
@@ -49,8 +50,10 @@ public class JdbcConfiguration {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        config.setConnectionTimeout(30 * 1000);
+        config.setInitializationFailTimeout(60 * 1000);
 
-        return new RetryableDataSource(new HikariDataSource(config));
+        return new HikariDataSource(config);
     }
 
 
