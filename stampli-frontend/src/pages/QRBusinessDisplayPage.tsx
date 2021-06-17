@@ -10,7 +10,7 @@ import { Routes } from '../router/routes/Routes';
 import { action } from 'mobx';
 import { map } from 'rxjs/operators';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
-import { observer } from 'mobx-react';
+import { observer, Observer } from 'mobx-react';
 import { ChallengeDTO } from '../services/business/admin/challenge/BusinessChallengeService';
 import { BusinessStampsStated } from '../components/complex/business/stamps/BusinessStampsStated';
 
@@ -66,7 +66,7 @@ export const QRBusinessDisplayPage = observer(() => {
         <CenterMiddle>
           {currentChallenge[0] ? <BusinessStampsStated businessId={currentChallenge[1].businessId}
                                                        userId={currentChallenge[1].claimerId} /> :
-            <observer>{() => <ChallengeQRCode state={qrState} onClick={updateChallenge} />}</observer>}
+            <Observer>{() => <ChallengeQRCode state={qrState} onClick={updateChallenge} />}</Observer>}
         </CenterMiddle>
       </Content>
     </MobilePage>
