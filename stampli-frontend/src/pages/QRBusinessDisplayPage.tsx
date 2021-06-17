@@ -11,13 +11,14 @@ import { action } from 'mobx';
 import { map } from 'rxjs/operators';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons/faArrowLeft';
 import { observer } from 'mobx-react';
+import { ChallengeDTO } from '../services/business/admin/challenge/BusinessChallengeService';
+import { BusinessStampsStated } from '../components/complex/business/stamps/BusinessStampsStated';
 
 export const QRBusinessDisplayPage = observer(() => {
   const servicesBundle = useContext(InjectionContext);
 
   const [qrState] = useState(() => InputState.createStringInputState());
-
-  useEffect(() => {}, []);
+  const [currentChallenge, update] = useState<[false] | [true, StampClaimedSocketDTO]>([false]);
 
   const updateChallenge = () => {
     servicesBundle.businessChallengeService.getChallenge().then(x => {
@@ -43,7 +44,11 @@ export const QRBusinessDisplayPage = observer(() => {
           map(content => content.body),
           map(body => JSON.parse(body))
         )
-        .subscribe(x => (console.log(x), updateChallenge()));
+        .subscribe(x => {
+          console.log(x);
+          update(x);
+          updateChallenge();
+        });
 
       updateChallenge();
     })();
@@ -58,7 +63,7 @@ export const QRBusinessDisplayPage = observer(() => {
       />
       <Content>
         <CenterMiddle>
-          <ChallengeQRCode state={qrState} onClick={updateChallenge} />
+          {currentChallenge[0]?<BusinessStampsStated businessId={currentChallenge[1].businessId} userId={currentChallenge[1].claimerId}/>:<ChallengeQRCode state={qrState} onClick={updateChallenge} />}
         </CenterMiddle>
       </Content>
     </MobilePage>

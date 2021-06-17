@@ -17,9 +17,16 @@ public class StampsController {
     }
 
     @GetMapping("/{businessId}")
-    public StampsInfoDTO getAmountOfStamps(Authentication authentication, @PathVariable Integer businessId) {
+    public StampsInfoDTO getAmountOfMyStamps(Authentication authentication, @PathVariable Integer businessId) {
         final Integer userId = (Integer) authentication.getPrincipal();
 
+        final var quantity = stampService.getNumberOfStamps(userId, businessId);
+
+        return new StampsInfoDTO(quantity);
+    }
+
+    @GetMapping("/{businessId}/{userId}")
+    public StampsInfoDTO getAmountOfStampsForUser(@PathVariable Integer businessId, @PathVariable Integer userId) {
         final var quantity = stampService.getNumberOfStamps(userId, businessId);
 
         return new StampsInfoDTO(quantity);

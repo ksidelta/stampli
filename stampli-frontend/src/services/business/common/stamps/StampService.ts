@@ -1,3 +1,3 @@
 export interface StampService {
-  getStamps(businessId: number): Promise<number>;
+  getStamps(businessId: number, userId: number): Promise<number>;
 }
