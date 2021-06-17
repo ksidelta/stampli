@@ -46,8 +46,9 @@ export const QRBusinessDisplayPage = observer(() => {
         )
         .subscribe(x => {
           console.log(x);
-          update(x);
+          update([true, x]);
           updateChallenge();
+          console.log('SUBARASHI');
         });
 
       updateChallenge();
@@ -63,7 +64,9 @@ export const QRBusinessDisplayPage = observer(() => {
       />
       <Content>
         <CenterMiddle>
-          {currentChallenge[0]?<BusinessStampsStated businessId={currentChallenge[1].businessId} userId={currentChallenge[1].claimerId}/>:<ChallengeQRCode state={qrState} onClick={updateChallenge} />}
+          {currentChallenge[0] ? <BusinessStampsStated businessId={currentChallenge[1].businessId}
+                                                       userId={currentChallenge[1].claimerId} /> :
+            <observer>{() => <ChallengeQRCode state={qrState} onClick={updateChallenge} />}</observer>}
         </CenterMiddle>
       </Content>
     </MobilePage>

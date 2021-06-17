@@ -7,14 +7,17 @@
     </Appenders>
     <Loggers>
 
-        <Logger name="com.zaxxer.hikari" level="TRACE" additivity="false">
+        <Logger name="com.zaxxer.hikari" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
-        <Logger name="org.springframework.retry" level="TRACE" additivity="false">
+        <Logger name="java.sql" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
+        <Logger name="com.zaxxer.hikari" level="DEBUG" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
         <!--        <Logger name="org.springframework.web" level="error" additivity="false">-->
         <!--            <AppenderRef ref="Console"/>-->
         <!--        </Logger>-->
