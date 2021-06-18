@@ -7,7 +7,7 @@ services:
   nginx:
     build: './nginx'
     labels:
-      - "traefik.docker.network=outside"
+      - "traefik.docker.network=stampli"
       - "traefik.enable=true"
       - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
       - "traefik.http.routers.stampli.entrypoints=websecure"
