@@ -29,7 +29,7 @@ export const StatedBusinessPreCreation = observer(({ children }: { children: (id
   });
 
   if (businessState.isRequestInProgress) {
-    return <div>'LOADING KURWA'</div>;
+    return <div>{'LOADING'}</div>;
   }
 
   if (businessState.response?.isSuccessful()) {
