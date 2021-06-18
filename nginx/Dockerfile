@@ -1,3 +1,3 @@
-FROM nginx:1.19.8
+FROM nginx:1.21.0
 EXPOSE 80
 COPY ./nginx.conf /etc/nginx/nginx.conf

@@ -28,6 +28,7 @@ services:
 
   nginx:
     build: './nginx'
+    command: [nginx-debug, '-g', 'daemon off;']
     networks:
       - stampli
 
