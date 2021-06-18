@@ -7,28 +7,6 @@ import { SimpleButton } from '../../../simple/buttons/SimpleButton';
 
 const MAX_NUMBER_OF_STAMPS = 10;
 
-export const BusinessStampsComponent = ({ logoSrc, stampsQuantity }: { logoSrc: string; stampsQuantity: number }) => {
-  useEffect(() => Logger.debug(`${logoSrc} and ${stampsQuantity}`), []);
-
-  return (
-    <StyledBusinessStampsView>
-      <div className={'logo'}>
-        <Stamp img={logoSrc} isOn={true} />
-      </div>
-      <Delimeter />
-      <div className={'stamps'}>
-        {[...Array(MAX_NUMBER_OF_STAMPS).keys()].map(key => (
-          <Stamp img={logoSrc} isOn={key < stampsQuantity} />
-        ))}
-      </div>
-      <Delimeter />
-
-      <div>
-        <SimpleButton text={'OK'} />
-      </div>
-    </StyledBusinessStampsView>
-  );
-};
 
 const StyledBusinessStampsView = styled.div`
   width: 80%;
@@ -57,3 +35,31 @@ const StyledBusinessStampsView = styled.div`
     }
   }
 `;
+
+
+export const BusinessStampsComponent = ({
+                                          logoSrc,
+                                          stampsQuantity,
+                                          onClick
+                                        }: { logoSrc: string; stampsQuantity: number, onClick?: () => void }) => {
+  useEffect(() => Logger.debug(`${logoSrc} and ${stampsQuantity}`), []);
+
+  return (
+    <StyledBusinessStampsView>
+      <div className={'logo'}>
+        <Stamp img={logoSrc} isOn={true} />
+      </div>
+      <Delimeter />
+      <div className={'stamps'}>
+        {[...Array(MAX_NUMBER_OF_STAMPS).keys()].map(key => (
+          <Stamp img={logoSrc} isOn={key < stampsQuantity} key={key} />
+        ))}
+      </div>
+      <Delimeter />
+
+      <div>
+        <SimpleButton text={'OK'} onClick={() => onClick && onClick()} />
+      </div>
+    </StyledBusinessStampsView>
+  );
+};

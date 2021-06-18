@@ -65,7 +65,8 @@ export const QRBusinessDisplayPage = observer(() => {
       <Content>
         <CenterMiddle>
           {currentChallenge[0] ? <BusinessStampsStated businessId={currentChallenge[1].businessId}
-                                                       userId={currentChallenge[1].claimerId} /> :
+                                                       userId={currentChallenge[1].claimerId}
+                                                       onClick={() => update([false])} /> :
             <Observer>{() => <ChallengeQRCode state={qrState} onClick={updateChallenge} />}</Observer>}
         </CenterMiddle>
       </Content>

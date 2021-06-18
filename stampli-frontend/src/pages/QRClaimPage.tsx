@@ -27,7 +27,8 @@ export const QRClaimPage = () => {
     <MobilePage>
       <Header title={'Twoje pieczątki'} icon={faCircle} />
       <Content>
-        <Center>{qrClaimed && <BusinessStampsStated businessId={parseInt(businessId)} />}</Center>
+        <Center>{qrClaimed &&
+        <BusinessStampsStated businessId={parseInt(businessId)} onClick={window.close} />}</Center>
       </Content>
     </MobilePage>
   );

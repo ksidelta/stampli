@@ -3,7 +3,11 @@ import { InjectionContext } from '../../../stated/context/InjectionContext';
 import { BusinessStampsComponent } from './BusinessStampsComponent';
 import Logger from 'js-logger';
 
-export const BusinessStampsStated = ({ businessId, userId }: { businessId: number, userId?: number }) => {
+export const BusinessStampsStated = ({
+                                       businessId,
+                                       userId,
+                                       onClick
+                                     }: { businessId: number, userId?: number, onClick?: () => void }) => {
   const servicesBundle = useContext(InjectionContext);
 
   const stampService = servicesBundle.stampService;
@@ -28,5 +32,5 @@ export const BusinessStampsStated = ({ businessId, userId }: { businessId: numbe
 
   const [loaded, quantityOfStamps, logoSrc] = state;
 
-  return loaded ? <BusinessStampsComponent stampsQuantity={quantityOfStamps} logoSrc={logoSrc} /> : null;
+  return loaded ? <BusinessStampsComponent stampsQuantity={quantityOfStamps} logoSrc={logoSrc} onClick={onClick} /> : null;
 };
