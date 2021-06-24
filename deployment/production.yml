@@ -7,18 +7,16 @@ services:
   nginx:
     build: './nginx'
     labels:
-      - "traefik.docker.network=stampli"
       - "traefik.enable=true"
       - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`)"
       - "traefik.http.routers.stampli.entrypoints=websecure"
       - "traefik.http.routers.stampli.tls=true"
       - "traefik.http.routers.stampli.tls.certresolver=le"
     networks:
-      - outside
+      - common-network
       - stampli
 networks:
-  outside:
-    external:
-      name: common-network
+  common-network:
+    external: true
   stampli:
     internal: true
