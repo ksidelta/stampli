@@ -1,6 +1,9 @@
 version: "3.3"
 services:
   server1:
+    networks:
+      - common-network # It will allow for image to access external internet <shrug>
+      - stampli
     ports:
       - "1995:1995"
   front:
