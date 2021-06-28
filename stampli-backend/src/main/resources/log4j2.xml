@@ -6,20 +6,15 @@
         </Console>
     </Appenders>
     <Loggers>
-
-        <Logger name="com.zaxxer.hikari" level="DEBUG" additivity="false">
+        <Logger name="java.sql" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
-        <Logger name="java.sql" level="DEBUG" additivity="false">
+        <Logger name="com.zaxxer.hikari" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
 
-        <Logger name="com.zaxxer.hikari" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-        </Logger>
-
-        <Logger name="org.springframework.web" level="DEBUG" additivity="false">
+        <Logger name="org.springframework.web" level="ERROR" additivity="false">
             <AppenderRef ref="Console"/>
         </Logger>
         <!--        <Logger name="org.springframework.web" level="error" additivity="false">-->

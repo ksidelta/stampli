@@ -8,6 +8,12 @@
     <artifactId>stampli</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.4.3</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
 
     <name>stampli</name>
 
@@ -270,26 +276,19 @@
             <version>${kotlin.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- This is a hack for testing websockets!!! -->
-        <!-- It is still not possible to test them, however we won't get exceptions -->
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-websocket</artifactId>
-            <version>7.0.52</version>
-            <scope>test</scope>
-        </dependency>
 
         <!-- Logging -->
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.14.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-slf4j-impl</artifactId>
-            <version>2.14.1</version>
-        </dependency>
+        <!--        We are using logback from spring-boot now-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.logging.log4j</groupId>-->
+        <!--            <artifactId>log4j-core</artifactId>-->
+        <!--            <version>2.14.1</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>org.apache.logging.log4j</groupId>-->
+        <!--            <artifactId>log4j-slf4j-impl</artifactId>-->
+        <!--            <version>2.14.1</version>-->
+        <!--        </dependency>-->
 
 
         <!-- Messaging -->
@@ -303,6 +302,29 @@
             <artifactId>spring-jms</artifactId>
         </dependency>
 
+        <!-- Spring Boot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion></exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+
+        <!-- Mock for upgrade strategy, fuck spring and me :3 -->
+        <dependency>
+            <groupId>org.eclipse.jetty.websocket</groupId>
+            <artifactId>websocket-server</artifactId>
+            <version>9.4.40.v20210413</version>
+            <scope>provided</scope>
+        </dependency>
 
     </dependencies>
     <build>
