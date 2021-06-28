@@ -20,6 +20,7 @@ import { StampServiceImpl } from '../business/common/stamps/StampServiceImpl';
 import { PreloadingBusinessInfoService } from '../business/common/business/PreloadingBusinessInfoService';
 import { BasicBusinessInfoService } from '../business/common/business/BasicBusinessInfoService';
 import { RoutingServiceInstance } from '../../router/services/RoutingService';
+import { BasicExternalTokenService } from '../external/token/BasicExternalTokenService';
 
 // TODO make it use env!
 export class BasicServicesFactory implements ServicesFactory {
@@ -35,6 +36,7 @@ export class BasicServicesFactory implements ServicesFactory {
     });
     const tokenService = new LocalStorageTokenService(makeAutoObservable(new BasicTokenService()));
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
+    const externalTokenService = new BasicExternalTokenService(requestService, tokenService);
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);
     const businessSettings = makeAutoObservable(new BasicBusinessSettings('', undefined));
@@ -59,6 +61,7 @@ export class BasicServicesFactory implements ServicesFactory {
       requestService,
       loginService,
       registerService,
+      externalTokenService,
 
       businessSettings,
       businessProfileService,

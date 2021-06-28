@@ -1,8 +1,12 @@
 package com.example.bootstrap.security.adapters;
 
 import com.example.infrastructure.jwt.BasicJwtAuthenticationProvider;
+import com.example.infrastructure.jwt.external.ProhibitExternalProviderFilter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,6 +14,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
+import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
 import org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter;
 import org.springframework.web.filter.ForwardedHeaderFilter;
 
@@ -19,10 +25,13 @@ import java.util.logging.Logger;
 public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
     final static Logger logger = Logger.getLogger(BaseSecurityAdapter.class.toString());
 
-    final BasicJwtAuthenticationProvider basicJwtAuthenticationProvider;
-
-    public BaseSecurityAdapter(BasicJwtAuthenticationProvider basicJwtAuthenticationProvider) {
-        this.basicJwtAuthenticationProvider = basicJwtAuthenticationProvider;
+    final AuthenticationManager authenticationManager;
+    
+    public BaseSecurityAdapter(
+            BasicJwtAuthenticationProvider basicJwtAuthenticationProvider,
+            @Qualifier JwtAuthenticationProvider googleProvider
+    ) {
+        authenticationManager = new ProviderManager(basicJwtAuthenticationProvider, googleProvider);
     }
 
     @Override
@@ -38,10 +47,11 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                         .mvcMatchers(HttpMethod.GET, "/api/business/").authenticated() // it gets business for current user
                         .anyRequest().permitAll()
                 )
-                .oauth2ResourceServer(x->x.jwt().authenticationManager(new ProviderManager(basicJwtAuthenticationProvider)))
+                .oauth2ResourceServer(x -> x.jwt().authenticationManager(authenticationManager))
                 .csrf(AbstractHttpConfigurer::disable) // TODO: Fix it later
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .addFilterBefore(new ForwardedHeaderFilter(), WebAsyncManagerIntegrationFilter.class)
+                .addFilterAfter(new ProhibitExternalProviderFilter(), BearerTokenAuthenticationFilter.class)
                 .sessionManagement(AbstractHttpConfigurer::disable); // We will use JWT so fuck sessions
     }
 

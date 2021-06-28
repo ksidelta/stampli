@@ -5,11 +5,13 @@ import com.example.bootstrap.security.oauth.OAuthConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.web.firewall.DefaultHttpFirewall;
 import org.springframework.security.web.firewall.HttpFirewall;
 
 @Configuration
 @Import({BaseSecurityAdapter.class, OAuthConfig.class})
+@Primary
 public class WebSecurityConfig {
 
     @Bean

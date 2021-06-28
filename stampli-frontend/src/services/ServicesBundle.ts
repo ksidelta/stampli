@@ -11,6 +11,7 @@ import { RxStomp } from '@stomp/rx-stomp';
 import { StampService } from './business/common/stamps/StampService';
 import { BusinessInfoService } from './business/common/business/BusinessInfoService';
 import { RoutingService } from '../router/services/RoutingService';
+import { ExternalTokenService } from './external/token/ExternalTokenService';
 
 export interface ServicesBundle {
   socket: RxStomp;
@@ -21,6 +22,7 @@ export interface ServicesBundle {
   loginService: LoginService;
   registerService: RegisterService;
   tokenService: TokenService;
+  externalTokenService: ExternalTokenService;
 
   businessProfileService: BusinessProfileService;
   businessChallengeService: BusinessChallengeService;

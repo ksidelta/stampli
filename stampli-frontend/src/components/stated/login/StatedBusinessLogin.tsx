@@ -4,11 +4,13 @@ import { InjectionContext } from '../context/InjectionContext';
 
 export const StatedBusinessLogin = () => (
   <InjectionContext.Consumer>
-    {({ config: { openIdConfiguration }, tokenService, loginService, registerService }) => (
+    {({ config: { openIdConfiguration }, tokenService, loginService, registerService, externalTokenService }) => (
       <BusinessLogin
         loginService={loginService}
         openIdConfiguration={openIdConfiguration}
-        onSuccess={tokenService.setToken}
+        onSuccess={(token) => {
+          externalTokenService.regenerateToken(token);
+        }}
         registerService={registerService}
       />
     )}
