@@ -5,7 +5,7 @@ services:
     environment:
       MYSQL_USERNAME: root
       MYSQL_PASSWORD: password
-      MYSQL_HOST: db
+      MYSQL_HOST: stampli_db
       MYSQL_PORT: 3306
       MYSQL_DB: baza
     networks:
@@ -16,7 +16,7 @@ services:
     networks:
       - stampli
 
-  db:
+  stampli_db:
     image: mariadb:10.5.9
     environment:
       MYSQL_USERNAME: root
