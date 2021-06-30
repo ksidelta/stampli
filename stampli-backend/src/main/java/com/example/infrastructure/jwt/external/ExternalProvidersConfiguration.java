@@ -14,7 +14,7 @@ public class ExternalProvidersConfiguration {
     @Bean
     @Qualifier
     JwtAuthenticationProvider googleProvider() {
-        return new JwtAuthenticationProvider(JwtDecoders.fromIssuerLocation("https://accounts.google.com"));
+        return new JwtAuthenticationProvider(JwtDecoders.fromIssuerLocation("accounts.google.com"));
     }
 
     @Bean
