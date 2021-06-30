@@ -551,6 +551,7 @@
                                 <id>stop</id>
                                 <goals>
                                     <goal>stop</goal>
+                                    <goal>remove</goal>
                                 </goals>
                                 <phase>post-integration-test</phase>
                             </execution>

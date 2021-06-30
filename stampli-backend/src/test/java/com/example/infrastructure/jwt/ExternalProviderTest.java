@@ -19,7 +19,7 @@ public class ExternalProviderTest {
     @Autowired
     AuthenticationProvider googleProvider;
 
-    //@Disabled("Unfortunately it is not easy to override the clock :<")
+    @Disabled("Unfortunately it is not easy to override the clock :<")
     @Test
     public void whenCorrectGoogleProviderIsGivenWhenValidatingCorrectTokenThenPasses() {
         final var auth = googleProvider.authenticate(new BearerTokenAuthenticationToken(jwt));
