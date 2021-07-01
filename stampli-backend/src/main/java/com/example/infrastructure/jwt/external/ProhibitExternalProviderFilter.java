@@ -1,5 +1,7 @@
 package com.example.infrastructure.jwt.external;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -17,6 +19,7 @@ import java.io.IOException;
 
 public class ProhibitExternalProviderFilter extends OncePerRequestFilter {
     static private String TOKEN_AUTHENTICATOR_PATH = "/api/authentication/login/token";
+    static private Logger logger = LoggerFactory.getLogger(ProhibitExternalProviderFilter.class.getName());
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -25,10 +28,9 @@ public class ProhibitExternalProviderFilter extends OncePerRequestFilter {
 
         // Only standard JwtAuthenticationProvider which are given for external OAuth servers give JwtAuthenticationToken
         if (authentication instanceof JwtAuthenticationToken) {
-            if (!request.getContextPath().equals(TOKEN_AUTHENTICATOR_PATH)) {
+            if (!request.getServletPath().equals(TOKEN_AUTHENTICATOR_PATH)) {
+                logger.warn("Path {} not matching permitted token login path: {}", request.getServletPath(), TOKEN_AUTHENTICATOR_PATH);
                 response.sendError(HttpServletResponse.SC_FORBIDDEN);
-                response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.TEXT_PLAIN_VALUE);
-                response.getOutputStream().write("External tokens may not be used outside of token login".getBytes());
             }
         }
 
