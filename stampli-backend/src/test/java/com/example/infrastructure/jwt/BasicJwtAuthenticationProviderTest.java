@@ -1,7 +1,7 @@
 package com.example.infrastructure.jwt;
 
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.generator.TokenGeneratorImpl;
 import com.example.infrastructure.jwt.sign.InMemoryAlgorithmHolder;
 import org.hamcrest.MatcherAssert;
@@ -29,7 +29,7 @@ public class BasicJwtAuthenticationProviderTest {
     }
 
     public String createToken() {
-        final var user = new UserAggregate();
+        final var user = new AbstractUserAggregate();
         user.setRoles(Arrays.asList());
         user.setId(1);
         return tokenGenerator.createToken(user);

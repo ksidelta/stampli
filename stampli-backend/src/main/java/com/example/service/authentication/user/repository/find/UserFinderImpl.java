@@ -1,8 +1,9 @@
 package com.example.service.authentication.user.repository.find;
 
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.EmailPasswordUserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
+import com.example.domain.context.authentication.user.entity.TokenUserAggregate;
 import com.example.domain.context.authentication.user.repository.find.UserFinder;
-import com.example.domain.context.authentication.user.entity.UserAuthenticationPasswordEntity;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,19 +25,37 @@ public class UserFinderImpl implements UserFinder {
     }
 
     @Override
-    public UserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
+    @Transactional
+    public AbstractUserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
         try {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(
-                            "SELECT AUTH FROM UserAuthenticationPasswordEntity AUTH  "
-                                    + "LEFT JOIN UserAggregate USER ON USER = AUTH.user "
-                                    + "WHERE USER.email=:email AND AUTH.password=:password"
-                            , UserAuthenticationPasswordEntity.class)
-                    .setParameter("email", username)
+                            "SELECT AUTH FROM EmailPasswordUserAggregate AUTH  "
+                                    + "WHERE AUTH.login=:login AND AUTH.password=:password"
+                            , EmailPasswordUserAggregate.class)
+                    .setParameter("login", username)
                     .setParameter("password", password)
                     .getSingleResult();
 
-            return userAuthenticationPasswordEntity.getUser();
+            return userAuthenticationPasswordEntity;
+        } catch (NoResultException ex) {
+            throw new BadCredentialsException("user not found");
+        }
+    }
+
+    @Override
+    public AbstractUserAggregate findByIssuerAndUid(String issuer, Integer uid) throws BadCredentialsException {
+        try {
+            final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
+                    .createQuery(
+                            "SELECT AUTH FROM TokenUserAggregate AUTH  "
+                                    + "WHERE AUTH.issuer=:issuer AND AUTH.uid=:uid"
+                            , TokenUserAggregate.class)
+                    .setParameter("issuer", issuer)
+                    .setParameter("uid", uid)
+                    .getSingleResult();
+
+            return userAuthenticationPasswordEntity;
         } catch (NoResultException ex) {
             throw new BadCredentialsException("user not found");
         }

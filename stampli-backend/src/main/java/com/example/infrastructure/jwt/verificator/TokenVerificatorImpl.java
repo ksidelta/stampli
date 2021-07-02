@@ -2,7 +2,7 @@ package com.example.infrastructure.jwt.verificator;
 
 import com.auth0.jwt.JWT;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.stereotype.Component;
 
@@ -19,7 +19,7 @@ public class TokenVerificatorImpl implements TokenGenerator {
     }
 
     @Override
-    public String createToken(UserAggregate user) {
+    public String createToken(AbstractUserAggregate user) {
         return JWT.create()
                 .withSubject(user.getId().toString()) // id of User
                 .withIssuer("https://stampli.at.hsp.sh/") // page url

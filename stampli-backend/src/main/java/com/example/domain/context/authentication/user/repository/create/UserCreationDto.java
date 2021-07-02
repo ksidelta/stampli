@@ -4,14 +4,16 @@ import java.util.List;
 
 public class UserCreationDto {
     protected String email;
+    protected String password;
     protected List<String> roles;
 
     public UserCreationDto() {
     }
 
-    public UserCreationDto(String email, List<String> roles) {
+    public UserCreationDto(String email, String password, List<String> roles) {
         this.email = email;
         this.roles = roles;
+        this.password = password;
     }
 
     public String getEmail() {
@@ -28,5 +30,13 @@ public class UserCreationDto {
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

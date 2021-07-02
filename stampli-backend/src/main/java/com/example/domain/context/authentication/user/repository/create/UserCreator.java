@@ -1,7 +1,7 @@
 package com.example.domain.context.authentication.user.repository.create;
 
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 
 public interface UserCreator {
-    void saveUser(UserAggregate user) throws UserDuplicationException;
+    void saveUser(AbstractUserAggregate user) throws UserDuplicationException;
 }

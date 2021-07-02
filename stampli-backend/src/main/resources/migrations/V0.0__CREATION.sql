@@ -1,8 +1,18 @@
 CREATE TABLE users
 (
-    id    INTEGER UNIQUE AUTO_INCREMENT,
-    email VARCHAR(64) NOT NULL,
-    UNIQUE INDEX (email),
+    DTYPE    VARCHAR(31) NOT NULL,
+    id       INTEGER UNIQUE AUTO_INCREMENT,
+
+    login    VARCHAR(64),
+    password VARCHAR(16),
+
+    issuer   VARCHAR(64),
+    uid      INTEGER,
+
+
+    UNIQUE INDEX (login),
+    UNIQUE INDEX (uid, issuer),
+
     PRIMARY KEY (id)
 );
 
@@ -14,12 +24,3 @@ CREATE TABLE user_roles
     PRIMARY KEY (userId, name),
     FOREIGN KEY (userId) REFERENCES users (id)
 );
-
-CREATE TABLE user_authentication_password
-(
-    userId   INTEGER UNIQUE,
-    password VARCHAR(16) NOT NULL,
-
-    PRIMARY KEY (userId),
-    FOREIGN KEY (userId) REFERENCES users (id)
-)

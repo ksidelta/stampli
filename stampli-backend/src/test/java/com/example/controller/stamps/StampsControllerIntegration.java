@@ -1,7 +1,7 @@
 package com.example.controller.stamps;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.service.stamps.service.StampService;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,7 +66,7 @@ public class StampsControllerIntegration {
     }
 
     public String createToken() {
-        final var user = new UserAggregate();
+        final var user = new AbstractUserAggregate();
         user.setRoles(Arrays.asList());
         user.setId(1);
         return tokenGenerator.createToken(user);

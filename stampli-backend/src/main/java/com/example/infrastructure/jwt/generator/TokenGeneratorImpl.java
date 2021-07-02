@@ -1,7 +1,7 @@
 package com.example.infrastructure.jwt.generator;
 
 import com.auth0.jwt.JWT;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -21,7 +21,7 @@ public class TokenGeneratorImpl implements TokenGenerator {
     }
 
     @Override
-    public String createToken(UserAggregate user) {
+    public String createToken(AbstractUserAggregate user) {
         return JWT.create()
                 .withSubject(user.getId().toString()) // id of User
                 .withIssuer("https://stampli.at.hsp.sh/") // page url

@@ -1,12 +1,11 @@
 package com.example.service.authentication.user.repository.find;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.context.authentication.authenticator.UserPasswordAuthenticationDto;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.common.db.AbstractDatabaseTest;
+import com.example.domain.context.authentication.user.entity.EmailPasswordUserAggregate;
 import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
 import com.example.domain.context.authentication.user.repository.create.UserCreator;
 import com.example.domain.context.authentication.user.repository.find.UserFinder;
-import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
 
@@ -23,11 +21,7 @@ import static org.hamcrest.Matchers.*;
 
 @ExtendWith(SpringExtension.class)
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
-@Transactional
-public class UserFinderImplIntegration {
-    @Autowired
-    protected SessionFactory sessionFactory;
-
+public class UserFinderImplIntegration extends AbstractDatabaseTest {
     @Qualifier("userFinder")
     @Autowired
     UserFinder userFinder;
@@ -38,29 +32,20 @@ public class UserFinderImplIntegration {
 
     @BeforeEach
     public void createUser() {
-        var user = new UserCreationDto("user@is.existent", Arrays.asList("USER"));
-        var authenticationDto = new UserPasswordAuthenticationDto("password");
+        var user = new UserCreationDto("user@is.existent", "password", Arrays.asList("USER"));
 
-        var userToSave = UserAggregate.createUser(user);
-        userToSave.addPasswordAuthentication(authenticationDto);
+        var userToSave = EmailPasswordUserAggregate.createUser(user);
 
         userCreator.saveUser(userToSave);
     }
 
     @BeforeEach
     public void createOtherUser() {
-        var user = new UserCreationDto("other@is.existent", Arrays.asList("USER"));
-        var authenticationDto = new UserPasswordAuthenticationDto("other-password");
+        var user = new UserCreationDto("other@is.existent", "other-password", Arrays.asList("USER"));
 
-        var userToSave = UserAggregate.createUser(user);
-        userToSave.addPasswordAuthentication(authenticationDto);
+        var userToSave = EmailPasswordUserAggregate.createUser(user);
 
         userCreator.saveUser(userToSave);
-    }
-
-    @AfterEach
-    public void removeUsers() {
-        sessionFactory.getCurrentSession().getTransaction().rollback();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.example.service.authentication.user.repository;
 
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.domain.context.authentication.user.repository.UserRepository;
 import com.example.domain.context.authentication.user.repository.create.UserCreator;
 import com.example.domain.context.authentication.user.repository.create.UserDuplicationException;
@@ -23,12 +23,17 @@ public class UserRepositoryFacade implements UserRepository {
 
 
     @Override
-    public UserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
+    public AbstractUserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException {
         return userFinder.findByUsernameAndPassword(username, password);
     }
 
     @Override
-    public void saveUser(UserAggregate userToSave) throws UserDuplicationException {
+    public AbstractUserAggregate findByIssuerAndUid(String issuer, Integer uid) throws BadCredentialsException {
+        return userFinder.findByIssuerAndUid(issuer, uid);
+    }
+
+    @Override
+    public void saveUser(AbstractUserAggregate userToSave) throws UserDuplicationException {
         userCreator.saveUser(userToSave);
     }
 }

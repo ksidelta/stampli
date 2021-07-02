@@ -1,7 +1,7 @@
 package com.example.infrastructure.jwt.generator;
 
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 
 public interface TokenGenerator {
-    String createToken(UserAggregate user);
+    String createToken(AbstractUserAggregate user);
 }

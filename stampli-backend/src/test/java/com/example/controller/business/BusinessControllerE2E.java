@@ -3,7 +3,7 @@ package com.example.controller.business;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.domain.context.business.entity.business.BusinessAggregate;
 import com.example.domain.context.business.entity.owner.Owner;
 import com.example.domain.context.business.repository.BusinessRepository;
@@ -89,7 +89,7 @@ public class BusinessControllerE2E extends AbstractDatabaseTest {
     }
 
     public String createToken() {
-        final var user = new UserAggregate();
+        final var user = new AbstractUserAggregate();
         user.setRoles(Arrays.asList());
         user.setId(1);
         return tokenGenerator.createToken(user);

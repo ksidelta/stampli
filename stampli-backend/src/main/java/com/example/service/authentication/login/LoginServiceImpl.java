@@ -23,7 +23,8 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
-    public String login(String issuer, Integer id) {
-        return null;
+    public String login(String issuer, Integer uid) {
+        var user = this.userRepository.findByIssuerAndUid(issuer, uid);
+        return tokenGenerator.createToken(user);
     }
 }

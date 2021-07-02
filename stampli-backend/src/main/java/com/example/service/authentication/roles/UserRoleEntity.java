@@ -1,6 +1,6 @@
 package com.example.service.authentication.roles;
 
-import com.example.domain.context.authentication.user.entity.UserAggregate;
+import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,15 +10,15 @@ import java.util.Objects;
 class UserAndRoleNameUniqueId implements Serializable {
     @ManyToOne
     @JoinColumn(name = "userId")
-    protected UserAggregate user;
+    protected AbstractUserAggregate user;
 
     protected String name;
 
-    public UserAggregate getUser() {
+    public AbstractUserAggregate getUser() {
         return user;
     }
 
-    public void setUser(UserAggregate user) {
+    public void setUser(AbstractUserAggregate user) {
         this.user = user;
     }
 
@@ -53,12 +53,12 @@ public class UserRoleEntity {
     public UserRoleEntity() {
     }
 
-    public UserRoleEntity(UserAggregate user, String name) {
+    public UserRoleEntity(AbstractUserAggregate user, String name) {
         id.setUser(user);
         id.setName(name);
     }
 
-    public void setUser(UserAggregate user) {
+    public void setUser(AbstractUserAggregate user) {
         this.id.setUser(user);
     }
 
