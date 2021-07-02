@@ -21,4 +21,9 @@ public class LoginServiceImpl implements LoginService {
         var user = this.userRepository.findByUsernameAndPassword(email, password);
         return tokenGenerator.createToken(user);
     }
+
+    @Override
+    public String login(String issuer, Integer id) {
+        return null;
+    }
 }

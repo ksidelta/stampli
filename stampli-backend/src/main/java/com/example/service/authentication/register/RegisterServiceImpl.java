@@ -25,4 +25,9 @@ public class RegisterServiceImpl implements RegisterService {
         userRepository.saveUser(user);
         return user.getId();
     }
+
+    @Override
+    public void registerUser(String issuer, Integer id) {
+
+    }
 }
