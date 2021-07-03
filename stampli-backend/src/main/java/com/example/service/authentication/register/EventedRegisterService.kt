@@ -14,4 +14,12 @@ open class EventedRegisterService(val registerService: RegisterService, val even
 
         return userId;
     }
+
+    override fun registerUserWithToken(issuer: String?, id: String?): Int {
+        val userId = registerService.registerUserWithToken(issuer, id)
+
+        eventPublisher.publishEvent(UserRegisteredEvent(userId));
+
+        return userId;
+    }
 }
