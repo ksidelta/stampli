@@ -4,10 +4,10 @@ CREATE TABLE users
     id       INTEGER UNIQUE AUTO_INCREMENT,
 
     login    VARCHAR(64),
-    password VARCHAR(16),
+    password VARCHAR(64),
 
     issuer   VARCHAR(64),
-    uid      INTEGER,
+    uid      VARCHAR(64),
 
 
     UNIQUE INDEX (login),
