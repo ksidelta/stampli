@@ -31,7 +31,7 @@ public class TokenUserAggregate extends AbstractUserAggregate {
 
     public static AbstractUserAggregate createUser(UserTokenDto userTokenDto) {
         var user = new TokenUserAggregate();
-        user.setId(userTokenDto.getUid());
+        user.setUid(userTokenDto.getUid());
         user.setIssuer(userTokenDto.getIssuer());
         user.setRoles(userTokenDto.getRoles().stream()
                 .map(x -> new UserRoleEntity(user, x))
