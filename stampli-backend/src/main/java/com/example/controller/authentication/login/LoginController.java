@@ -38,7 +38,7 @@ public class LoginController {
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
         final var attributes = jwtAuthenticationToken.getTokenAttributes();
 
-        final var token = loginService.loginOrRegister((String) attributes.get(JwtClaimNames.ISS), (Integer) attributes.get(JwtClaimNames.SUB));
+        final var token = loginService.loginOrRegister((String) attributes.get(JwtClaimNames.ISS), Integer.parseInt((String) attributes.get(JwtClaimNames.SUB)));
 
         return ResponseEntity.ok().header("Set-Token", token).build();
     }
