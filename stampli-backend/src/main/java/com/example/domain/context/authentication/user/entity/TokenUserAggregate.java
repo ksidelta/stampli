@@ -9,15 +9,15 @@ import java.util.stream.Collectors;
 @Entity
 public class TokenUserAggregate extends AbstractUserAggregate {
 
-    protected Integer uid;
+    protected String uid;
 
     protected String issuer;
 
-    public Integer getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(Integer uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 

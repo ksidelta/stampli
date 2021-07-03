@@ -5,5 +5,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 
 public interface UserFinder {
     AbstractUserAggregate findByUsernameAndPassword(String username, String password) throws BadCredentialsException;
-    AbstractUserAggregate findByIssuerAndUid(String issuer, Integer uid) throws BadCredentialsException;
+
+    AbstractUserAggregate findByIssuerAndUid(String issuer, String uid) throws BadCredentialsException;
 }

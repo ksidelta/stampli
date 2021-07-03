@@ -36,13 +36,13 @@ public class LoginServiceImpl implements LoginService {
      * @return JWT token
      */
     @Override
-    public String loginOrRegister(String issuer, Integer uid) {
+    public String loginOrRegister(String issuer, String uid) {
         AbstractUserAggregate user;
 
         try {
             user = this.userRepository.findByIssuerAndUid(issuer, uid);
         } catch (BadCredentialsException ex) {
-            registerService.registerUser(issuer, uid);
+            registerService.registerUserWithToken(issuer, uid);
             user = this.userRepository.findByIssuerAndUid(issuer, uid);
         }
         return tokenGenerator.createToken(user);

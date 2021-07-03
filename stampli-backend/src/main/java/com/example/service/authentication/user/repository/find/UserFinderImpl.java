@@ -44,7 +44,7 @@ public class UserFinderImpl implements UserFinder {
     }
 
     @Override
-    public AbstractUserAggregate findByIssuerAndUid(String issuer, Integer uid) throws BadCredentialsException {
+    public AbstractUserAggregate findByIssuerAndUid(String issuer, String uid) throws BadCredentialsException {
         try {
             final var userAuthenticationPasswordEntity = sessionFactory.getCurrentSession()
                     .createQuery(

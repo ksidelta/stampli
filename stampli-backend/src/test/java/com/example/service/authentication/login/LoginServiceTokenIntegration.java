@@ -19,7 +19,7 @@ public class LoginServiceTokenIntegration extends AbstractDatabaseTest {
     final String ISSUER = "accounts.google.com";
     final String OTHER_ISSUER = "accounts.fb.com";
 
-    final Integer UID = 1;
+    final String UID = "1";
 
     @Autowired
     LoginService loginService;

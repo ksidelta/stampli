@@ -28,7 +28,7 @@ public class RegisterServiceImpl implements RegisterService {
 
     @Override
     @Transactional
-    public Integer registerUser(String issuer, Integer uid) throws UserDuplicationException {
+    public Integer registerUserWithToken(String issuer, String uid) throws UserDuplicationException {
         var user = TokenUserAggregate.createUser(new UserTokenDto(issuer, uid, Arrays.asList(UserRoles.USER.toString())));
         userRepository.saveUser(user);
         return user.getId();

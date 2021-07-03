@@ -28,7 +28,7 @@ public class UserRepositoryFacade implements UserRepository {
     }
 
     @Override
-    public AbstractUserAggregate findByIssuerAndUid(String issuer, Integer uid) throws BadCredentialsException {
+    public AbstractUserAggregate findByIssuerAndUid(String issuer, String uid) throws BadCredentialsException {
         return userFinder.findByIssuerAndUid(issuer, uid);
     }
 
