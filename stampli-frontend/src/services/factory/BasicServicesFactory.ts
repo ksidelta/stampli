@@ -36,7 +36,7 @@ export class BasicServicesFactory implements ServicesFactory {
     });
     const tokenService = new LocalStorageTokenService(makeAutoObservable(new BasicTokenService()));
     const requestService = new AuthenticationAwareRequestService(new BasicRequestService(config), tokenService);
-    const externalTokenService = new BasicExternalTokenService(requestService, tokenService);
+    const externalTokenService = new BasicExternalTokenService(config, tokenService);
     const loginService = new BasicLoginService(requestService);
     const registerService = new BasicRegisterService(requestService);
     const businessSettings = makeAutoObservable(new BasicBusinessSettings('', undefined));
