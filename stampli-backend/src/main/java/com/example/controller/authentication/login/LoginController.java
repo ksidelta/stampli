@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -34,7 +35,12 @@ public class LoginController {
 
     @PostMapping("/token")
     public ResponseEntity<Object> token(Authentication authentication) {
-        return ResponseEntity.accepted().build();
+        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
+        final var attributes = jwtAuthenticationToken.getTokenAttributes();
+
+        final var token = loginService.loginOrRegister((String) attributes.get(JwtClaimNames.ISS), (Integer) attributes.get(JwtClaimNames.SUB));
+
+        return ResponseEntity.ok().header("Set-Token", token).build();
     }
 }
 
