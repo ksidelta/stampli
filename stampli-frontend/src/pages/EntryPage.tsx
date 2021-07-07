@@ -11,7 +11,7 @@ export const EntryPage = () => (
     <Header title={'W czym mogę Ci dzisiaj pomóc?'} icon={faCircle} />
     <Content>
       <IconButton
-        text={'Chcę zacząć zbierać pieczątki!'}
+        text={'Zeskanuj pieczątke!'}
         icon={faArrowRight}
         onClick={history => history.goToScanner()}
       />
