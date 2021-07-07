@@ -2,7 +2,8 @@ import { createBrowserHistory, History } from 'history';
 import { Routes } from '../routes/Routes';
 
 export class RoutingService {
-  constructor(public history: History) {}
+  constructor(public history: History) {
+  }
 
   goToBusinessOptionsPage() {
     this.history.push(Routes.business.root);
@@ -18,6 +19,10 @@ export class RoutingService {
 
   goToHome() {
     this.history.push(Routes.home);
+  }
+
+  goToScanner() {
+    this.history.push(Routes.scanner);
   }
 }
 

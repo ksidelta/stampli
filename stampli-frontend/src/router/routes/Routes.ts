@@ -11,5 +11,6 @@ export const Routes = {
         ? new URL(`/challenge/claim/${businessId}/${issuerId}/${nonce}/`, baseUrl).href
         : `/challenge/claim/${businessId}/${issuerId}/${nonce}/`
   },
-  home: '/'
+  home: '/',
+  scanner: '/scanner'
 };

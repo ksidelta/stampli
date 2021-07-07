@@ -10,7 +10,11 @@ export const EntryPage = () => (
   <MobilePage>
     <Header title={'W czym mogę Ci dzisiaj pomóc?'} icon={faCircle} />
     <Content>
-      <IconButton text={'Chcę zacząć zbierać pieczątki!'} icon={faArrowRight} />
+      <IconButton
+        text={'Chcę zacząć zbierać pieczątki!'}
+        icon={faArrowRight}
+        onClick={history => history.goToScanner()}
+      />
       <IconButton
         text={'Chcę rozdawać pieczątki!'}
         icon={faArrowRight}
