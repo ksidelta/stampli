@@ -20,7 +20,6 @@ export const EntryPage = () => (
         icon={faArrowRight}
         onClick={history => history.goToBusinessOptionsPage()}
       />
-      <IconButton text={'Chcę dowiedzieć się więcej!'} icon={faArrowRight} />
     </Content>
   </MobilePage>
 );
