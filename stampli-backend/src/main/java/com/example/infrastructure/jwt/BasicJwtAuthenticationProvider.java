@@ -3,6 +3,7 @@ package com.example.infrastructure.jwt;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.example.infrastructure.env.EnvironmentConfiguration;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -19,8 +20,11 @@ import java.util.Collections;
 public class BasicJwtAuthenticationProvider implements AuthenticationProvider {
     AlgorithmHolder algorithmHolder;
 
-    public BasicJwtAuthenticationProvider(AlgorithmHolder algorithmHolder) {
+    protected EnvironmentConfiguration env;
+
+    public BasicJwtAuthenticationProvider(AlgorithmHolder algorithmHolder, EnvironmentConfiguration env) {
         this.algorithmHolder = algorithmHolder;
+        this.env = env;
     }
 
     @Override
@@ -30,7 +34,7 @@ public class BasicJwtAuthenticationProvider implements AuthenticationProvider {
 
         try {
             DecodedJWT decodedToken = JWT.require(algorithmHolder.getAlgorithm())
-                    .withIssuer("https://stampli.at.hsp.sh/")
+                    .withIssuer(this.env.getBaseHost())
                     .build()
                     .verify(textToken);
 

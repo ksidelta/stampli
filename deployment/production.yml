@@ -4,17 +4,19 @@ services:
     networks:
       - common-network # It will allow for image to access external internet <shrug>
       - stampli
+    environment:
+      BASE_HOST: "https://test.stampli.pl/" 
     ports:
       - "1995:1995"
   front:
     environment:
-      BASE_URL: 'https://stampli.at.hsp.sh'
+      BASE_URL: 'https://test.stampli.pl'
       OAUTH__GOOGLE__CLIENT_ID: '155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com'
   nginx:
     build: './nginx'
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.stampli.rule=Host(`stampli.at.hsp.sh`) || Host(`test.stampli.pl`)"
+      - "traefik.http.routers.stampli.rule=Host(`test.stampli.pl`)"
       - "traefik.http.routers.stampli.entrypoints=websecure"
       - "traefik.http.routers.stampli.tls=true"
       - "traefik.http.routers.stampli.tls.certresolver=le"

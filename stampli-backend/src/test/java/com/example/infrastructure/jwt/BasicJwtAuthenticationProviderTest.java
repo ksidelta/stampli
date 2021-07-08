@@ -1,5 +1,6 @@
 package com.example.infrastructure.jwt;
 
+import com.example.infrastructure.env.EnvironmentConfiguration;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.generator.TokenGeneratorImpl;
@@ -14,9 +15,15 @@ import static org.hamcrest.CoreMatchers.equalTo;
 
 public class BasicJwtAuthenticationProviderTest {
     InMemoryAlgorithmHolder inMemoryAlgorithmHolder = new InMemoryAlgorithmHolder("XD");
-    TokenGenerator tokenGenerator = new TokenGeneratorImpl(inMemoryAlgorithmHolder);
+    EnvironmentConfiguration environmentConfiguration = new EnvironmentConfiguration();
+    TokenGenerator tokenGenerator = new TokenGeneratorImpl(inMemoryAlgorithmHolder, environmentConfiguration);
 
-    BasicJwtAuthenticationProvider basicJwtAuthenticationProvider = new BasicJwtAuthenticationProvider(inMemoryAlgorithmHolder);
+
+    {
+        environmentConfiguration.setBaseHost("https://stampli.pl");
+    }
+
+    BasicJwtAuthenticationProvider basicJwtAuthenticationProvider = new BasicJwtAuthenticationProvider(inMemoryAlgorithmHolder, environmentConfiguration);
 
     @Test
     public void test() {

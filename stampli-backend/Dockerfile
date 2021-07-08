@@ -17,6 +17,7 @@ RUN echo 'export JPDA_ADDRESS=*:1995;      \
           -Dmysql.db=$MYSQL_DB             \
           -Dmysql.username=$MYSQL_USERNAME \
           -Dmysql.password=$MYSQL_PASSWORD \
+          -Dbase.host=$BASE_HOST           \
           " \
 ' > /usr/local/tomcat/bin/setenv.sh
 
