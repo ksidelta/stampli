@@ -20,7 +20,7 @@ export const BusinessLogin = ({
   onSuccess: (token: string) => void;
 }) => (
   <ContextForm
-    definitions={[{ name: 'user', initialValue: 'twoj stary' }, { name: 'password' }]}
+    definitions={[{ name: 'user', initialValue: '' }, { name: 'password' }]}
     onSubmit={x => {
       x.submit(x.user, x.password); // it comes from button values
     }}>

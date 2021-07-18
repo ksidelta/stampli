@@ -19,7 +19,7 @@ export const ImageUploadComponent = ({ onUpload, imageUrl }: { onUpload: OnUploa
           {({ onImageUpload }) => (
             <ImageHolder onClick={onImageUpload}>
               <Rectangle aspectRatio={[1, 1]}>
-                <CenterMiddle>{imageUrl ? <img src={imageUrl} alt={'nullo'} /> : 'KURWA'}</CenterMiddle>
+                <CenterMiddle>{imageUrl ? <img src={imageUrl} alt={'nullo'} /> : '...'}</CenterMiddle>
               </Rectangle>
             </ImageHolder>
           )}
