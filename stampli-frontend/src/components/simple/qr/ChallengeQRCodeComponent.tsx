@@ -3,6 +3,6 @@ import React from 'react';
 
 export const ChallengeQRCodeComponent = ({ value, onClick }: { value: string; onClick: () => void }) => (
   <div onClick={onClick}>
-    <QRCode value={value} />
+    <QRCode style={{ width: '30rem', height: '30rem' }} value={value} />
   </div>
 );

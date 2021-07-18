@@ -22,7 +22,7 @@ export const BusinessStampsStated = ({
       Promise.all([stampService.getStamps(businessId, userId || tokenService.getUserId() || 0), businessInfoService.getLogoSrc(businessId)]).then(
         ([quantityOfStamps, logoSrc]) => {
           Logger.debug(`quantity: ${quantityOfStamps} and srd: ${logoSrc}`);
-          updateState([true, quantityOfStamps, logoSrc]);
+          updateState([true, quantityOfStamps, logoSrc] as [boolean, number, string]);
         }
       ),
         undefined
