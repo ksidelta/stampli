@@ -26,7 +26,7 @@ public class LoginController {
     @PostMapping("/basic")
     public ResponseEntity<Object> login(@RequestBody EmailAndPasswordDto emailAndPasswordDto) {
         try {
-            final var token = loginService.login(emailAndPasswordDto.getEmail(), emailAndPasswordDto.getPassword());
+            final var token = loginService.login(emailAndPasswordDto.email(), emailAndPasswordDto.password());
             return ResponseEntity.ok().header("Set-Token", token).build();
         } catch (BadCredentialsException badCredentialsException) {
             return ResponseEntity.notFound().build();

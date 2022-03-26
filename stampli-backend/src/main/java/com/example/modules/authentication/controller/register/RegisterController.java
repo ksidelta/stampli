@@ -24,7 +24,7 @@ public class RegisterController {
     @PostMapping("basic")
     public ResponseEntity<Object> registerUser(@RequestBody EmailAndPasswordDto emailAndPasswordDto) {
         try {
-            registerService.registerUser(emailAndPasswordDto.getEmail(), emailAndPasswordDto.getPassword());
+            registerService.registerUser(emailAndPasswordDto.email(), emailAndPasswordDto.password());
         } catch (UserDuplicationException userDuplicationException) {
             return ResponseEntity.status(CONFLICT).build();
         }

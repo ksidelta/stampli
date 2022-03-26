@@ -20,7 +20,7 @@ public class ChallengeController {
     @ResponseStatus(HttpStatus.CREATED)
     public AcquireTokenDto acquireToken(Authentication authentication, @PathVariable Integer businessId) {
         final var acquiredToken = challengeService.acquireToken((Integer) authentication.getPrincipal(), businessId);
-        return new AcquireTokenDto(acquiredToken.getIssuerId(), acquiredToken.getBusinessId(), acquiredToken.getChallengeNonce());
+        return new AcquireTokenDto(acquiredToken.issuerId(), acquiredToken.businessId(), acquiredToken.challengeNonce());
     }
 
     @PostMapping(path = "/{issuerId}")
@@ -35,9 +35,9 @@ public class ChallengeController {
                 issuerId,
                 businessId,
                 (Integer) authentication.getPrincipal(),
-                body.getNonce()
+                body.nonce()
         ));
 
-        return new ClaimProofDto(claimProof.getIssuerId(), claimProof.getBusinessId(), claimProof.getClaimerId());
+        return new ClaimProofDto(claimProof.issuerId(), claimProof.businessId(), claimProof.claimerId());
     }
 }

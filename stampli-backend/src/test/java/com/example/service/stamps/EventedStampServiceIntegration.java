@@ -54,7 +54,7 @@ public class EventedStampServiceIntegration extends AbstractDatabaseTest {
         final var token = challengeService.acquireToken(adminId, businessId);
         final var userId = registerService.registerUser("user@mail.com", "pusia1");
 
-        challengeService.claimToken(new ChallengingTokenDTO(adminId, businessId, userId, token.getChallengeNonce()));
+        challengeService.claimToken(new ChallengingTokenDTO(adminId, businessId, userId, token.challengeNonce()));
 
         MatcherAssert.assertThat(stampService.getNumberOfStamps(userId, businessId), equalTo(1));
     }

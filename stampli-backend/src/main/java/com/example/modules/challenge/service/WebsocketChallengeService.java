@@ -27,7 +27,7 @@ public class WebsocketChallengeService implements ChallengeService {
     public ClaimProof claimToken(ChallengingTokenDTO challengingToken) {
         final var claimedToken = this.challengeService.claimToken(challengingToken);
 
-        final var destination = "/business/challenge/" + challengingToken.getBusinessId() + "/" + challengingToken.getIssuerId();
+        final var destination = "/business/challenge/" + challengingToken.businessId() + "/" + challengingToken.issuerId();
         template.convertAndSend(destination, challengingToken);
 
         return claimedToken;

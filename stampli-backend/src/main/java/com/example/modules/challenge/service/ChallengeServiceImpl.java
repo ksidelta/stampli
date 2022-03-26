@@ -42,12 +42,12 @@ public class ChallengeServiceImpl implements ChallengeService {
     @Transactional
     public ClaimProof claimToken(ChallengingTokenDTO challengingToken) {
         final var challenge = challengeRepository.findByIssuerAndBusiness(
-                challengingToken.getIssuerId(),
-                challengingToken.getBusinessId()
+                challengingToken.issuerId(),
+                challengingToken.businessId()
         ).get();
 
         final var claimedToken =
-                challenge.claimBy(challengingToken.getClaimerId(), challengingToken.getChallengeNonce());
+                challenge.claimBy(challengingToken.claimerId(), challengingToken.challengeNonce());
 
         challengeRepository.save(challenge);
 

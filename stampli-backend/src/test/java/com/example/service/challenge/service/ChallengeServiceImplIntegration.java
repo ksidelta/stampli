@@ -63,12 +63,12 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
         final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
 
         final var proof = challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.challengeNonce())
         );
 
-        assertThat(proof.getIssuerId(), equalTo(ISSUER_ID));
-        assertThat(proof.getBusinessId(), equalTo(BUSINESS_ID));
-        assertThat(proof.getClaimerId(), equalTo(CLAIMER_ID));
+        assertThat(proof.issuerId(), equalTo(ISSUER_ID));
+        assertThat(proof.businessId(), equalTo(BUSINESS_ID));
+        assertThat(proof.claimerId(), equalTo(CLAIMER_ID));
     }
 
     @Test
@@ -76,11 +76,11 @@ public class ChallengeServiceImplIntegration extends AbstractDatabaseTest {
         challengeService.createChallengeAggregate(ISSUER_ID, BUSINESS_ID);
         final var token = challengeService.acquireToken(ISSUER_ID, BUSINESS_ID);
         challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.challengeNonce())
         );
 
         assertThrows(IllegalStateException.class, () -> challengeService.claimToken(
-                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.getChallengeNonce())
+                new ChallengingTokenDTO(ISSUER_ID, BUSINESS_ID, CLAIMER_ID, token.challengeNonce())
         ));
     }
 }

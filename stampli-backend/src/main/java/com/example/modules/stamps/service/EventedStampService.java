@@ -15,11 +15,11 @@ public class EventedStampService {
 
     @EventListener
     public void onChallengeClaim(ChallengeClaimedEvent challengeClaimedEvent) {
-        this.service.addStamp(challengeClaimedEvent.getClaimerId(), challengeClaimedEvent.getBusinessId());
+        this.service.addStamp(challengeClaimedEvent.claimerId(), challengeClaimedEvent.businessId());
     }
 
     @EventListener
     public void onRegisteredUser(UserRegisteredEvent userRegisteredEvent) {
-        this.service.createStampsAggregateForClient(userRegisteredEvent.getUserId());
+        this.service.createStampsAggregateForClient(userRegisteredEvent.userId());
     }
 }
