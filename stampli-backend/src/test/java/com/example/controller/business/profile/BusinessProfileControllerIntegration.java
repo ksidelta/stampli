@@ -2,8 +2,8 @@ package com.example.controller.business.profile;
 
 import com.example.modules.business.controller.settings.BusinessProfileController;
 import com.example.modules.business.domain.BusinessAggregate;
-import com.example.modules.business.domain.profile.BusinessName;
 import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
+import com.example.modules.business.domain.profile.BusinessProfile;
 import com.example.modules.business.service.profile.BusinessProfileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -55,7 +55,7 @@ public class BusinessProfileControllerIntegration {
 
     @Test
     public void whenNameIsGotThenItIsProperlyReturned() throws Exception {
-        Mockito.when(businessProfileService.getName(1)).thenReturn(new BusinessName("name"));
+        Mockito.when(businessProfileService.getName(1)).thenReturn(new BusinessProfile.BusinessName("name"));
 
         mockMvc.perform(get("/api/business/1/name").accept("plain/text"))
                 .andExpect(status().is(200))

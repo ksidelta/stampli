@@ -3,6 +3,8 @@ package com.example.infrastructure.db;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.ClassMetadata;
+import org.springframework.core.type.filter.AbstractClassTestingTypeFilter;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 import org.springframework.core.type.filter.RegexPatternTypeFilter;
 import org.springframework.stereotype.Component;
@@ -35,10 +37,14 @@ public class DbTestUtil {
         scanner.addIncludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Aggregate.*")));
         scanner.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Abstract.*")));
         scanner.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Repository.*")));
-        // scanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class)); //
+        scanner.addExcludeFilter(new AbstractClassTestingTypeFilter() {
+            @Override
+            protected boolean match(ClassMetadata metadata) {
+                return metadata.getEnclosingClassName() != null;
+            }
+        });
 
         final Set<BeanDefinition> beans = scanner.findCandidateComponents("com.example");
-
 
 
         beans.forEach(bean -> {

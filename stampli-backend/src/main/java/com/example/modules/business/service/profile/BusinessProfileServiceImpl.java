@@ -1,6 +1,6 @@
 package com.example.modules.business.service.profile;
 
-import com.example.modules.business.domain.profile.BusinessName;
+import com.example.modules.business.domain.profile.BusinessProfile;
 import com.example.modules.business.service.profile.image.BusinessProfileLogoService;
 import com.example.modules.business.service.profile.name.BusinessProfileNameService;
 import org.springframework.stereotype.Service;
@@ -25,7 +25,7 @@ public class BusinessProfileServiceImpl implements BusinessProfileService {
         businessProfileNameService.updateName(businessId, name);
     }
 
-    public BusinessName getName(Integer businessId) {
+    public BusinessProfile.BusinessName getName(Integer businessId) {
         return businessProfileNameService.getName(businessId);
     }
 

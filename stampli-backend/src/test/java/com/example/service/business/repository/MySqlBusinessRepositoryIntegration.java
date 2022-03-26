@@ -3,7 +3,6 @@ package com.example.service.business.repository;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.modules.business.domain.BusinessAggregate;
-import com.example.modules.business.domain.Owner;
 import com.example.modules.business.repository.BusinessRepository;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
@@ -27,15 +26,15 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
     @Test
     public void whenBusinessAggregateIsSavedThenItSucceeds() {
-        final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var aggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
 
         mySqlBusinessRepository.save(aggregate);
     }
 
     @Test
     public void whenBusinessAggregateIsSavedTwiceWithSameOwnerThenItFails() {
-        final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
-        final var anotherAggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var aggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
+        final var anotherAggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
 
         mySqlBusinessRepository.save(aggregate);
         assertThrows(BusinessRepository.DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
@@ -43,7 +42,7 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
     @Test
     public void givenSavedBusinessWhenFoundByIdThenReturned() {
-        final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var aggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
 
         mySqlBusinessRepository.save(aggregate);
 
@@ -53,7 +52,7 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
     @Test
     public void givenSavedBusinessWhenRemovedThenMissing() {
-        final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var aggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
         mySqlBusinessRepository.save(aggregate);
 
         mySqlBusinessRepository.remove(aggregate);
@@ -63,7 +62,7 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
     @Test
     public void givenSavedBusinessWhenFoundByIdThenDefaultImageIsReadable() {
-        final var aggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var aggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
 
         mySqlBusinessRepository.save(aggregate);
 
@@ -75,7 +74,7 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
 
 
     static BusinessAggregate createSampleAggregate() {
-        final var businessAggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var businessAggregate = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
         return businessAggregate;
     }
 }

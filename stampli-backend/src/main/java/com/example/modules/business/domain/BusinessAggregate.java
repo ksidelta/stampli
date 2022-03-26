@@ -1,8 +1,9 @@
 package com.example.modules.business.domain;
 
-import com.example.modules.business.domain.profile.BusinessLogo;
-import com.example.modules.business.domain.profile.BusinessName;
 import com.example.infrastructure.domain.events.AbstractEventedAggregate;
+import com.example.modules.business.domain.profile.BusinessProfile;
+import com.example.modules.business.domain.profile.BusinessProfile.BusinessLogo;
+import com.example.modules.business.domain.profile.BusinessProfile.BusinessName;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -69,6 +70,27 @@ public class BusinessAggregate extends AbstractEventedAggregate {
             return ImageIO.read(BusinessAggregate.class.getResourceAsStream("/image/512x512.png"));
         } catch (IOException e) {
             throw new IllegalStateException("default image missing");
+        }
+    }
+
+    @Embeddable
+    public static class Owner {
+        @Column(name = "owner_id")
+        Integer ownerId;
+
+        protected Owner() {
+        }
+
+        public Owner(Integer ownerId) {
+            this.ownerId = ownerId;
+        }
+
+        public Integer getOwnerId() {
+            return ownerId;
+        }
+
+        protected void setOwnerId(Integer ownerId) {
+            this.ownerId = ownerId;
         }
     }
 }

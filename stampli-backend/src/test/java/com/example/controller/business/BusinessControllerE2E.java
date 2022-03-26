@@ -6,7 +6,6 @@ import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.modules.business.controller.BusinessController;
 import com.example.modules.business.domain.BusinessAggregate;
-import com.example.modules.business.domain.Owner;
 import com.example.modules.business.repository.BusinessRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -65,7 +64,7 @@ public class BusinessControllerE2E extends AbstractDatabaseTest {
 
     @Test
     public void givenExistingBusinessWhenGotThenReturnsCorrect() throws Exception {
-        final var business = BusinessAggregate.createBusinessAggregate(new Owner(1));
+        final var business = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
         businessRepository.save(business);
 
         mockMvc.perform(
