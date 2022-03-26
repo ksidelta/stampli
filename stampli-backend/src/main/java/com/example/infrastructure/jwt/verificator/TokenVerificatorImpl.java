@@ -3,7 +3,7 @@ package com.example.infrastructure.jwt.verificator;
 import com.auth0.jwt.JWT;
 import com.example.infrastructure.env.EnvironmentConfiguration;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
+import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.stereotype.Component;
 

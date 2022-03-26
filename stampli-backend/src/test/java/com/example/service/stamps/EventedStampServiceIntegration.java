@@ -3,7 +3,7 @@ package com.example.service.stamps;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.stamps.command.StampClientAggregateRepository;
-import com.example.service.authentication.register.RegisterService;
+import com.example.modules.authentication.service.register.RegisterService;
 import com.example.modules.business.service.BusinessService;
 import com.example.modules.challenge.service.ChallengeService;
 import com.example.modules.challenge.service.ChallengingTokenDTO;

@@ -1,9 +1,10 @@
 package com.example.controller.authentication.register;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.context.authentication.user.entity.EmailPasswordUserAggregate;
-import com.example.domain.context.authentication.user.repository.UserRepository;
-import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
+import com.example.modules.authentication.controller.register.RegisterController;
+import com.example.modules.authentication.domain.user.entity.EmailPasswordUserAggregate;
+import com.example.modules.authentication.domain.user.repository.UserRepository;
+import com.example.modules.authentication.domain.user.repository.create.UserCreationDto;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterEach;

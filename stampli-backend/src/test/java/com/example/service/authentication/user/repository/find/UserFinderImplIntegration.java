@@ -2,10 +2,10 @@ package com.example.service.authentication.user.repository.find;
 
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
-import com.example.domain.context.authentication.user.entity.EmailPasswordUserAggregate;
-import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
-import com.example.domain.context.authentication.user.repository.create.UserCreator;
-import com.example.domain.context.authentication.user.repository.find.UserFinder;
+import com.example.modules.authentication.domain.user.entity.EmailPasswordUserAggregate;
+import com.example.modules.authentication.domain.user.repository.create.UserCreationDto;
+import com.example.modules.authentication.domain.user.repository.create.UserCreator;
+import com.example.modules.authentication.domain.user.repository.find.UserFinder;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

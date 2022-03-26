@@ -1,7 +1,7 @@
 package com.example.controller.challenge;
 
 import com.example.BaseTestConfiguration;
-import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
+import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.modules.challenge.domain.ClaimProof;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.modules.challenge.controller.ChallengeController;

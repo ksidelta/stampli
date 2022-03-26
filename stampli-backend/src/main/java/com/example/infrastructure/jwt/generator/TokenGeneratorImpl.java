@@ -1,7 +1,7 @@
 package com.example.infrastructure.jwt.generator;
 
 import com.auth0.jwt.JWT;
-import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
+import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.infrastructure.env.EnvironmentConfiguration;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;

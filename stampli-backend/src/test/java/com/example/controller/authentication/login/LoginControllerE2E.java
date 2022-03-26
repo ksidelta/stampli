@@ -2,9 +2,10 @@ package com.example.controller.authentication.login;
 
 import com.auth0.jwt.JWT;
 import com.example.BaseTestConfiguration;
-import com.example.domain.context.authentication.user.entity.EmailPasswordUserAggregate;
-import com.example.domain.context.authentication.user.repository.UserRepository;
-import com.example.domain.context.authentication.user.repository.create.UserCreationDto;
+import com.example.modules.authentication.controller.login.LoginController;
+import com.example.modules.authentication.domain.user.entity.EmailPasswordUserAggregate;
+import com.example.modules.authentication.domain.user.repository.UserRepository;
+import com.example.modules.authentication.domain.user.repository.create.UserCreationDto;
 import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.hamcrest.Matchers;
 import org.hibernate.SessionFactory;
