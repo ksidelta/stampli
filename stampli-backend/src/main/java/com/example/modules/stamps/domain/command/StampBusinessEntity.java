@@ -1,5 +1,8 @@
 package com.example.modules.stamps.domain.command;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.LinkedList;
@@ -12,6 +15,7 @@ public class StampBusinessEntity {
     @EmbeddedId
     StampBusinessId id;
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @OneToMany(mappedBy = "join", cascade = CascadeType.ALL)
     List<Stamp> stamps;
 

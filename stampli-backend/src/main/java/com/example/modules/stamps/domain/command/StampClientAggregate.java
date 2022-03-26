@@ -1,5 +1,8 @@
 package com.example.modules.stamps.domain.command;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -9,21 +12,23 @@ public class StampClientAggregate {
     @Id
     Integer clientId;
 
+    @LazyCollection(LazyCollectionOption.EXTRA)
     @OneToMany(mappedBy = "id.clientId", cascade = CascadeType.ALL)
-    List<StampBusinessEntity> businesses; // TODO: Change it to map later, but fuck it is hard, how to do it!?
+    @MapKey(name = "id")
+    Map<StampBusinessId, StampBusinessEntity> businesses; // TODO: Change it to map later, but fuck it is hard, how to do it!?
 
     public void addStampToBusiness(Integer businessId) {
         final var clientBusinessId = new StampBusinessId(this, businessId);
 
-        businesses.stream().filter(x -> x.id.businessId.equals(businessId)).findAny()
+        Optional.ofNullable(businesses.get(clientBusinessId))
                 .ifPresentOrElse(
                         StampBusinessEntity::addStamp,
-                        () -> businesses.add(StampBusinessEntity.create(this, businessId).addStamp())
+                        () -> businesses.put(clientBusinessId, StampBusinessEntity.create(this, businessId).addStamp())
                 );
     }
 
     public Integer getStampsQuantity(Integer businessId) {
-        return businesses.stream().filter(x -> x.id.businessId.equals(businessId)).findAny()
+        return Optional.ofNullable(businesses.get(new StampBusinessId(this, businessId)))
                 .map(StampBusinessEntity::currentAmountOfStamps)
                 .orElse(0);
     }
@@ -31,7 +36,7 @@ public class StampClientAggregate {
     public static StampClientAggregate create(Integer clientId) {
         final var aggr = new StampClientAggregate();
         aggr.clientId = clientId;
-        aggr.businesses = new LinkedList<>();
+        aggr.businesses = new HashMap<>();
         return aggr;
     }
 
