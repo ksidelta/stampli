@@ -2,18 +2,15 @@ package com.example.service.business.repository;
 
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
-import com.example.domain.context.business.entity.business.BusinessAggregate;
-import com.example.domain.context.business.entity.owner.Owner;
-import com.example.domain.context.business.repository.BusinessRepository;
-import com.example.domain.context.business.repository.DuplicatedOwnerException;
+import com.example.modules.business.domain.BusinessAggregate;
+import com.example.modules.business.domain.Owner;
+import com.example.modules.business.repository.BusinessRepository;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-
-import javax.transaction.Transactional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -41,7 +38,7 @@ public class MySqlBusinessRepositoryIntegration extends AbstractDatabaseTest {
         final var anotherAggregate = BusinessAggregate.createBusinessAggregate(new Owner(1));
 
         mySqlBusinessRepository.save(aggregate);
-        assertThrows(DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
+        assertThrows(BusinessRepository.DuplicatedOwnerException.class, () -> mySqlBusinessRepository.save(anotherAggregate));
     }
 
     @Test

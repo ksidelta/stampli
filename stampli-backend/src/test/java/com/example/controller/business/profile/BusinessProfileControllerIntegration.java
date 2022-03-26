@@ -1,10 +1,10 @@
 package com.example.controller.business.profile;
 
-import com.example.controller.business.settings.BusinessProfileController;
-import com.example.domain.context.business.entity.business.BusinessAggregate;
-import com.example.domain.context.business.entity.business.profile.BusinessName;
+import com.example.modules.business.controller.settings.BusinessProfileController;
+import com.example.modules.business.domain.BusinessAggregate;
+import com.example.modules.business.domain.profile.BusinessName;
 import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
-import com.example.service.business.service.profile.BusinessProfileService;
+import com.example.modules.business.service.profile.BusinessProfileService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

@@ -3,14 +3,13 @@ package com.example.service.business.service;
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.modules.business.service.BusinessService;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-
-import javax.transaction.Transactional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 

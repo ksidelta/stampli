@@ -4,7 +4,7 @@ import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
 import com.example.domain.context.stamps.command.StampClientAggregateRepository;
 import com.example.service.authentication.register.RegisterService;
-import com.example.service.business.service.BusinessService;
+import com.example.modules.business.service.BusinessService;
 import com.example.service.challenge.service.ChallengeService;
 import com.example.service.challenge.service.ChallengingTokenDTO;
 import com.example.service.stamps.service.StampService;
@@ -15,8 +15,6 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-
-import javax.transaction.Transactional;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;

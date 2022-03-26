@@ -31,11 +31,15 @@ public class DbTestUtil {
     }
 
     protected void forEachAggregateClass(Consumer<Class<?>> consumer) {
-        final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(true);
+        final ClassPathScanningCandidateComponentProvider scanner = new ClassPathScanningCandidateComponentProvider(false);
         scanner.addIncludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Aggregate.*")));
+        scanner.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Abstract.*")));
+        scanner.addExcludeFilter(new RegexPatternTypeFilter(Pattern.compile(".*Repository.*")));
         // scanner.addIncludeFilter(new AnnotationTypeFilter(Entity.class)); //
 
-        final Set<BeanDefinition> beans = scanner.findCandidateComponents("com.example.domain");
+        final Set<BeanDefinition> beans = scanner.findCandidateComponents("com.example");
+
+
 
         beans.forEach(bean -> {
             try {

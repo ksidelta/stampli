@@ -23,7 +23,7 @@ export class BusinessLogin extends React.Component<Props, {}> {
     super(props);
   }
 
-  render() {
+  render(): JSX.Element {
     return <>
       <TitledTextInput state={this.usernameState} title={'Login'} type={'text'} />
       <TitledTextInput state={this.passwordState} title={'Password'} type={'password'} />

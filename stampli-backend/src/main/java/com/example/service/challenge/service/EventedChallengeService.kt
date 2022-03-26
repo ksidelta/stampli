@@ -1,6 +1,6 @@
 package com.example.service.challenge.service
 
-import com.example.service.business.service.events.CreatedBusinessEvent
+import com.example.modules.business.service.events.CreatedBusinessEvent
 import org.springframework.context.event.EventListener
 
 open class EventedChallengeService(challengeService: ChallengeService) : ChallengeService by challengeService {
