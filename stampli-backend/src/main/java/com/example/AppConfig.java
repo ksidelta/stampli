@@ -4,7 +4,6 @@ import com.example.bootstrap.database.DatabaseConfiguration;
 import com.example.bootstrap.security.WebSecurityConfig;
 import com.example.infrastructure.InfrastructureConfiguration;
 import com.example.modules.ModulesConfiguration;
-import com.example.translation.AnticorruptionLayerConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Import({
         WebSecurityConfig.class,
         DatabaseConfiguration.class,
-        AnticorruptionLayerConfiguration.class,
         InfrastructureConfiguration.class,
         ModulesConfiguration.class
 })
