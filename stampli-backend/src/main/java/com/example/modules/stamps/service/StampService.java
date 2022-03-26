@@ -1,4 +1,4 @@
-package com.example.service.stamps.service;
+package com.example.modules.stamps.service;
 
 public interface StampService {
     void createStampsAggregateForClient(Integer clientId);

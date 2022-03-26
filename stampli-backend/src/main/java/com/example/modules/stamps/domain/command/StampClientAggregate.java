@@ -1,6 +1,4 @@
-package com.example.domain.context.stamps.command;
-
-import org.springframework.context.annotation.Primary;
+package com.example.modules.stamps.domain.command;
 
 import javax.persistence.*;
 import java.util.*;

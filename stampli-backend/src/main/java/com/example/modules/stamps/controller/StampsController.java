@@ -1,6 +1,6 @@
-package com.example.controller.stamps;
+package com.example.modules.stamps.controller;
 
-import com.example.service.stamps.service.StampService;
+import com.example.modules.stamps.service.StampService;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

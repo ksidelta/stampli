@@ -5,7 +5,7 @@ import com.example.common.db.AbstractDatabaseTest;
 import com.example.modules.challenge.domain.ChallengeRepository;
 import com.example.modules.challenge.service.ChallengeService;
 import com.example.modules.challenge.service.ChallengingTokenDTO;
-import com.example.service.stamps.service.StampService;
+import com.example.modules.stamps.service.StampService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

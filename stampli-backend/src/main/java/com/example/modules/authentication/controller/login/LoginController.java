@@ -1,6 +1,6 @@
 package com.example.modules.authentication.controller.login;
 
-import com.example.controller.common.EmailAndPasswordDto;
+import com.example.modules.authentication.controller.EmailAndPasswordDto;
 import com.example.modules.authentication.service.login.LoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

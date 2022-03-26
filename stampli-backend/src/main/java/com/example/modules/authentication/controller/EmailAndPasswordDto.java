@@ -1,4 +1,4 @@
-package com.example.controller.common;
+package com.example.modules.authentication.controller;
 
 public class EmailAndPasswordDto {
     private String email;

@@ -1,4 +1,4 @@
-package com.example.domain.context.stamps.command;
+package com.example.modules.stamps.domain.command;
 
 import java.util.Optional;
 

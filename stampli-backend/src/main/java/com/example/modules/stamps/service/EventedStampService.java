@@ -1,4 +1,4 @@
-package com.example.service.stamps.service;
+package com.example.modules.stamps.service;
 
 import com.example.modules.challenge.domain.ChallengeClaimedEvent;
 import com.example.modules.authentication.service.register.UserRegisteredEvent;

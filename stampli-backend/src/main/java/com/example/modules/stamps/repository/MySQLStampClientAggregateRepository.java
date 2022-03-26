@@ -1,7 +1,7 @@
-package com.example.service.stamps.repository;
+package com.example.modules.stamps.repository;
 
-import com.example.domain.context.stamps.command.StampClientAggregate;
-import com.example.domain.context.stamps.command.StampClientAggregateRepository;
+import com.example.modules.stamps.domain.command.StampClientAggregate;
+import com.example.modules.stamps.domain.command.StampClientAggregateRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
-package com.example.service.stamps.service;
+package com.example.modules.stamps.service;
 
-import com.example.domain.context.stamps.command.StampClientAggregate;
-import com.example.domain.context.stamps.command.StampClientAggregateRepository;
+import com.example.modules.stamps.domain.command.StampClientAggregate;
+import com.example.modules.stamps.domain.command.StampClientAggregateRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;

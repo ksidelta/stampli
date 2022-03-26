@@ -1,9 +1,9 @@
-package com.example.service;
+package com.example.modules.stamps;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
 @ComponentScan
-public class ServiceConfiguration {
+@Configuration
+public class StampsConfiguration {
 }
