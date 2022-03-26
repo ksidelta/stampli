@@ -1,6 +1,6 @@
-package com.example.service.challenge.service;
+package com.example.modules.challenge.service;
 
-import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.modules.challenge.domain.ChallengeRepository;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,9 +10,7 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import java.security.SecureRandom;
 
 @Configuration
-public class ChallengeConfiguration {
-
-
+public class ChallengeServiceConfiguration {
     @Bean
     @Primary
     public ChallengeService challengeService(@Qualifier ChallengeService websocketChallengeService) {

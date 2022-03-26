@@ -1,9 +1,8 @@
-package com.example.domain.context.challenge;
+package com.example.modules.challenge.domain;
 
 import com.example.infrastructure.domain.events.AbstractEventedAggregate;
 
 import javax.persistence.*;
-import java.security.SecureRandom;
 import java.util.Objects;
 import java.util.function.Supplier;
 

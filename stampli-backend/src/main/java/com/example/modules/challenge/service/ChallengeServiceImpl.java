@@ -1,8 +1,8 @@
-package com.example.service.challenge.service;
+package com.example.modules.challenge.service;
 
-import com.example.domain.context.challenge.ChallengeOwnerAggregate;
-import com.example.domain.context.challenge.ChallengeRepository;
-import com.example.domain.context.challenge.ClaimProof;
+import com.example.modules.challenge.domain.ChallengeOwnerAggregate;
+import com.example.modules.challenge.domain.ChallengeRepository;
+import com.example.modules.challenge.domain.ClaimProof;
 
 import javax.transaction.Transactional;
 import java.security.SecureRandom;

@@ -1,6 +1,6 @@
 package com.example.service.stamps.service;
 
-import com.example.domain.context.challenge.ChallengeClaimedEvent;
+import com.example.modules.challenge.domain.ChallengeClaimedEvent;
 import com.example.service.authentication.register.UserRegisteredEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;

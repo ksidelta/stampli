@@ -1,4 +1,4 @@
-package com.example.domain.context.challenge;
+package com.example.modules.challenge.domain;
 
 public class Issuer {
     public Issuer(Integer userId, Integer businessId) {

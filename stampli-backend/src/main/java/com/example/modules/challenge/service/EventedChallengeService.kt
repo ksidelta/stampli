@@ -1,4 +1,4 @@
-package com.example.service.challenge.service
+package com.example.modules.challenge.service
 
 import com.example.modules.business.service.events.CreatedBusinessEvent
 import org.springframework.context.event.EventListener

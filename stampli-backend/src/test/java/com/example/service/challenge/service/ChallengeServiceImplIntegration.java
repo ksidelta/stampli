@@ -2,17 +2,17 @@ package com.example.service.challenge.service;
 
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
-import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.modules.challenge.domain.ChallengeRepository;
+import com.example.modules.challenge.service.ChallengeService;
+import com.example.modules.challenge.service.ChallengingTokenDTO;
 import com.example.service.stamps.service.StampService;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 import static org.hamcrest.CoreMatchers.*;

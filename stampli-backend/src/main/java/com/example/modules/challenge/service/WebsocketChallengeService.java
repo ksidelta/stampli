@@ -1,6 +1,6 @@
-package com.example.service.challenge.service;
+package com.example.modules.challenge.service;
 
-import com.example.domain.context.challenge.ClaimProof;
+import com.example.modules.challenge.domain.ClaimProof;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 
 public class WebsocketChallengeService implements ChallengeService {

@@ -2,7 +2,7 @@ package com.example.service.business.service;
 
 import com.example.BaseTestConfiguration;
 import com.example.common.db.AbstractDatabaseTest;
-import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.modules.challenge.domain.ChallengeRepository;
 import com.example.modules.business.service.BusinessService;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;

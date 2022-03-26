@@ -1,4 +1,4 @@
-package com.example.domain.context.challenge;
+package com.example.modules.challenge.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

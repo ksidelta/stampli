@@ -2,13 +2,11 @@ package com.example.service.stamps.repository;
 
 import com.example.domain.context.stamps.command.StampClientAggregate;
 import com.example.domain.context.stamps.command.StampClientAggregateRepository;
-import com.example.service.challenge.repository.JpaChallengeRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Repository
 public class MySQLStampClientAggregateRepository implements StampClientAggregateRepository {

@@ -1,8 +1,7 @@
-package com.example.domain.context.challenge;
+package com.example.modules.challenge.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
 import java.io.Serializable;
 import java.util.Objects;
 

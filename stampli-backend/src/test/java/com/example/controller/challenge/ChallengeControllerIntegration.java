@@ -2,11 +2,12 @@ package com.example.controller.challenge;
 
 import com.example.BaseTestConfiguration;
 import com.example.domain.context.authentication.user.entity.AbstractUserAggregate;
-import com.example.domain.context.challenge.ClaimProof;
+import com.example.modules.challenge.domain.ClaimProof;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
-import com.example.service.challenge.service.ChallengeService;
-import com.example.service.challenge.service.ChallengeTokenDTO;
-import com.example.service.challenge.service.ChallengingTokenDTO;
+import com.example.modules.challenge.controller.ChallengeController;
+import com.example.modules.challenge.service.ChallengeService;
+import com.example.modules.challenge.service.ChallengeTokenDTO;
+import com.example.modules.challenge.service.ChallengingTokenDTO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

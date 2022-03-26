@@ -1,7 +1,7 @@
-package com.example.controller.challenge;
+package com.example.modules.challenge.controller;
 
-import com.example.service.challenge.service.ChallengeService;
-import com.example.service.challenge.service.ChallengingTokenDTO;
+import com.example.modules.challenge.service.ChallengeService;
+import com.example.modules.challenge.service.ChallengingTokenDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;

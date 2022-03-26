@@ -1,7 +1,7 @@
-package com.example.service.challenge.repository;
+package com.example.modules.challenge.repository;
 
-import com.example.domain.context.challenge.ChallengeOwnerAggregate;
-import com.example.domain.context.challenge.ChallengeRepository;
+import com.example.modules.challenge.domain.ChallengeOwnerAggregate;
+import com.example.modules.challenge.domain.ChallengeRepository;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
