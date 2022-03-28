@@ -11,6 +11,8 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
@@ -32,6 +34,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @Transactional
 public class RegisterControllerE2E {
+    @Mock
     protected MockMvc mockMvc;
 
     @Autowired

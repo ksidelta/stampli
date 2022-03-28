@@ -36,7 +36,7 @@ public class MySqlBusinessRepository implements BusinessRepository {
     @Override
     public Optional<BusinessAggregate> findByOwnerId(Integer ownerId) {
         return this.sessionFactory.getCurrentSession()
-                .createQuery("SELECT b FROM BusinessAggregate b WHERE b.owner.ownerId = :ownerId", BusinessAggregate.class)
+                .createQuery("SELECT b FROM BusinessOfferAggregate b WHERE b.owner.ownerId = :ownerId", BusinessAggregate.class)
                 .setParameter("ownerId", ownerId)
                 .uniqueResultOptional();
     }
