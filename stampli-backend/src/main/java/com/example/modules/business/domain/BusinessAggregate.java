@@ -4,6 +4,7 @@ import com.example.infrastructure.domain.events.AbstractEventedAggregate;
 import com.example.modules.business.domain.profile.BusinessProfile;
 import com.example.modules.business.domain.profile.BusinessProfile.BusinessLogo;
 import com.example.modules.business.domain.profile.BusinessProfile.BusinessName;
+import com.example.modules.business.service.events.CreatedBusinessEvent;
 
 import javax.imageio.ImageIO;
 import javax.persistence.*;
@@ -50,6 +51,11 @@ public class BusinessAggregate extends AbstractEventedAggregate {
 
     public Integer getId() {
         return id;
+    }
+
+    @PostPersist
+    public void addCreatedEvent() {
+        this.registerEvent(new CreatedBusinessEvent(getId(), owner.getOwnerId()));
     }
 
     @Override
