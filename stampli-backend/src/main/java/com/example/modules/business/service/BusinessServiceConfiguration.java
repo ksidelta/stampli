@@ -8,9 +8,15 @@ import org.springframework.context.annotation.Primary;
 
 @Configuration
 public class BusinessServiceConfiguration {
+
+    @Bean
+    public BusinessServiceImpl businessServiceImpl(BusinessRepository businessRepository) {
+        return new BusinessServiceImpl(businessRepository);
+    }
+
     @Bean
     @Primary
-    public BusinessServiceImpl businessService(BusinessRepository businessRepository) {
-        return new BusinessServiceImpl(businessRepository);
+    public BusinessService businessService(BusinessServiceImpl businessServiceImpl, ApplicationEventPublisher eventPublisher) {
+        return new EventedBusinessService(businessServiceImpl, eventPublisher);
     }
 }
