@@ -1,4 +1,4 @@
-FROM tomcat:9.0.44
+FROM tomcat:9.0.60-jre17-temurin
 
 RUN mkdir -p /usr/local/stampli/
 ADD ./target/stampli-output /usr/local/stampli/stampli/
