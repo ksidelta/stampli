@@ -5,15 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "business_offer")
 public class BusinessOfferAggregate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer businessId;
+    Integer businessId;
 
     @ElementCollection
-    private List<BusinessOffer> offers;
+    List<Offer> offers;
 
-    public void addOffer(BusinessOffer businessOffer) {
+    public void addOffer(Offer businessOffer) {
         offers.add(businessOffer);
     }
 

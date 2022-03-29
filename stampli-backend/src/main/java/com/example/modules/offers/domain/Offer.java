@@ -7,18 +7,15 @@ import javax.persistence.*;
 import java.awt.image.BufferedImage;
 
 @Embeddable
-public class BusinessOffer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
+@Table(name = "offer")
+public class Offer {
     @Column
     @Convert(converter = ImageToBlobConverter.class)
     BufferedImage image;
 
-    static BusinessOffer create(BufferedImage image) {
+    static Offer create(BufferedImage image) {
         InvalidImageException.assertRatio(image, 3, 2);
-        var offer = new BusinessOffer();
+        var offer = new Offer();
         offer.image = image;
         return offer;
     }
