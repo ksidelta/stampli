@@ -1,8 +1,8 @@
-FROM node:15.12.0
+FROM node:16.13.1
 EXPOSE 8080
 
-COPY . ./node
+COPY . ./app
 
-WORKDIR /node
+WORKDIR /app
 RUN npm install
 CMD ["npm", "start"]

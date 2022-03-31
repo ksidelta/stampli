@@ -21,6 +21,8 @@ services:
       - type: bind
         source: ./stampli-frontend
         target: /node
+    ports:
+      - 8080:8080
     environment:
       BASE_URL: 'http://localhost'
       OAUTH__GOOGLE__CLIENT_ID: '155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com'

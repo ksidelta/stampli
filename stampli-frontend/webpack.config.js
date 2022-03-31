@@ -18,6 +18,8 @@ module.exports = {
   },
   devServer: {
     hot: true,
+    allowedHosts: ['all'],
+    host: "0.0.0.0",
     historyApiFallback: {
       index: '/index.html'
     }
@@ -41,6 +43,6 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin(['BASE_URL', 'OAUTH__GOOGLE__CLIENT_ID']),
-    new HtmlWebpackPlugin({ template: 'src/index.html' })
+    new HtmlWebpackPlugin({ template: path.join(__dirname, '/src/index.html') })
   ]
 };
