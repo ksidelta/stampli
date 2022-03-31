@@ -16,7 +16,7 @@ export const EntryPage = () => (
         onClick={history => history.goToScanner()}
       />
       <IconButton
-        text={'Chcę rozdawać pieczątki!'}
+        text={'Chcę rozdawać pieeeczątki!'}
         icon={faArrowRight}
         onClick={history => history.goToBusinessOptionsPage()}
       />

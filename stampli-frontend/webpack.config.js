@@ -1,5 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: './src/main.tsx',
@@ -9,14 +11,16 @@ module.exports = {
   output: {
     path: path.join(__dirname, '/public/script'),
     filename: 'bundle.js',
-    publicPath: '/script/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   devServer: {
-    writeToDisk: true,
-    hot: true
+    hot: true,
+    historyApiFallback: {
+      index: '/index.html'
+    }
   },
   module: {
     rules: [
@@ -35,5 +39,8 @@ module.exports = {
       }
     ]
   },
-  plugins: []
+  plugins: [
+    new webpack.EnvironmentPlugin(['BASE_URL', 'OAUTH__GOOGLE__CLIENT_ID']),
+    new HtmlWebpackPlugin({ template: 'src/index.html' })
+  ]
 };

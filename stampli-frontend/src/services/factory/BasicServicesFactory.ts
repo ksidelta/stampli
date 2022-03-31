@@ -75,7 +75,11 @@ export class BasicServicesFactory implements ServicesFactory {
   }
 
   async fetchConfiguration(): Promise<Configuration> {
-    const config = axios.get('/configuration.json');
-    return config.then(x => x.data);
+    Logger.info(process.env);
+
+    return new Configuration(
+      process.env.BASE_URL || 'https://stampli.at.hsp.sh',
+      new OpenIdConfiguration(process.env.OAUTH__GOOGLE__CLIENT_ID || '155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com')
+    );
   }
 }
