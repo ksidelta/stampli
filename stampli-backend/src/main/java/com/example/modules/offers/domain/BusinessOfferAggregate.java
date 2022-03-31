@@ -1,5 +1,8 @@
 package com.example.modules.offers.domain;
 
+import org.hibernate.annotations.CollectionId;
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +15,16 @@ public class BusinessOfferAggregate {
     Integer businessId;
 
     @ElementCollection
+    @CollectionTable(name = "offer", joinColumns = @JoinColumn(name = "businessId"))
     List<Offer> offers;
+
+    public Integer id() {
+        return businessId;
+    }
+
+    public List<Offer> offers() {
+        return offers;
+    }
 
     public void addOffer(Offer businessOffer) {
         offers.add(businessOffer);

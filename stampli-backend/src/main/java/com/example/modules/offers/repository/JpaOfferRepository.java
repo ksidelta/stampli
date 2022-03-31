@@ -2,9 +2,11 @@ package com.example.modules.offers.repository;
 
 import com.example.modules.offers.domain.BusinessOfferAggregate;
 import org.hibernate.SessionFactory;
+import org.springframework.stereotype.Repository;
 
 import javax.transaction.Transactional;
 
+@Repository
 public class JpaOfferRepository implements OfferRepository {
     SessionFactory sessionFactory;
 

@@ -13,7 +13,11 @@ public class Offer {
     @Convert(converter = ImageToBlobConverter.class)
     BufferedImage image;
 
-    static Offer create(BufferedImage image) {
+    public BufferedImage image() {
+        return image;
+    }
+
+    static public Offer create(BufferedImage image) {
         InvalidImageException.assertRatio(image, 3, 2);
         var offer = new Offer();
         offer.image = image;

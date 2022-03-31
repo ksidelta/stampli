@@ -1,8 +1,13 @@
-CREATE TABLE business_offer (
+CREATE TABLE business_offer
+(
     businessId INTEGER UNIQUE AUTO_INCREMENT,
-    PRIMARY KEY(businessId)
+    PRIMARY KEY (businessId)
 );
 
-CREATE TABLE offer (
-    image LONGBLOB
+CREATE TABLE offer
+(
+    offerId    INTEGER UNIQUE AUTO_INCREMENT,
+    businessId INTEGER,
+    image      LONGBLOB,
+    PRIMARY KEY(offerId)
 );
