@@ -14,6 +14,7 @@ import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
 import { QRBusinessDisplayPage } from '../pages/QRBusinessDisplayPage';
 import { QRClaimPage } from '../pages/QRClaimPage';
 import { QRScanPage } from '../pages/QRScanPage';
+import { Test } from '../pages/Test';
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -38,6 +39,9 @@ export const AppRouter = () => {
             </Route>
             <Route path={'/home'} exact={true}>
               <EntryPage />
+            </Route>
+            <Route path={'/test'} exact={true}>
+              <Test />
             </Route>
             <Route path={'/scanner'} exact={true}>
               <QRScanPage />

@@ -34,6 +34,9 @@ async function directToWebpackButWaitForCompilation(server: express.Express): Pr
     // @ts-ignore
     const compiler = webpack(config); // ignoring because config is not typed
     const webpackMiddleware = WebpackMiddleware(compiler, {
+      watchOptions: {
+
+      },
       writeToDisk: true
     });
 
