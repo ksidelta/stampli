@@ -9,7 +9,7 @@ module.exports = {
   mode: 'development',
   target: 'web',
   output: {
-    path: path.join(__dirname, '/public/script'),
+    path: path.join(__dirname, '/public'),
     filename: 'bundle.js',
     publicPath: '/'
   },
@@ -48,6 +48,30 @@ module.exports = {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
       },
+      {
+        test: /\.(woff(2)?|ttf)/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/fonts/'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(png|svg)/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'assets/img/'
+            }
+          }
+        ]
+      }
     ]
   },
   plugins: [
