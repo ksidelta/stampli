@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 import './css/main.css';
+import './css/century-gothic.css';
 import { AppRouter } from './router/AppRouter';
 import Logger from 'js-logger';
 

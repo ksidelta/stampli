@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
-import { EntryPage } from '../pages/EntryPage';
+import { ClientLoginPage } from '../pages/ClientLoginPage';
 import { BusinessLoginPage } from '../pages/BusinessLoginPage';
 import { RoutingServiceInstance } from './services/RoutingService';
 import { InjectionContext } from '../components/stated/context/InjectionContext';
@@ -37,7 +37,7 @@ export const AppRouter = () => {
               <Redirect to={'/home'} />
             </Route>
             <Route path={'/home'} exact={true}>
-              <EntryPage />
+              <ClientLoginPage />
             </Route>
             <Route path={'/scanner'} exact={true}>
               <QRScanPage />
