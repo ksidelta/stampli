@@ -23,6 +23,9 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'public'),
+    },
     hot: true,
     allowedHosts: ['all'],
     host: '0.0.0.0',
@@ -44,7 +47,7 @@ module.exports = {
       {
         test: /\.svg$/,
         loader: 'svg-inline-loader'
-      }
+      },
     ]
   },
   plugins: [
