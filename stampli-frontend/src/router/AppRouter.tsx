@@ -34,9 +34,9 @@ export const AppRouter = () => {
         <Router history={RoutingServiceInstance.history}>
           <Switch>
             <Route path={'/'} exact={true}>
-              <Redirect to={'/home'} />
+              <Redirect to={'/login'} />
             </Route>
-            <Route path={'/home'} exact={true}>
+            <Route path={'/login'} exact={true}>
               <ClientLoginPage />
             </Route>
             <Route path={'/scanner'} exact={true}>

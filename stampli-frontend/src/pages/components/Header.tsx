@@ -6,13 +6,14 @@ const Inner = styled.header`
   display: flex;
   flex-flow: row nowrap;
   font-family: "Century Gothic";
-  font-size: 1.25rem;
+  align-items: center;
   margin: .8rem 1.2rem;
   > img {
-    width: 3rem;
-    margin-right: -3rem;
+    height: 1.5rem;
+    margin-right: -2rem;
   }
   > h1 {
+    font-size: 1.25rem;
     margin: 0 auto;
   }
 `

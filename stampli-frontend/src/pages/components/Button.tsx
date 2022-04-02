@@ -1,22 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Inner = styled.div`
-  padding: .6rem 1.2rem;
-  margin: 1rem;
-  width: 20rem;
-  background: #fa875a;
-  border-radius: .6rem;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  text-transform: uppercase;
+const Button = styled.button`
+  width: 100%;
+  max-width: 20rem;
 `
 
-export default function Button (params: {text: string, link: string, bg: string, color: string}) {
+export default function ButtonComponent (params: {text: string, link: string, button: string}) {
+    const ButtonBase = () => (
+        <>
+            <span className="mdc-button__ripple"></span>
+            <span className="mdc-button__touch"></span>
+            <span className="mdc-button__label">{params.text}</span>
+        </>
+    )
+    switch (params.button) {
+        case "apple":
+            return (
+                <Button className="mdc-button mdc-button--raised mdc-button--touch apple-button">
+                    <ButtonBase/>
+                </Button>
+            )
+        case "google":
+            return (
+                <Button className="mdc-button mdc-button--raised mdc-button--touch google-button">
+                    <ButtonBase/>
+                </Button>
+            )
+        case "fb":
+            return (
+                <Button className="mdc-button mdc-button--raised mdc-button--touch fb-button">
+                    <ButtonBase/>
+                </Button>
+            )
+    }
     return (
-        <Inner>
-            <p>{params.text}</p>
-        </Inner>
+        <Button className="mdc-button mdc-button--raised mdc-button--touch">
+            <span className="mdc-button__ripple"></span>
+            <span className="mdc-button__touch"></span>
+            <span className="mdc-button__label">{params.text}</span>
+        </Button>
     )
 }
