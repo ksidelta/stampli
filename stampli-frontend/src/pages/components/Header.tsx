@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import "../../img/arrow_back_ios_new_black_24dp.svg";
+import leftArrow from '../../img/arrow_back_ios_new_black_24dp.svg';
 
 const Inner = styled.header`
   display: flex;
@@ -21,7 +21,7 @@ const Inner = styled.header`
 export default function Header(props: {title: string}) {
     return (
         <Inner>
-            <img alt="left-arrow" src="/assets/img/arrow_back_ios_new_black_24dp.svg"/>
+            <img alt="left-arrow" src={leftArrow}/>
             <h1>{props.title}</h1>
         </Inner>
     )

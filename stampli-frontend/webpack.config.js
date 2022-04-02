@@ -58,10 +58,6 @@ module.exports = {
         ],
       },
       {
-        test: /\.svg$/,
-        loader: 'svg-inline-loader'
-      },
-      {
         test: /\.(woff(2)?|ttf)/,
         use: [
           {
