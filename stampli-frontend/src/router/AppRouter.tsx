@@ -14,6 +14,8 @@ import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
 import { QRBusinessDisplayPage } from '../pages/QRBusinessDisplayPage';
 import { QRClaimPage } from '../pages/QRClaimPage';
 import { QRScanPage } from '../pages/QRScanPage';
+import LoginEmailPage from "../pages/ClientLoginEmailPage";
+import RegisterEmailPage from "../pages/ClientRegisterEmailPage";
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -38,6 +40,15 @@ export const AppRouter = () => {
             </Route>
             <Route path={'/login'} exact={true}>
               <ClientLoginPage />
+            </Route>
+            <Route path={'/login/email'} exact={true}>
+              <LoginEmailPage/>
+            </Route>
+            <Route path={'/register'} exact={true}>
+              <Redirect to={'/register/email'} />
+            </Route>
+            <Route path={'/register/email'} exact={true}>
+              <RegisterEmailPage/>
             </Route>
             <Route path={'/scanner'} exact={true}>
               <QRScanPage />
