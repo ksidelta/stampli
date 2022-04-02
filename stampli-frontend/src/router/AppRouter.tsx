@@ -50,6 +50,9 @@ export const AppRouter = () => {
             <Route path={'/register/email'} exact={true}>
               <RegisterEmailPage/>
             </Route>
+            <Route path={'/home'} exact={true}>
+              <ClientLoginPage />
+            </Route>
             <Route path={'/scanner'} exact={true}>
               <QRScanPage />
             </Route>
