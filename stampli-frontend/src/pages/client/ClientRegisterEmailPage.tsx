@@ -33,7 +33,7 @@ export default function RegisterEmailPage() {
                 <TextField text="Hasło" required={true}/>
                 <FormControlLabel control={<Checkbox />} label="Akceptuję REGULAMIN" />
                 <FormControlLabel control={<Checkbox />} label="Akceptuję POLITYKĘ PRYWATNOŚCI" />
-                <Button text="Zaloguj Się" link="/stamples" button=""/>
+                <Button text="Zarejestruj Się" link="/stamples" button=""/>
                 <ButtonText text="Zaloguj Się Adresem Email" link="/login/email"/>
             </Box>
             </Inner>
