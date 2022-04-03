@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MobilePage } from './base/MobilePage';
-import Header from "./components/Header";
-import Button from "./components/Button";
-import ButtonText from "./components/ButtonText";
+import { MobilePage } from '../base/MobilePage';
+import Header from "../../components/Header";
+import Button from "../../components/Button";
+import ButtonText from "../../components/ButtonText";
 
 const Inner = styled.div`
   height: 100vh;

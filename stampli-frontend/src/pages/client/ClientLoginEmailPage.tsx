@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MobilePage } from "./base/MobilePage";
-import Header from "./components/Header";
+import { MobilePage } from "../base/MobilePage";
+import Header from "../../components/Header";
 import Box from '@mui/material/Box';
-import TextField from './components/TextField';
-import Button from "./components/Button";
-import ButtonText from "./components/ButtonText";
+import TextField from '../../components/TextField';
+import Button from "../../components/Button";
+import ButtonText from "../../components/ButtonText";
 
 const Inner = styled.div`
   height: 100vh;

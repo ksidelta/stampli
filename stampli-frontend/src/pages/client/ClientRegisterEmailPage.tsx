@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from "./components/Header";
+import Header from "../../components/Header";
 import Box from '@mui/material/Box';
-import TextField from './components/TextField';
-import {MobilePage} from "./base/MobilePage";
-import Button from "./components/Button";
-import ButtonText from "./components/ButtonText";
+import TextField from '../../components/TextField';
+import {MobilePage} from "../base/MobilePage";
+import Button from "../../components/Button";
+import ButtonText from "../../components/ButtonText";
 import {Checkbox, FormControlLabel} from "@mui/material";
 
 const Inner = styled.div`

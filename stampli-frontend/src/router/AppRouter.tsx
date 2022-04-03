@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
-import { ClientLoginPage } from '../pages/ClientLoginPage';
+import { ClientLoginPage } from '../pages/client/ClientLoginPage';
 import { RoutingServiceInstance } from './services/RoutingService';
 import { InjectionContext } from '../components/stated/context/InjectionContext';
 import { BasicServicesFactory } from '../services/factory/BasicServicesFactory';
@@ -9,8 +9,8 @@ import { UnauthenticatedCondition } from '../components/stated/condition/authent
 import { AuthenticatedCondition } from '../components/stated/condition/authentication/AuthenticatedCondition';
 import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
-import LoginEmailPage from "../pages/ClientLoginEmailPage";
-import RegisterEmailPage from "../pages/ClientRegisterEmailPage";
+import LoginEmailPage from "../pages/client/ClientLoginEmailPage";
+import RegisterEmailPage from "../pages/client/ClientRegisterEmailPage";
 
 declare module '@mui/material/styles' {
   interface Palette {

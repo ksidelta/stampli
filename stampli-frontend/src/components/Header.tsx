@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import "../../img/arrow_back_ios_new_black_24dp.svg";
+import "../img/arrow_back_ios_new_black_24dp.svg";
 
 const Inner = styled.header`
   display: flex;
