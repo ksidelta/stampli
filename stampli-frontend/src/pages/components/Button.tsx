@@ -1,44 +1,47 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Button = styled.button`
-  width: 100%;
+import Button from '@mui/material/Button';
+
+const Inner = styled.div`
+  width: calc(100% - .8rem);
+  margin: .4rem;
   max-width: 20rem;
 `
 
 export default function ButtonComponent (params: {text: string, link: string, button: string}) {
-    const ButtonBase = () => (
-        <>
-            <span className="mdc-button__ripple"></span>
-            <span className="mdc-button__touch"></span>
-            <span className="mdc-button__label">{params.text}</span>
-        </>
-    )
+    /*oneacik mi za to yebnie*/
     switch (params.button) {
         case "apple":
             return (
-                <Button className="mdc-button mdc-button--raised mdc-button--touch apple-button">
-                    <ButtonBase/>
+                <Inner>
+                <Button variant="contained" size="large" color="apple" sx={{width: "100%"}} href={params.link}>
+                    {params.text}
                 </Button>
+                </Inner>
             )
         case "google":
             return (
-                <Button className="mdc-button mdc-button--raised mdc-button--touch google-button">
-                    <ButtonBase/>
+                <Inner>
+                <Button variant="contained" size="large" color="google" sx={{width: "100%"}} href={params.link}>
+                    {params.text}
                 </Button>
+                </Inner>
             )
         case "fb":
             return (
-                <Button className="mdc-button mdc-button--raised mdc-button--touch fb-button">
-                    <ButtonBase/>
+            <Inner>
+                <Button variant="contained" size="large" color="fb" sx={{width: "100%"}} href={params.link}>
+                    {params.text}
                 </Button>
+            </Inner>
             )
     }
     return (
-        <Button className="mdc-button mdc-button--raised mdc-button--touch">
-            <span className="mdc-button__ripple"></span>
-            <span className="mdc-button__touch"></span>
-            <span className="mdc-button__label">{params.text}</span>
+        <Inner>
+        <Button variant="contained" size="large" sx={{width: "100%"}} href={params.link}>
+            {params.text}
         </Button>
+        </Inner>
     )
 }

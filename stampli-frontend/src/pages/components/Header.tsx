@@ -8,6 +8,7 @@ const Inner = styled.header`
   font-family: "Century Gothic";
   align-items: center;
   margin: .8rem 1.2rem;
+  height: 1.6rem;
   > img {
     height: 1.5rem;
     margin-right: -2rem;

@@ -1,17 +1,20 @@
-import styled from "styled-components";
 import React from "react";
+import styled from "styled-components";
 
-const Button = styled.button`
-  width: 100%;
+import Button from '@mui/material/Button';
+
+const Inner = styled.div`
+  width: calc(100% - .8rem);
+  margin: .2rem;
   max-width: 20rem;
 `
 
-export default function ButtonText (params: {text: string, link: string, color: string}) {
+export default function ButtonText (params: {text: string, link: string}) {
     return (
-        <Button className="mdc-button mdc-button--touch">
-            <span className="mdc-button__ripple"></span>
-            <span className="mdc-button__touch"></span>
-            <span className="mdc-button__label">{params.text}</span>
-        </Button>
+        <Inner>
+            <Button href={params.link} sx={{width: "100%"}}>
+                {params.text}
+            </Button>
+        </Inner>
     )
 }

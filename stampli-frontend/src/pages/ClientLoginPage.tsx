@@ -8,7 +8,7 @@ import ButtonText from "./components/ButtonText";
 const Inner = styled.div`
   height: 100vh;
   > section {
-    height: 100%;
+    height: calc(100% - 3.2rem);
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -25,8 +25,8 @@ export const ClientLoginPage = () => (
             <Button text="Zaloguj przy użyciu Google" link="x" button="google"/>
             <Button text="Zaloguj przy użyciu Facebook" link="x" button="fb"/>
             <p>Albo</p>
-            <ButtonText text="Zaloguj Adresem Email" link="" color=""/>
-            <ButtonText text="Zarejestruj Adresem Email" link="" color=""/>
+            <ButtonText text="Zaloguj Adresem Email" link="/login/email"/>
+            <ButtonText text="Zarejestruj Adresem Email" link="/register/email"/>
         </section>
     </Inner>
   </MobilePage>

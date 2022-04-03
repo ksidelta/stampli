@@ -1,21 +1,58 @@
 import React, { useEffect, useState } from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Redirect, Route, Router, Switch } from 'react-router-dom';
 import { ClientLoginPage } from '../pages/ClientLoginPage';
-import { BusinessLoginPage } from '../pages/BusinessLoginPage';
 import { RoutingServiceInstance } from './services/RoutingService';
 import { InjectionContext } from '../components/stated/context/InjectionContext';
 import { BasicServicesFactory } from '../services/factory/BasicServicesFactory';
 import { UnauthenticatedCondition } from '../components/stated/condition/authentication/UnauthenticatedCondition';
 import { AuthenticatedCondition } from '../components/stated/condition/authentication/AuthenticatedCondition';
-import { BusinessOptionsPage } from '../pages/BusinessOptionsPage';
 import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
-import { BusinessSettingsPage } from '../pages/BusinessSettingsPage';
-import { QRBusinessDisplayPage } from '../pages/QRBusinessDisplayPage';
-import { QRClaimPage } from '../pages/QRClaimPage';
-import { QRScanPage } from '../pages/QRScanPage';
 import LoginEmailPage from "../pages/ClientLoginEmailPage";
 import RegisterEmailPage from "../pages/ClientRegisterEmailPage";
+
+declare module '@mui/material/styles' {
+  interface Palette {
+    apple?: Palette['primary'];
+    google?: Palette['primary'];
+    fb?: Palette['primary'];
+  }
+  interface PaletteOptions {
+    apple: PaletteOptions['primary'];
+    google: PaletteOptions['primary'];
+    fb: PaletteOptions['primary'];
+  }
+}
+
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      // light: '#fde8e7',
+      main: '#ff3a17',
+      // dark: '#cb1500',
+    },
+    secondary: {
+      // light: '#d9fffe',
+      main: '#00ffff',
+      // dark: '#008c82',
+    },
+    apple: {
+      contrastText: '#f5f5f5',
+      main: '#000000',
+    },
+    google: {
+      contrastText: '#f5e2e1',
+      main: '#DB4437'
+    },
+    fb: {
+      contrastText: '#e1e8f5',
+      main: '#4267B2'
+    }
+  },
+});
+
 
 export const RouterServiceContext = React.createContext(RoutingServiceInstance);
 
@@ -31,7 +68,8 @@ export const AppRouter = () => {
   }
 
   return (
-    <InjectionContext.Provider value={servicesBundle}>
+      <ThemeProvider theme={theme}>
+        <InjectionContext.Provider value={servicesBundle}>
       <RouterServiceContext.Provider value={RoutingServiceInstance}>
         <Router history={RoutingServiceInstance.history}>
           <Switch>
@@ -51,36 +89,29 @@ export const AppRouter = () => {
               <RegisterEmailPage/>
             </Route>
             <Route path={'/scanner'} exact={true}>
-              <QRScanPage />
             </Route>
             <Route path={Routes.challenge.claim(undefined, ':businessId', ':issuerId', ':nonce')}>
               <UnauthenticatedCondition>
-                <BusinessLoginPage />
               </UnauthenticatedCondition>
               <AuthenticatedCondition>
-                <QRClaimPage />
               </AuthenticatedCondition>
             </Route>
             <Route path={Routes.business.root}>
               <UnauthenticatedCondition>
-                <BusinessLoginPage />
               </UnauthenticatedCondition>
-
-              <AuthenticatedCondition>
-                <Route path={Routes.business.root} exact={true}>
-                  <BusinessOptionsPage />
+                  <AuthenticatedCondition>
+                    <Route path={Routes.business.root} exact={true}>
+                    </Route>
+                    <Route path={Routes.business.settings} exact={true}>
+                    </Route>
+                    <Route path={Routes.business.qrCode} exact={true}>
+                    </Route>
+                  </AuthenticatedCondition>
                 </Route>
-                <Route path={Routes.business.settings} exact={true}>
-                  <BusinessSettingsPage />
-                </Route>
-                <Route path={Routes.business.qrCode} exact={true}>
-                  <QRBusinessDisplayPage />
-                </Route>
-              </AuthenticatedCondition>
-            </Route>
-          </Switch>
-        </Router>
-      </RouterServiceContext.Provider>
-    </InjectionContext.Provider>
+              </Switch>
+            </Router>
+          </RouterServiceContext.Provider>
+        </InjectionContext.Provider>
+      </ThemeProvider>
   );
 };
