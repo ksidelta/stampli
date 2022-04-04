@@ -15,6 +15,7 @@ import ClientMainPage from "../pages/client/ClientMainPage";
 import ClientMenuPage from '../pages/client/ClientMenuPage';
 import ClientDiscountPage from '../pages/client/ClientDiscountPage';
 import ClientStampsPage from '../pages/client/ClientStampsPage';
+import ClientOptionsPage from '../pages/client/ClientOptionsPage';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -102,6 +103,9 @@ export const AppRouter = () => {
             </Route>
             <Route path={'/stamps'} exact={true}>
               <ClientStampsPage/>
+            </Route>
+            <Route path={'/options'} exact={true}>
+              <ClientOptionsPage/>
             </Route>
             <Route path={Routes.challenge.claim(undefined, ':businessId', ':issuerId', ':nonce')}>
               <UnauthenticatedCondition>
