@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from 'styled-components';
-import {AppBar, BottomNavigation, BottomNavigationAction, Fab, IconButton, Toolbar, Typography} from "@mui/material";
+import {AppBar, Fab, IconButton, Toolbar, Typography} from "@mui/material";
 import "../img/restaurant_menu_black_24dp.svg"
 import "../img/approval_black_24dp.svg"
 import "../img/qr_code_black_24dp.svg"
@@ -50,17 +50,17 @@ export default function BottomBar() {
                         <img src={"/assets/img/restaurant_menu_black_24dp.svg"} alt={"Restaurant menu icon"} />
                         <Typography variant="button">menu</Typography>
                     </StyledIconButton>
-                    <StyledIconButton color="inherit" aria-label="discounts" href="/discount">
-                        <img src={"/assets/img/discount_black_24dp.svg"} alt={"Discount icon"} />
-                        <Typography variant="button">discount</Typography>
+                    <StyledIconButton color="inherit" aria-label="stamp" href="/stamps">
+                        <img src={"/assets/img/approval_black_24dp.svg"} alt={"Stamp icon"}/>
+                        <Typography variant="button">stamples</Typography>
                     </StyledIconButton>
                     <StyledFab color="primary" aria-label="scan qr code" href="/scan">
                         <img src={"/assets/img/qr_code_black_24dp.svg"} alt={"QR Code icon"} />
                     </StyledFab>
                     <Box sx={{ flexGrow: 2 }} />
-                    <StyledIconButton color="inherit" aria-label="stamp" href="/stamps">
-                        <img src={"/assets/img/approval_black_24dp.svg"} alt={"Stamp icon"}/>
-                        <Typography variant="button">stamples</Typography>
+                    <StyledIconButton color="inherit" aria-label="discounts" href="/discount">
+                        <img src={"/assets/img/discount_black_24dp.svg"} alt={"Discount icon"} />
+                        <Typography variant="button">discount</Typography>
                     </StyledIconButton>
                     <StyledIconButton color="inherit" aria-label="options" href="/options">
                         <img src={"/assets/img/menu_black_24dp.svg"} alt={"Options icon"}/>
