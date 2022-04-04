@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-// import '../../img/menu_placeholder.jpg'; // NOT WORKING!
+import '../../img/menu_placeholder.jpg';
 import BottomBar from "../../components/BottomBar";
 import {MobilePage} from "../base/MobilePage";
 

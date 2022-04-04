@@ -73,7 +73,7 @@ extensions: ['.tsx', '.ts', '.js', '.jsx']
         ]
       },
       {
-        test: /\.(png|svg)/,
+        test: /\.(png|svg|jp(e)?g)/,
         use: [
           {
             loader: 'file-loader',
