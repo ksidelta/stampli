@@ -57,7 +57,7 @@ export default function BottomBar() {
                     <StyledFab color="primary" aria-label="scan qr code" href="/scan">
                         <img src={"/assets/img/qr_code_black_24dp.svg"} alt={"QR Code icon"} />
                     </StyledFab>
-                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{ flexGrow: 2 }} />
                     <StyledIconButton color="inherit" aria-label="stamp" href="/stamps">
                         <img src={"/assets/img/approval_black_24dp.svg"} alt={"Stamp icon"}/>
                         <Typography variant="button">stamples</Typography>

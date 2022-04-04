@@ -12,6 +12,7 @@ import { Routes } from './routes/Routes';
 import LoginEmailPage from "../pages/client/ClientLoginEmailPage";
 import RegisterEmailPage from "../pages/client/ClientRegisterEmailPage";
 import ClientMainPage from "../pages/client/ClientMainPage";
+import ClientMenuPage from '../pages/client/ClientMenuPage';
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -89,8 +90,8 @@ export const AppRouter = () => {
             <Route path={'/register/email'} exact={true}>
               <RegisterEmailPage/>
             </Route>
-            <Route path={'/main'} exact={true}>
-              <ClientMainPage/>
+            <Route path={'/menu'} exact={true}>
+              <ClientMenuPage/>
             </Route>
             <Route path={'/scanner'} exact={true}>
             </Route>
