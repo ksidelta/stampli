@@ -8,6 +8,12 @@ const Inner = styled.div`
     min-height: 100vh;
     display: grid;
     grid-template-rows: 1fr auto;
+    > section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 `
 
 export default function MenuPage() {
