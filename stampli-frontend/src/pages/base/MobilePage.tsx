@@ -22,7 +22,7 @@ const Inner = styled.div`
 `;
 
 export const MobilePage: React.FunctionComponent = ({ children }: { children?: ReactNode }) => (
-  <CommonPage className={'krincz'}>
+  <CommonPage>
     <Inner>{children}</Inner>
   </CommonPage>
 );

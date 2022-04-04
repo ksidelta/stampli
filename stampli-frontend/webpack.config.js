@@ -22,7 +22,10 @@ module.exports = {
       util: require.resolve('util'),
       stream: require.resolve('stream-browserify')
     },
-    extensions: ['.tsx', '.ts', '.js', '.jsx']
+    alias: {
+      '@mui/styled-engine': '@mui/styled-engine-sc'
+    },
+extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   devServer: {
     static: {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import leftArrow from '../../img/arrow_back_ios_new_black_24dp.svg';
+import '../img/arrow_back_ios_new_black_24dp.svg';
 
 const Inner = styled.header`
   display: flex;
@@ -8,6 +8,7 @@ const Inner = styled.header`
   font-family: "Century Gothic";
   align-items: center;
   margin: .8rem 1.2rem;
+  height: 1.6rem;
   > img {
     height: 1.5rem;
     margin-right: -2rem;
@@ -21,7 +22,7 @@ const Inner = styled.header`
 export default function Header(props: {title: string}) {
     return (
         <Inner>
-            <img alt="left-arrow" src={leftArrow}/>
+            <img alt="left-arrow" src={"/assets/img/arrow_back_ios_new_black_24dp.svg"}/>
             <h1>{props.title}</h1>
         </Inner>
     )
