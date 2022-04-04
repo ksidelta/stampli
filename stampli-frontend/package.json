@@ -57,7 +57,7 @@
     "jest-runner-tsc": "^1.6.0",
     "jsdom": "^17.0.0",
     "jsdom-global": "^2.1.1",
-    "mockserver-node": "^5.13.1",
+    "mockserver-node": "^5.connection13.1",
     "prettier": "^2.6.2",
     "process": "^0.11.10",
     "regenerator-runtime": "^0.13.7",
