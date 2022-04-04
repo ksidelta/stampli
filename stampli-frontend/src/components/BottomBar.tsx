@@ -43,7 +43,7 @@ const StyledIconButton = styled(IconButton)({
 export default function BottomBar() {
     return (
         <>
-            <AppBar position="sticky" color="primary" sx={{ backgroundColor: 'primary.light', top: 'auto', bottom: 0 }}>
+            <AppBar position="sticky" color="primary" sx={{ backgroundColor: 'primary.light', color: '#000', top: 'auto', bottom: 0 }}>
                 <Toolbar> {/* We can also use "BottomNavigation element */}
                     <Box sx={{ flexGrow: 1 }} />
                     <StyledIconButton color="inherit" aria-label="restaurant menu" href="/menu">
