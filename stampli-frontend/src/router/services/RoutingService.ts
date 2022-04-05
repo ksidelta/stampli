@@ -24,6 +24,14 @@ export class RoutingService {
   goToScanner() {
     this.history.push(Routes.scanner);
   }
+
+  goToMenu(){
+    this.history.push(Routes.menu)
+  }
+
+  goToStamps(){
+    this.history.push(Routes.stamps)
+  }
 }
 
 export const RoutingServiceInstance = new RoutingService(createBrowserHistory());

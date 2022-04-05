@@ -7,6 +7,8 @@ import "../img/qr_code_black_24dp.svg"
 import "../img/discount_black_24dp.svg"
 import "../img/menu_black_24dp.svg"
 import Box from "@mui/material/Box";
+import {InjectionComponent} from "./stated/context/InjectionComponent";
+import {RouterServiceContext} from "../router/AppRouter";
 
 
 const StyledFab = styled(Fab)({
@@ -42,33 +44,37 @@ const StyledIconButton = styled(IconButton)({
 
 export default function BottomBar() {
     return (
-        <>
-            <AppBar position="sticky" color="primary" sx={{ backgroundColor: 'primary.light', color: '#000', top: 'auto', bottom: 0 }}>
+        <RouterServiceContext.Consumer>{(historyService) =>
+            <AppBar position="sticky" color="primary"
+                    sx={{backgroundColor: 'primary.light', color: '#000', top: 'auto', bottom: 0}}>
                 <Toolbar> {/* We can also use "BottomNavigation element */}
-                    <Box sx={{ flexGrow: 1 }} />
-                    <StyledIconButton color="inherit" aria-label="restaurant menu" href="/menu">
-                        <img src={"/assets/img/restaurant_menu_black_24dp.svg"} alt={"Restaurant menu icon"} />
+                    <Box sx={{flexGrow: 1}}/>
+                    <StyledIconButton color="inherit" aria-label="restaurant menu"
+                                      onClick={() => historyService.goToMenu()}>
+                        <img src={"/assets/img/restaurant_menu_black_24dp.svg"} alt={"Restaurant menu icon"}/>
                         <Typography variant="button">menu</Typography>
                     </StyledIconButton>
-                    <StyledIconButton color="inherit" aria-label="stamp" href="/stamps">
+                    <StyledIconButton color="inherit" aria-label="stamp"
+                                      onClick={() => (console.log("XDDD"), historyService.goToStamps())}>
                         <img src={"/assets/img/approval_black_24dp.svg"} alt={"Stamp icon"}/>
                         <Typography variant="button">stamples</Typography>
                     </StyledIconButton>
                     <StyledFab color="primary" aria-label="scan qr code" href="/scan">
-                        <img src={"/assets/img/qr_code_black_24dp.svg"} alt={"QR Code icon"} />
+                        <img src={"/assets/img/qr_code_black_24dp.svg"} alt={"QR Code icon"}/>
                     </StyledFab>
-                    <Box sx={{ flexGrow: 2 }} />
+                    <Box sx={{flexGrow: 2}}/>
                     <StyledIconButton color="inherit" aria-label="discounts" href="/discount">
-                        <img src={"/assets/img/discount_black_24dp.svg"} alt={"Discount icon"} />
+                        <img src={"/assets/img/discount_black_24dp.svg"} alt={"Discount icon"}/>
                         <Typography variant="button">discount</Typography>
                     </StyledIconButton>
                     <StyledIconButton color="inherit" aria-label="options" href="/options">
                         <img src={"/assets/img/menu_black_24dp.svg"} alt={"Options icon"}/>
                         <Typography variant="button">options</Typography>
                     </StyledIconButton>
-                    <Box sx={{ flexGrow: 1 }} />
+                    <Box sx={{flexGrow: 1}}/>
                 </Toolbar>
             </AppBar>
-        </>
+        }
+        </RouterServiceContext.Consumer>
     )
 }

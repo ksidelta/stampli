@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Box from '@mui/material/Box';
 import {Typography} from "@mui/material";
 
-const Inner = styled(Box)(({ theme }) => ({
+const Inner = styled(Box)(({theme}) => ({
     width: "405px",
     height: "644px",
     background: theme.palette.primary.main,
@@ -33,12 +33,8 @@ const StyledTypography = styled(Typography)(({theme}) => ({
     margin: "2rem auto"
 }))
 
-export default function StampCard(){
-    const stamps = [];
-
-    for (let i = 0; i < 10; i++) {
-        stamps.push(<Stamp/>)
-    }
+export default function StampCard() {
+    const stamps = new Array(10).map(x => <Stamp key={x}/>)
 
     return (
         <Inner>

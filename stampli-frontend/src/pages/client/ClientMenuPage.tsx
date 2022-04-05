@@ -13,6 +13,9 @@ const Inner = styled.div`
       justify-content: center;
       align-items: center;
       overflow: hidden;
+      > img {
+        width: 100%;
+      }
     }
 `
 
@@ -21,7 +24,7 @@ export default function MenuPage() {
         <MobilePage>
             <Inner>
                 <section>
-                    <img src={'/assets/img/menu_placeholder.jpg'} alt="Restaurant's menu card" height="700"/>
+                    <img src={'/assets/img/menu_placeholder.jpg'} alt="Restaurant's menu card"/>
                 </section>
                 <BottomBar/>
             </Inner>
