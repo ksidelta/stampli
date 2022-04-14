@@ -6,20 +6,19 @@ const Inner = styled.div`
   width: calc(100% - .8rem);
   margin: .4rem;
   max-width: 20rem;
-`
+`;
 
-export default function Component (params: {text: string, required: boolean}) {
-    if (params.required) {
-        return (
-            <Inner>
-                <TextField label={params.text} sx={{width: "100%"}} variant="outlined" required/>
-            </Inner>
-        )
-    } else {
-        return (
-            <Inner>
-                <TextField label={params.text} sx={{width: "100%"}} variant="outlined"/>
-            </Inner>
-        )
-    }
+export default function Component({text, value, setValue, required}: { text: string, value: string, setValue: (text: string) => void, required: boolean }) {
+  return (
+    <Inner>
+      <TextField
+        label={text}
+        sx={{ width: '100%' }}
+        variant='outlined'
+        required={required}
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
+    </Inner>
+  );
 }
