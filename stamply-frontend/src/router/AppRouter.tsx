@@ -11,7 +11,6 @@ import { ServicesBundle } from '../services/ServicesBundle';
 import { Routes } from './routes/Routes';
 import LoginEmailPage from "../pages/client/ClientLoginEmailPage";
 import RegisterEmailPage from "../pages/client/ClientRegisterEmailPage";
-import ClientMainPage from "../pages/client/ClientMainPage";
 import ClientMenuPage from '../pages/client/ClientMenuPage';
 import ClientDiscountPage from '../pages/client/ClientDiscountPage';
 import ClientStampsPage from '../pages/client/ClientStampsPage';
