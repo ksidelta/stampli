@@ -4,6 +4,11 @@ import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
 import com.example.modules.business.service.profile.BusinessProfileService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
+
 @RestController
 @RequestMapping("/api/business/{id}")
 public class BusinessProfileController {
@@ -33,6 +38,22 @@ public class BusinessProfileController {
     @GetMapping(path = "/logo", produces = "image/png")
     public byte[] getBusinessLogo(@PathVariable Integer id) {
         return imageToBlobConverter.convertToDatabaseColumn(businessProfileService.getLogo(id));
+    }
+
+    @PutMapping(path = "/offers", consumes = "image/png")
+    public void updateOffers(@PathVariable Integer id, @RequestBody UpdateOffersDTO offers) {
+        businessProfileService.updateOffers(id, offers.offers().stream().map(imageToBlobConverter::convertToEntityAttribute).collect(toList()));
+    }
+
+    @GetMapping(path = "/offers")
+    public RetrieveOffersDTO getOffers(@PathVariable Integer id) {
+        return new RetrieveOffersDTO(businessProfileService.getOffers(id).stream().map(imageToBlobConverter::convertToDatabaseColumn).collect(Collectors.toList()));
+    }
+
+    record UpdateOffersDTO(List<byte[]> offers) {
+    }
+
+    record RetrieveOffersDTO(List<byte[]> offers) {
     }
 
 }

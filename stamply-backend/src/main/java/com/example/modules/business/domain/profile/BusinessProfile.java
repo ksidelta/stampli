@@ -2,13 +2,16 @@ package com.example.modules.business.domain.profile;
 
 
 import com.example.infrastructure.db.hibernate.ImageToBlobConverter;
+import com.example.modules._common.domain.exceptions.InvalidImageException;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
+import javax.persistence.*;
 import java.awt.image.BufferedImage;
+import java.nio.Buffer;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 @Embeddable
 public class BusinessProfile {
@@ -17,6 +20,11 @@ public class BusinessProfile {
 
     @Embedded
     BusinessName businessName;
+
+    @ElementCollection
+    @CollectionTable(name = "business_images", joinColumns = @JoinColumn(name = "businessId"))
+    @OrderColumn(name = "orderNum")
+    List<BusinessImage> offers;
 
     public BusinessLogo getBusinessLogo() {
         return businessLogo;
@@ -33,6 +41,15 @@ public class BusinessProfile {
     public void updateBusinessName(BusinessName businessName) {
         this.businessName = businessName;
     }
+
+    public List<BusinessImage> getOffers() {
+        return offers;
+    }
+
+    public void setOffers(List<BufferedImage> images) {
+        this.offers = images.stream().map(BusinessImage::createOffer).collect(toList());
+    }
+
 
     @Embeddable
     public static class BusinessLogo {
@@ -87,4 +104,30 @@ public class BusinessProfile {
             this.name = name;
         }
     }
+
+    @Embeddable
+    public static class BusinessImage {
+        @Column
+        @Convert(converter = ImageToBlobConverter.class)
+        BufferedImage data;
+
+        public BusinessImage() {
+        }
+
+        public BufferedImage getData() {
+            return data;
+        }
+
+        static BusinessImage createImage(BufferedImage image) {
+            var businessImage = new BusinessImage();
+            businessImage.data = image;
+            return businessImage;
+        }
+
+        static BusinessImage createOffer(BufferedImage image) {
+            InvalidImageException.assertRatio(image, 3, 2);
+            return createImage(image);
+        }
+    }
+
 }

@@ -9,5 +9,8 @@
         <Root level="WARN">
             <AppenderRef ref="Console"/>
         </Root>
+        <Logger name="org.springframework.web" level="trace" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
     </Loggers>
 </Configuration>

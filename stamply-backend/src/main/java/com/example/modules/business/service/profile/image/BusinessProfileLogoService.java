@@ -1,6 +1,6 @@
 package com.example.modules.business.service.profile.image;
 
-import com.example.modules.business.domain.profile.BusinessImage;
+import com.example.modules.business.domain.profile.BusinessProfile;
 import com.example.modules.business.repository.BusinessRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class BusinessProfileLogoService {
     @Transactional
     public void updateLogo(Integer businessId, BufferedImage logo) {
         final var business = businessRepository.findById(businessId);
-        business.usingBusinessProfile().updateBusinessLogo(BusinessImage.createBusinessLogo(logo));
+        business.usingBusinessProfile().updateBusinessLogo(BusinessProfile.BusinessLogo.createBusinessLogo(logo));
         businessRepository.save(business);
     }
 

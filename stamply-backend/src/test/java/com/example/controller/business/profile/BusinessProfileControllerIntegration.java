@@ -45,9 +45,9 @@ public class BusinessProfileControllerIntegration {
     @Test
     public void whenNameIsUpdatedThenBusinessServiceIsProperlyExecuted() throws Exception {
         mockMvc.perform(
-                put("/api/business/1/name")
-                        .content("CONTENT")
-                        .contentType("plain/text"))
+                        put("/api/business/1/name")
+                                .content("CONTENT")
+                                .contentType("plain/text"))
                 .andExpect(status().is(200));
 
         verify(businessProfileService).updateName(1, "CONTENT");
@@ -69,9 +69,9 @@ public class BusinessProfileControllerIntegration {
     @Test
     public void whenLogoIsUpdatedThenBusinessServiceIsProperlyExecuted() throws Exception {
         mockMvc.perform(
-                put("/api/business/1/logo")
-                        .content(getDefaultImageAsBytes())
-                        .contentType("image/png"))
+                        put("/api/business/1/logo")
+                                .content(getDefaultLogoImageAsBytes())
+                                .contentType("image/png"))
                 .andExpect(status().is(200));
 
         verify(businessProfileService).updateLogo(eq(1), argThat(
@@ -84,16 +84,21 @@ public class BusinessProfileControllerIntegration {
         when(businessProfileService.getLogo(1)).thenReturn(BusinessAggregate.defaultImage());
 
         mockMvc.perform(
-                get("/api/business/1/logo")
-                        .content(getDefaultImageAsBytes())
-                        .accept("image/png"))
+                        get("/api/business/1/logo")
+                                .content(getDefaultLogoImageAsBytes())
+                                .accept("image/png"))
                 .andExpect(status().is(200))
-                .andExpect(content().bytes(getDefaultImageAsBytes()));
+                .andExpect(content().bytes(getDefaultLogoImageAsBytes()));
 
         verify(businessProfileService).getLogo(eq(1));
     }
 
-    static byte[] getDefaultImageAsBytes() {
+    @Test
+    public void whenOffersAreUpdatedThenAccessible() {
+
+    }
+
+    public static byte[] getDefaultLogoImageAsBytes() {
         return new ImageToBlobConverter().convertToDatabaseColumn(BusinessAggregate.defaultImage());
     }
 
