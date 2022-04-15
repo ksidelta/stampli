@@ -1,6 +1,5 @@
 package com.example.infrastructure;
 
-import com.example.infrastructure.bson.BsonMessageConverter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -13,6 +12,6 @@ import java.util.List;
 public class InfrastructureConfiguration implements WebMvcConfigurer {
     @Override
     public void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new BsonMessageConverter());
+        // converters.add(new BsonMessageConverter());
     }
 }
