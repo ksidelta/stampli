@@ -1,17 +1,16 @@
 package com.example.controller.authentication.register;
 
 import com.example.BaseTestConfiguration;
+import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import com.example.modules.authentication.controller.register.RegisterController;
 import com.example.modules.authentication.domain.user.entity.EmailPasswordUserAggregate;
 import com.example.modules.authentication.domain.user.repository.UserRepository;
 import com.example.modules.authentication.domain.user.repository.create.UserCreationDto;
-import com.example.infrastructure.jwt.sign.AlgorithmHolder;
 import org.hibernate.SessionFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -23,8 +22,6 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.servlet.Filter;
 import java.util.Arrays;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,7 +31,6 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringJUnitWebConfig({BaseTestConfiguration.class})
 @Transactional
 public class RegisterControllerE2E {
-    @Mock
     protected MockMvc mockMvc;
 
     @Autowired
