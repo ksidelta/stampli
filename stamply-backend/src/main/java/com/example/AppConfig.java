@@ -20,5 +20,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 })
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @EnableRetry
+@EnableWebSecurity
+@EnableWebMvc
 public class AppConfig {
 }

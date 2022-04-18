@@ -44,14 +44,14 @@ class TestControllerTest {
 
     @Test
     public void test() {
-        var response = restTemplate.getForObject("/test/health", String.class);
+        var response = restTemplate.getForObject("/api/test/health", String.class);
 
         MatcherAssert.assertThat(response, Matchers.equalTo("ok"));
     }
 
     @Test
     public void testFail() {
-        var response = restTemplate.getForEntity("/test/forbidden", String.class);
+        var response = restTemplate.getForEntity("/api/test/forbidden", String.class);
 
         MatcherAssert.assertThat(response.getStatusCode(), Matchers.equalTo(HttpStatus.UNAUTHORIZED));
     }

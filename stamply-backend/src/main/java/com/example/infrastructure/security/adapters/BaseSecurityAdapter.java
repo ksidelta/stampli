@@ -42,7 +42,7 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                         .mvcMatchers(HttpMethod.PUT, "/api/business/**").authenticated()
                         .mvcMatchers(HttpMethod.GET, "/api/business/**").permitAll()
                         .mvcMatchers(HttpMethod.GET, "/api/business/").authenticated() // it gets business for current user
-                        .mvcMatchers(HttpMethod.GET, "/test/forbidden").denyAll() // for testing that spring boot didn't break anything
+                        .mvcMatchers(HttpMethod.GET, "/api/test/forbidden").denyAll() // for testing that spring boot didn't break anything
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(x -> x.jwt().authenticationManager(authenticationManager))
