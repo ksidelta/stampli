@@ -1,7 +1,7 @@
 package com.example;
 
-import com.example.bootstrap.database.DatabaseConfiguration;
-import com.example.bootstrap.security.WebSecurityConfig;
+import com.example.infrastructure.db.DatabaseConfiguration;
+import com.example.infrastructure.security.WebSecurityConfig;
 import com.example.infrastructure.InfrastructureConfiguration;
 import com.example.modules.ModulesConfiguration;
 import org.springframework.context.annotation.Configuration;

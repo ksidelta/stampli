@@ -1,4 +1,4 @@
-package com.example.bootstrap.database;
+package com.example.infrastructure.db.jdbc;
 
 import com.example.infrastructure.db.jdbc.RetryableDataSource;
 import com.zaxxer.hikari.HikariConfig;

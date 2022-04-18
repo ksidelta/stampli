@@ -5,21 +5,21 @@ services:
       - 1995:1995
     volumes:
       - type: bind
-        source: ./stampli-backend/target/stampli-output/
-        target: /usr/local/stampli/stampli/
+        source: ./stamply-backend
+        target: /app
   stampli_db:
     ports:
       - 3306:3306
   nginx:
     build: './nginx'
     networks:
-      - stampli
+      - stamply
     ports:
       - 80:80
   front:
     volumes:
       - type: bind
-        source: ./stampli-frontend
+        source: ./stamply-frontend
         target: /node
     ports:
       - 8080:8080

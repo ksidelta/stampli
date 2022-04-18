@@ -1,37 +1,12 @@
-FROM tomcat:9.0.60-jre17-temurin
+FROM maven:3.8.5-openjdk-17
 
-RUN mkdir -p /usr/local/stampli/
-ADD ./target/stampli-output /usr/local/stampli/stampli/
-
-# I don;t want to add more configuration yet
-#RUN echo '<Host name="localhost"  appBase="webapps" \
-#          unpackWARs="false" autoDeploy="false" deployOnStartup="false"> \
-#          <Context path="/mydemo/version1" docBase="sampli.war"/> \
-#    </Host>' > /usr/local/tomcat/conf/server.xml
-
-RUN echo 'export JPDA_ADDRESS=*:1995;      \
-          export JPDA_SUSPEND=n            \
-          export JAVA_OPTS="               \
-          -Dmysql.host=$MYSQL_HOST         \
-          -Dmysql.port=$MYSQL_PORT         \
-          -Dmysql.db=$MYSQL_DB             \
-          -Dmysql.username=$MYSQL_USERNAME \
-          -Dmysql.password=$MYSQL_PASSWORD \
-          -Dbase.host=$BASE_HOST           \
-          " \
-' > /usr/local/tomcat/bin/setenv.sh
-
-RUN mkdir -p /usr/local/tomcat/conf/Catalina/localhost
-RUN echo '<Context                                       \
-           docBase="/usr/local/stampli/stampli/"      \
-           path=""                                       \
-           reloadable="true"                            \
-           />' > /usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
-
+ADD ./ /app
 
 # HEALTHCHECK --interval=30s --timeout=3s \
-#  CMD curl -f http://localhost:8080/stampli/test/string
+# CMD curl -f http://localhost:8080/stampli/test/string
 
-CMD ["catalina.sh", "jpda",  "run"]
+WORKDIR /app
+RUN ["mvn", "compile"]
+CMD ["mvn", "spring-boot:run"]
 
 EXPOSE 8080

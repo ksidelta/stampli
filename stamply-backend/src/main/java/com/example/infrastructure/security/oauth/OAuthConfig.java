@@ -1,4 +1,4 @@
-package com.example.bootstrap.security.oauth;
+package com.example.infrastructure.security.oauth;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,20 +1,20 @@
 version: "3.3"
 services:
   server1:
-    build: './stampli-backend'
+    build: './stamply-backend'
     environment:
-      MYSQL_USERNAME: root
-      MYSQL_PASSWORD: password
-      MYSQL_HOST: stampli_db
-      MYSQL_PORT: 3306
-      MYSQL_DB: baza
+      mysql.username: root
+      mysql.password: password
+      mysql.host: stampli_db
+      mysql.port: 3306
+      mysql.db: baza
     networks:
-      - stampli
+      - stamply
 
   front:
-    build: './stampli-frontend'
+    build: './stamply-frontend'
     networks:
-      - stampli
+      - stamply
 
   stampli_db:
     image: mariadb:10.5.9
@@ -24,14 +24,14 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: baza
     networks:
-      - stampli
+      - stamply
 
   nginx:
     build: './nginx'
     command: [nginx-debug, '-g', 'daemon off;']
     networks:
-      - stampli
+      - stamply
 
 networks:
-  stampli:
+  stamply:
     internal: false

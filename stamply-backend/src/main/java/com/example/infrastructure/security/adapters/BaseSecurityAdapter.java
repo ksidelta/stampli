@@ -1,4 +1,4 @@
-package com.example.bootstrap.security.adapters;
+package com.example.infrastructure.security.adapters;
 
 import com.example.infrastructure.jwt.BasicJwtAuthenticationProvider;
 import com.example.infrastructure.jwt.external.ProhibitExternalProviderFilter;
@@ -6,13 +6,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
@@ -45,6 +42,7 @@ public class BaseSecurityAdapter extends WebSecurityConfigurerAdapter {
                         .mvcMatchers(HttpMethod.PUT, "/api/business/**").authenticated()
                         .mvcMatchers(HttpMethod.GET, "/api/business/**").permitAll()
                         .mvcMatchers(HttpMethod.GET, "/api/business/").authenticated() // it gets business for current user
+                        .mvcMatchers(HttpMethod.GET, "/test/forbidden").denyAll() // for testing that spring boot didn't break anything
                         .anyRequest().permitAll()
                 )
                 .oauth2ResourceServer(x -> x.jwt().authenticationManager(authenticationManager))

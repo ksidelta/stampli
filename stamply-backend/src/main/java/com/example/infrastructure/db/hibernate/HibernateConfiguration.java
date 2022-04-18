@@ -1,4 +1,4 @@
-package com.example.bootstrap.database;
+package com.example.infrastructure.db.hibernate;
 
 import org.flywaydb.core.Flyway;
 import org.hibernate.SessionFactory;

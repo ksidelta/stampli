@@ -1,7 +1,7 @@
-package com.example.bootstrap.security;
+package com.example.infrastructure.security;
 
-import com.example.bootstrap.security.adapters.BaseSecurityAdapter;
-import com.example.bootstrap.security.oauth.OAuthConfig;
+import com.example.infrastructure.security.adapters.BaseSecurityAdapter;
+import com.example.infrastructure.security.oauth.OAuthConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

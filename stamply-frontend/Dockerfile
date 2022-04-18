@@ -1,4 +1,4 @@
-FROM node:16.13.1
+FROM node:17.8.0
 EXPOSE 8080
 
 COPY . ./app
