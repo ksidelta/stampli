@@ -12,14 +12,12 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-@EnableWebMvc
 @Import({
         WebSecurityConfig.class,
         DatabaseConfiguration.class,
         InfrastructureConfiguration.class,
         ModulesConfiguration.class
 })
-@EnableWebSecurity
 @EnableAspectJAutoProxy(proxyTargetClass = false)
 @EnableRetry
 public class AppConfig {
