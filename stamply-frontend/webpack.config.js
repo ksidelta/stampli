@@ -43,7 +43,7 @@ extensions: ['.tsx', '.ts', '.js', '.jsx']
       {
         test: /\.[tj]sx?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'babel-loader'
+        loader: 'ts-loader'
       },
       {
         test: /\.(css)$/,
