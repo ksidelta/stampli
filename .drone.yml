@@ -5,13 +5,13 @@ type: docker
 steps:
 
 - name: java-verify
-  image: maven:3-jdk-11
+  image: maven:3-jdk-17
   commands:
   - cd stamply-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
 
 - name: node-test
-  image: node:15.12.0
+  image: node:17.8.0
   commands:
   - cd stamply-frontend
   - npm install
