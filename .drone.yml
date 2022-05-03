@@ -7,13 +7,13 @@ steps:
 - name: java-verify
   image: maven:3-jdk-11
   commands:
-  - cd stampli-backend
+  - cd stamply-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
 
 - name: node-test
   image: node:15.12.0
   commands:
-  - cd stampli-frontend
+  - cd stamply-frontend
   - npm install
   - npx tsc
   - npm test
