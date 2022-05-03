@@ -5,7 +5,7 @@ type: docker
 steps:
 
 - name: java-verify
-  image: maven:3-jdk-17
+  image: maven:3.8-openjdk-18
   commands:
   - cd stamply-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
