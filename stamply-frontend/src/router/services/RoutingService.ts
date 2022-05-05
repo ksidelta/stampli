@@ -26,11 +26,19 @@ export class RoutingService {
   }
 
   goToMenu(){
-    this.history.push(Routes.menu)
+    this.history.push(Routes.menu);
   }
 
   goToStamps(){
-    this.history.push(Routes.stamps)
+    this.history.push(Routes.stamps);
+  }
+
+  goToDiscounts(){
+    this.history.push(Routes.discount);
+  }
+
+  goToOptions(){
+    this.history.push(Routes.options);
   }
 }
 

@@ -12,7 +12,9 @@ export const Routes = {
         : `/challenge/claim/${businessId}/${issuerId}/${nonce}/`
   },
   home: '/',
-  scanner: '/scanner',
+  scanner: '/scan',
   menu: '/menu',
-  stamps: '/stamps'
+  stamps: '/stamps',
+  discount: '/discount',
+  options: '/options',
 };

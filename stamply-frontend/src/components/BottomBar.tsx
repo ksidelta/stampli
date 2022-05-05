@@ -50,24 +50,24 @@ export default function BottomBar() {
                 <Toolbar> {/* We can also use "BottomNavigation element */}
                     <Box sx={{flexGrow: 1}}/>
                     <StyledIconButton color="inherit" aria-label="restaurant menu"
-                                      onClick={() => historyService.goToMenu()}>
+                                      onClick={historyService.goToMenu.bind(historyService)}>
                         <img src={"/assets/img/restaurant_menu_black_24dp.svg"} alt={"Restaurant menu icon"}/>
                         <Typography variant="button">menu</Typography>
                     </StyledIconButton>
                     <StyledIconButton color="inherit" aria-label="stamp"
-                                      onClick={() => (console.log("XDDD"), historyService.goToStamps())}>
+                                      onClick={historyService.goToStamps.bind(historyService)}>
                         <img src={"/assets/img/approval_black_24dp.svg"} alt={"Stamp icon"}/>
                         <Typography variant="button">stamples</Typography>
                     </StyledIconButton>
-                    <StyledFab color="primary" aria-label="scan qr code" href="/scan">
+                    <StyledFab color="primary" aria-label="scan qr code" onClick={historyService.goToScanner.bind(historyService)}>
                         <img src={"/assets/img/qr_code_black_24dp.svg"} alt={"QR Code icon"}/>
                     </StyledFab>
                     <Box sx={{flexGrow: 2}}/>
-                    <StyledIconButton color="inherit" aria-label="discounts" href="/discount">
+                    <StyledIconButton color="inherit" aria-label="discounts" onClick={historyService.goToDiscounts.bind(historyService)}>
                         <img src={"/assets/img/discount_black_24dp.svg"} alt={"Discount icon"}/>
                         <Typography variant="button">discount</Typography>
                     </StyledIconButton>
-                    <StyledIconButton color="inherit" aria-label="options" href="/options">
+                    <StyledIconButton color="inherit" aria-label="options" onClick={historyService.goToOptions.bind(historyService)}>
                         <img src={"/assets/img/menu_black_24dp.svg"} alt={"Options icon"}/>
                         <Typography variant="button">options</Typography>
                     </StyledIconButton>
