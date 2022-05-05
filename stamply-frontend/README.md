@@ -1,3 +1,10 @@
+## How To use
+
+- nvm install
+- nvm use
+- npm i
+- npm start
+
 ## Architecture
 
 ### Catalogue Structure
