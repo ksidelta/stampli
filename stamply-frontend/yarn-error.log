@@ -1,0 +1,144 @@
+Arguments: 
+  /usr/bin/node /usr/bin/yarn install
+
+PATH: 
+  /home/mble/.local/bin:/home/mble/.yarn/bin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  17.9.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  SyntaxError: /home/mble/MEGA/Code/repos/oneacik/stampli/stamply-frontend/package.json: Unexpected token } in JSON at position 2154
+      at JSON.parse (<anonymous>)
+      at /usr/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/lib/node_modules/yarn/lib/cli.js:321:13
+
+npm manifest: 
+  {
+    "name": "stamply",
+    "version": "1.0.0",
+    "description": "Front-end interface for Stamply loyalty app.",
+    "main": "index.js",
+    "type": "commonjs",
+    "scripts": {
+      "start": "webpack serve",
+      "build": "webpack --mode production",
+      "test": "jest",
+      "lint": "eslint . --ext .js,.tsx,.ts",
+      "prettier": "prettier --write ./"
+    },
+    "author": "oneacik",
+    "license": "ISC",
+    "devDependencies": {
+      "@babel/cli": "*",
+      "@babel/core": "*",
+      "@babel/node": "*",
+      "@babel/plugin-proposal-class-properties": "*",
+      "@babel/plugin-proposal-decorators": "*",
+      "@babel/plugin-transform-runtime": "*",
+      "@babel/preset-env": "*",
+      "@babel/preset-react": "*",
+      "@babel/preset-typescript": "*",
+      "@types/enzyme": "*",
+      "@types/enzyme-adapter-react-16": "*",
+      "@types/express": "*",
+      "@types/express-urlrewrite": "*",
+      "@types/jest": "*",
+      "@types/jsonwebtoken": "*",
+      "@types/qrcode.react": "*",
+      "@types/react-dom": "*",
+      "@types/react-router-dom": "*",
+      "@types/styled-components": "*",
+      "@types/webpack-dev-middleware": "*",
+      "@typescript-eslint/eslint-plugin": "*",
+      "@typescript-eslint/parser": "*",
+      "babel-loader": "*",
+      "css-loader": "*",
+      "enzyme": "*",
+      "enzyme-adapter-react-16": "*",
+      "eslint": "*",
+      "eslint-config-prettier": "*",
+      "eslint-config-standard": "*",
+      "eslint-plugin-import": "*",
+      "eslint-plugin-node": "*",
+      "eslint-plugin-prettier": "*",
+      "eslint-plugin-promise": "*",
+      "eslint-plugin-react": "*",
+      "express": "*",
+      "file-loader": "*",
+      "html-webpack-plugin": "*",
+      "jest": "*",
+      "jest-localstorage-mock": "*",
+      "jest-runner-mocha": "*",
+      "jest-runner-tsc": "*",
+      "jsdom": "*",
+      "jsdom-global": "*",
+      "mockserver-node": "*",
+      "prettier": "*",
+      "process": "*",
+      "regenerator-runtime": "*",
+      "sass": "*",
+      "sass-loader": "*",
+      "style-loader": "*",
+      "svg-inline-loader": "*",
+      "ts-jest": "*",
+      "ts-loader": "*",
+      "ts-node": "*",
+      "typescript": "*",
+      "webpack": "*",
+      "webpack-cli": "*",
+      "webpack-dev-middleware": "*",
+      "webpack-dev-server": "*",
+    },
+    "dependencies": {
+      "@mui/icons-material": "*",
+      "@mui/material": "*",
+      "@mui/styled-engine-sc": "*",
+      "@stomp/rx-stomp": "*",
+      "@stomp/stompjs": "*",
+      "@types/file-loader": "*",
+      "@types/react-qr-reader": "*",
+      "axios": "*",
+      "buffer": "*",
+      "chokidar": "*",
+      "class-transformer": "*",
+      "crypto-browserify": "*",
+      "cypress": "*",
+      "express-urlrewrite": "*",
+      "formik": "*",
+      "jose": "*",
+      "js-logger": "*",
+      "jsonwebtoken": "*",
+      "mobx": "*",
+      "mobx-react": "*",
+      "qrcode.react": "*",
+      "react": "*",
+      "react-dom": "*",
+      "react-google-login": "*",
+      "react-images-upload": "*",
+      "react-images-uploading": "*",
+      "react-qr-reader": "*",
+      "react-qr-scanner": "*",
+      "react-rectangle": "*",
+      "react-router-dom": "*",
+      "reflect-metadata": "*",
+      "rxjs": "*",
+      "stream-browserify": "*",
+      "styled-components": "*",
+      "util": "*",
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
