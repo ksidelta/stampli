@@ -1,7 +1,7 @@
 package com.example.controller.business;
 
 import com.example.SpringBoot;
-import com.example.common.db.AbstractDatabaseTest;
+import com.example.common.BaseSpringBootIT;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.modules.business.controller.BusinessController;
@@ -25,7 +25,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import javax.servlet.Filter;
 import java.util.Arrays;
 
-import static com.example.common.BaseSpringBootIT.startMariaDBWithLoggingForClass;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -33,7 +32,7 @@ import static org.hamcrest.Matchers.is;
 @SpringBootTest(classes = SpringBoot.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class})
 @ExtendWith(SpringExtension.class)
-public class BusinessControllerE2E extends AbstractDatabaseTest {
+public class BusinessControllerE2E extends BaseSpringBootIT {
     @Autowired
     protected BusinessController businessController;
 

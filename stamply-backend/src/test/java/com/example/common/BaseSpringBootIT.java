@@ -26,7 +26,6 @@ public abstract class BaseSpringBootIT extends AbstractDatabaseTest {
         dynamicPropertyRegistry.add("db.mysql.password", () -> mariadb.getPassword());
     }
 
-    @BeforeAll
     static public void startMariaDBWithLoggingForClass(Class loggedClass) {
         mariadb.withLogConsumer(new Slf4jLogConsumer(LoggerFactory.getLogger(loggedClass)));
         mariadb.start();
