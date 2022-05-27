@@ -16,20 +16,6 @@ import ClientDiscountPage from '../pages/client/ClientDiscountPage';
 import ClientStampsPage from '../pages/client/ClientStampsPage';
 import ClientOptionsPage from '../pages/client/ClientOptionsPage';
 
-declare module '@mui/material/styles' {
-  interface Palette {
-    apple?: Palette['primary'];
-    google?: Palette['primary'];
-    fb?: Palette['primary'];
-  }
-  interface PaletteOptions {
-    apple: PaletteOptions['primary'];
-    google: PaletteOptions['primary'];
-    fb: PaletteOptions['primary'];
-  }
-}
-
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -41,18 +27,6 @@ const theme = createTheme({
       light: '#d9fffe',
       main: '#00ffff',
       dark: '#008c82',
-    },
-    apple: {
-      contrastText: '#f5f5f5',
-      main: '#000000',
-    },
-    google: {
-      contrastText: '#f5e2e1',
-      main: '#DB4437'
-    },
-    fb: {
-      contrastText: '#e1e8f5',
-      main: '#4267B2'
     }
   },
 });
@@ -72,62 +46,62 @@ export const AppRouter = () => {
   }
 
   return (
-      <ThemeProvider theme={theme}>
-        <InjectionContext.Provider value={servicesBundle}>
-      <RouterServiceContext.Provider value={RoutingServiceInstance}>
-        <Router history={RoutingServiceInstance.history}>
-          <Switch>
-            <Route path={'/'} exact={true}>
-              <Redirect to={'/login'} />
-            </Route>
-            <Route path={'/login'} exact={true}>
-              <ClientLoginPage />
-            </Route>
-            <Route path={'/login/email'} exact={true}>
-              <LoginEmailPage/>
-            </Route>
-            <Route path={'/register'} exact={true}>
-              <Redirect to={'/register/email'} />
-            </Route>
-            <Route path={'/register/email'} exact={true}>
-              <RegisterEmailPage/>
-            </Route>
-            <Route path={'/menu'} exact={true}>
-              <ClientMenuPage/>
-            </Route>
-            <Route path={'/discount'} exact={true}>
-              <ClientDiscountPage/>
-            </Route>
-            <Route path={'/scanner'} exact={true}>
-            </Route>
-            <Route path={'/stamps'} exact={true}>
-              <ClientStampsPage/>
-            </Route>
-            <Route path={'/options'} exact={true}>
-              <ClientOptionsPage/>
-            </Route>
-            <Route path={Routes.challenge.claim(undefined, ':businessId', ':issuerId', ':nonce')}>
-              <UnauthenticatedCondition>
-              </UnauthenticatedCondition>
-              <AuthenticatedCondition>
-              </AuthenticatedCondition>
-            </Route>
-            <Route path={Routes.business.root}>
-              <UnauthenticatedCondition>
-              </UnauthenticatedCondition>
-                  <AuthenticatedCondition>
-                    <Route path={Routes.business.root} exact={true}>
-                    </Route>
-                    <Route path={Routes.business.settings} exact={true}>
-                    </Route>
-                    <Route path={Routes.business.qrCode} exact={true}>
-                    </Route>
-                  </AuthenticatedCondition>
-                </Route>
-              </Switch>
-            </Router>
-          </RouterServiceContext.Provider>
-        </InjectionContext.Provider>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <InjectionContext.Provider value={servicesBundle}>
+        <RouterServiceContext.Provider value={RoutingServiceInstance}>
+          <Router history={RoutingServiceInstance.history}>
+            <Switch>
+              <Route path={'/'} exact={true}>
+                <Redirect to={'/login'} />
+              </Route>
+              <Route path={'/login'} exact={true}>
+                <ClientLoginPage />
+              </Route>
+              <Route path={'/login/email'} exact={true}>
+                <LoginEmailPage />
+              </Route>
+              <Route path={'/register'} exact={true}>
+                <Redirect to={'/register/email'} />
+              </Route>
+              <Route path={'/register/email'} exact={true}>
+                <RegisterEmailPage />
+              </Route>
+              <Route path={'/menu'} exact={true}>
+                <ClientMenuPage />
+              </Route>
+              <Route path={'/discount'} exact={true}>
+                <ClientDiscountPage />
+              </Route>
+              <Route path={'/scanner'} exact={true}>
+              </Route>
+              <Route path={'/stamps'} exact={true}>
+                <ClientStampsPage />
+              </Route>
+              <Route path={'/options'} exact={true}>
+                <ClientOptionsPage />
+              </Route>
+              <Route path={Routes.challenge.claim(undefined, ':businessId', ':issuerId', ':nonce')}>
+                <UnauthenticatedCondition>
+                </UnauthenticatedCondition>
+                <AuthenticatedCondition>
+                </AuthenticatedCondition>
+              </Route>
+              <Route path={Routes.business.root}>
+                <UnauthenticatedCondition>
+                </UnauthenticatedCondition>
+                <AuthenticatedCondition>
+                  <Route path={Routes.business.root} exact={true}>
+                  </Route>
+                  <Route path={Routes.business.settings} exact={true}>
+                  </Route>
+                  <Route path={Routes.business.qrCode} exact={true}>
+                  </Route>
+                </AuthenticatedCondition>
+              </Route>
+            </Switch>
+          </Router>
+        </RouterServiceContext.Provider>
+      </InjectionContext.Provider>
+    </ThemeProvider>
   );
 };

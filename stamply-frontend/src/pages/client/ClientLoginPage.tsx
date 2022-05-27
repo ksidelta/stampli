@@ -19,15 +19,15 @@ const Inner = styled.div`
 export const ClientLoginPage = () => (
   <MobilePage>
     <Inner>
-        <Header title="Zaloguj Się"/>
-        <section>
-            <Button text="Zaloguj przy użyciu Apple" link="x" button="apple"/>
-            <Button text="Zaloguj przy użyciu Google" link="x" button="google"/>
-            <Button text="Zaloguj przy użyciu Facebook" link="x" button="fb"/>
-            <p>Albo</p>
-            <ButtonText text="Zaloguj Adresem Email" link="/login/email"/>
-            <ButtonText text="Zarejestruj Adresem Email" link="/register/email"/>
-        </section>
+      <Header title="Zaloguj Się" />
+      <section>
+        <Button text="Zaloguj przy użyciu Apple" link="x" button={0} />
+        <Button text="Zaloguj przy użyciu Google" link="x" button={1} />
+        <Button text="Zaloguj przy użyciu Facebook" link="x" button={2} />
+        <p>Albo</p>
+        <ButtonText text="Zaloguj Adresem Email" link="/login/email" />
+        <ButtonText text="Zarejestruj Adresem Email" link="/register/email" />
+      </section>
     </Inner>
   </MobilePage>
 );
