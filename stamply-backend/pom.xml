@@ -514,7 +514,7 @@
                                         <wait>
                                             <!-- shit is executed twice -->
                                             <log>.*Server startup complete.*</log>
-                                            <time>20000</time>
+                                            <time>40000</time>
                                         </wait>
                                         <ports>
                                             <port>5672:5672</port>

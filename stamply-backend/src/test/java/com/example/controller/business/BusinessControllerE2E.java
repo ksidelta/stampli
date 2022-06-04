@@ -1,38 +1,38 @@
 package com.example.controller.business;
 
-import com.example.BaseTestConfiguration;
-import com.example.common.db.AbstractDatabaseTest;
+import com.example.SpringBoot;
+import com.example.common.BaseSpringBootIT;
 import com.example.infrastructure.jwt.generator.TokenGenerator;
 import com.example.modules.authentication.domain.user.entity.AbstractUserAggregate;
 import com.example.modules.business.controller.BusinessController;
 import com.example.modules.business.domain.BusinessAggregate;
 import com.example.modules.business.repository.BusinessRepository;
+import com.example.modules.business.service.BusinessDto;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
-import org.springframework.test.web.servlet.MockMvc;
 
 import javax.servlet.Filter;
 import java.util.Arrays;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.mockito.Mockito.verify;
-import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
+@SpringBootTest(classes = SpringBoot.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class})
 @ExtendWith(SpringExtension.class)
-@SpringJUnitWebConfig({BaseTestConfiguration.class})
-public class BusinessControllerE2E extends AbstractDatabaseTest {
-    protected MockMvc mockMvc;
-
+public class BusinessControllerE2E extends BaseSpringBootIT {
     @Autowired
     protected BusinessController businessController;
 
@@ -45,47 +45,50 @@ public class BusinessControllerE2E extends AbstractDatabaseTest {
     @Autowired
     protected BusinessRepository businessRepository;
 
+    @Autowired
+    TestRestTemplate restTemplate;
+
+    final HttpHeaders headers = new HttpHeaders();
+
+    @BeforeAll
+    static public void start() {
+        startMariaDBWithLoggingForClass(BusinessControllerE2E.class);
+    }
+
     @BeforeEach
-    public void setUp() {
-        mockMvc = standaloneSetup(businessController)
-                .apply(springSecurity(springSecurityFilterChain))
-                .build();
+    public void setUpHeaders() {
+        headers.add("Authorization", "Bearer " + createToken());
     }
 
     @Test
-    public void givenNonExistingBusinessWhenGotThenReturns404() throws Exception {
-        final var mvcResult = mockMvc.perform(
-                get("/api/business/")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer " + createToken())
-        ).andExpect(status().is(404)).andReturn();
+    public void givenNonExistingBusinessWhenGotThenReturns404() {
+        var response = restTemplate.exchange("/api/business/", HttpMethod.GET, new HttpEntity<>(headers), BusinessDto.class);
+
+        assertThat(response.getStatusCode().value(), is(404));
     }
 
     @Test
-    public void givenExistingBusinessWhenGotThenReturnsCorrect() throws Exception {
+    public void givenExistingBusinessWhenGotThenReturnsCorrect() {
         final var business = BusinessAggregate.createBusinessAggregate(new BusinessAggregate.Owner(1));
         businessRepository.save(business);
 
-        mockMvc.perform(
-                get("/api/business/")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer " + createToken())
-        ).andExpect(status().is(200))
-                .andExpect(jsonPath("$.id", equalTo(business.getId())))
-                .andExpect(jsonPath("$.name", equalTo(business.usingBusinessProfile().getBusinessName().getName())))
-                .andReturn();
+        final var response = restTemplate.exchange("/api/business/", HttpMethod.GET, new HttpEntity<>(headers), BusinessDto.class);
+        final var responseBody = response.getBody();
+
+        assert responseBody != null;
+        assertThat(response.getStatusCode().value(), is(200));
+        assertThat(responseBody.getId(), is(business.getId()));
+        assertThat(responseBody.getName(), equalTo(business.usingBusinessProfile().getBusinessName().getName()));
     }
 
     @Test
-    public void givenNonExistingBusinessWhenCreatedThenReturnsCorrect() throws Exception {
-        mockMvc.perform(
-                post("/api/business/")
-                        .accept(MediaType.APPLICATION_JSON)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .header("Authorization", "Bearer " + createToken())
-        ).andExpect(status().is(201)).andReturn();
+    public void givenNonExistingBusinessWhenCreatedThenReturnsCorrect() {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + createToken());
+
+        final var response = restTemplate.exchange("/api/business/", HttpMethod.POST, new HttpEntity<>(headers), BusinessDto.class);
+
+        assertThat(response.getStatusCode().value(), is(201));
     }
 
     public String createToken() {
