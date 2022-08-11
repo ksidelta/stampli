@@ -7,6 +7,7 @@ steps:
 - name: java-verify
   image: maven:3.8-openjdk-18
   commands:
+  - sleep 15
   - ls /var/run
   - cd stamply-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
