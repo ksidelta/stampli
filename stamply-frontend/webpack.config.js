@@ -25,11 +25,11 @@ module.exports = {
     alias: {
       '@mui/styled-engine': '@mui/styled-engine-sc'
     },
-extensions: ['.tsx', '.ts', '.js', '.jsx']
+    extensions: ['.tsx', '.ts', '.js', '.jsx']
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, 'public'),
+      directory: path.join(__dirname, 'public')
     },
     hot: true,
     allowedHosts: ['all'],
@@ -43,7 +43,7 @@ extensions: ['.tsx', '.ts', '.js', '.jsx']
       {
         test: /\.[tj]sx?$/,
         exclude: path.resolve(__dirname, 'node_modules'),
-        loader: 'babel-loader'
+        loader: 'ts-loader'
       },
       {
         test: /\.(css)$/,
@@ -53,12 +53,12 @@ extensions: ['.tsx', '.ts', '.js', '.jsx']
         test: /\.s[ac]ss$/i,
         use: [
           // Creates `style` nodes from JS strings
-          "style-loader",
+          'style-loader',
           // Translates CSS into CommonJS
-          "css-loader",
+          'css-loader',
           // Compiles Sass to CSS
-          "sass-loader",
-        ],
+          'sass-loader'
+        ]
       },
       {
         test: /\.(woff(2)?|ttf)/,
@@ -92,7 +92,7 @@ extensions: ['.tsx', '.ts', '.js', '.jsx']
       OAUTH__GOOGLE__CLIENT_ID: '155167860801-q5hj0hi3hhdrgton1aoplfd026tgfch7.apps.googleusercontent.com'
     }),
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: 'process/browser'
     }),
     new HtmlWebpackPlugin({ template: path.join(__dirname, '/src/index.html') })
   ]
