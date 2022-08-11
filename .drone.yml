@@ -11,9 +11,7 @@ steps:
   - ls /var/run
   - cd stamply-backend
   - mvn verify -DnoTestDB -Dtest.mysql.host=db -Dtest.rabbitmq.host=queue
-  volumes:
-  - name: dockersock
-    path: /var/run
+  privileged: true
 
 - name: node-test
   image: node:17.8.0
@@ -59,13 +57,3 @@ services:
       MYSQL_ROOT_PASSWORD: password
   - name: queue
     image: rabbitmq:3.8
-  - name: docker
-    image: docker:dind
-    privileged: true
-    volumes:
-    - name: dockersock
-      path: /var/run
-
-volumes:
-- name: dockersock
-  temp: {}
