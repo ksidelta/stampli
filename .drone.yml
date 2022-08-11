@@ -57,14 +57,12 @@ services:
       MYSQL_ROOT_PASSWORD: password
   - name: queue
     image: rabbitmq:3.8
-
-services:
-- name: docker
-  image: docker:dind
-  privileged: true
-  volumes:
-  - name: dockersock
-    path: /var/run
+  - name: docker
+    image: docker:dind
+    privileged: true
+    volumes:
+    - name: dockersock
+      path: /var/run
 
 volumes:
 - name: dockersock
