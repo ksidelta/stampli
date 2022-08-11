@@ -1,9 +1,9 @@
-name: dev
+name: master
 
 on:
   push:
     branches:
-      - "develop"
+      - "master"
 
 env:
   DOCKER_USER: psuwala
