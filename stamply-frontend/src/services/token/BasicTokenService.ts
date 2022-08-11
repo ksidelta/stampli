@@ -29,10 +29,10 @@ export class BasicTokenService implements TokenService {
     }
     const decodedToken = JWT.decode(this.token);
 
-    if (typeof decodedToken != 'object' || !decodedToken) {
+    if (typeof decodedToken !== 'object' || !decodedToken) {
       return undefined;
     }
 
-    return 'sub' in decodedToken ? decodedToken?.sub - 0 : undefined;
+    return 'sub' in decodedToken ? parseInt(decodedToken?.sub as string)  : undefined;
   }
 }

@@ -2,7 +2,10 @@ import { createBrowserHistory, History } from 'history';
 import { Routes } from '../routes/Routes';
 
 export class RoutingService {
-  constructor(public history: History) {
+  constructor(public history: History) {}
+
+  goToDiscountPage() {
+    this.history.push('/discount');
   }
 
   goToBusinessOptionsPage() {
@@ -25,12 +28,12 @@ export class RoutingService {
     this.history.push(Routes.scanner);
   }
 
-  goToMenu(){
-    this.history.push(Routes.menu)
+  goToMenu() {
+    this.history.push(Routes.menu);
   }
 
-  goToStamps(){
-    this.history.push(Routes.stamps)
+  goToStamps() {
+    this.history.push(Routes.stamps);
   }
 }
 

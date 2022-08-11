@@ -6,7 +6,6 @@ import { RequestResponseStateUpdater } from '../../../events/producers/request/R
 import { endpointMap } from '../../../services/request/constants/EndpointMap';
 import { CenterMiddle } from '../../simple/container/layout/CenterMiddle';
 import { IconButton } from '../../simple/buttons/IconButton';
-import { faPlusCircle } from '@fortawesome/free-solid-svg-icons/faPlusCircle';
 import { observer } from 'mobx-react';
 import { InputEvent } from '../../../events/producers/input/InputEvent';
 
@@ -43,7 +42,6 @@ export const StatedBusinessPreCreation = observer(({ children }: { children: (id
         onClick={() => {
           servicesBundle.requestService.query(endpointMap.BUSINESS, 'post').then(x => loadBusiness());
         }}
-        icon={faPlusCircle}
       />
     </CenterMiddle>
   );

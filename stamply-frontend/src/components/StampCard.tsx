@@ -18,9 +18,10 @@ const StampsContainer = styled.div`
   justify-content: center;
   height: fit-content;
   margin: auto;
+  background-color: red;
 `
 
-const Stamp = styled(Box)(({theme}) => ({
+const Stamp = styled.div(({theme}) => ({
     width: "75px",
     height: "75px",
     margin: ".8rem 2rem",
@@ -34,7 +35,7 @@ const StyledTypography = styled(Typography)(({theme}) => ({
 }))
 
 export default function StampCard() {
-    const stamps = new Array(10).map(x => <Stamp key={x}/>)
+    const stamps = Array(10).map(x => <Stamp key={x}/>)
 
     return (
         <Inner>
