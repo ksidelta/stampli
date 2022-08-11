@@ -1,0 +1,30 @@
+name: dev
+
+on:
+  push:
+    branches:
+      - "develop"
+
+env:
+  DOCKER_USER: psuwala
+  DOCKER_PASS: ${{ secrets.DOCKER_PASS }}
+  DOCKER_REPO: ksidelta
+  KUBECONFIG_DATA: ${{ secrets.KUBECONFIG_DATA }}
+  DISCORD_API_KEY: ${{ secrets.DISCORD_API_KEY }}
+  DISCORD_GROUP: ${{ secrets.DISCORD_GROUP }}
+  K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE }}
+
+jobs:
+  java:
+    runs-on: ubuntu-latest
+    environment: Development 
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+      - run: cd ./stamply-backend
+      - name: Build with Maven
+        run: mvn --batch-mode --update-snapshots package
