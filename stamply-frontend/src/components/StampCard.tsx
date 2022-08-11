@@ -29,13 +29,14 @@ const Stamp = styled.div(({theme}) => ({
     background: theme.palette.primary.light,
 }))
 
+
 const StyledTypography = styled(Typography)(({theme}) => ({
     color: "white",
     margin: "2rem auto"
 }))
 
 export default function StampCard() {
-    const stamps = Array(10).map(x => <Stamp key={x}/>)
+    const stamps = Array.from(Array(10).keys()).map(x => <Stamp key={x}/>)
 
     return (
         <Inner>
