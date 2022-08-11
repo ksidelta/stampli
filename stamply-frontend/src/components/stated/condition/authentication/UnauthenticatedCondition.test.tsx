@@ -5,7 +5,7 @@ import React from 'react';
 import { InjectionContext } from '../../context/InjectionContext';
 import { TokenService } from '../../../../services/token/TokenService';
 import { ServicesBundle } from '../../../../services/ServicesBundle';
-import Adapter from 'enzyme-adapter-react-16';
+import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
 import { BasicTokenService } from '../../../../services/token/BasicTokenService';
 import { makeAutoObservable } from 'mobx';
 import { UnauthenticatedCondition } from './UnauthenticatedCondition';
