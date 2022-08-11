@@ -25,6 +25,5 @@ jobs:
         with:
           java-version: '17'
           distribution: 'adopt'
-      - run: cd ./stamply-backend
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots package
+        run: cd ./stamply-backend && mvn --batch-mode --update-snapshots package
